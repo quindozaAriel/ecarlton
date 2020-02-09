@@ -1,0 +1,17 @@
+html,body
+{
+	height: 100%;
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+}
+
+@import 'mediascreens';
+
+
+.login-box
+{
+	width:90%;
+	height: 90%;
+	border:1px solid red;
+}
