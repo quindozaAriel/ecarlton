@@ -4,14 +4,30 @@
 	<title>Login</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('build/styles/mobile/login.css')?>">
 </head>
 <body>
 	<div class="container-fluid h-100">
-		<div class="row justify-content-center  h-100">
+		<div class="row justify-content-center  h-100 back-ground">
 			<div class="login-box my-auto">
-				<div class="logo">
-				</div>
+				<center>
+					<img src="<?php echo base_url('build/images/carlton.png')?>" class="logo">
+					<form>
+						<div class="input-group mb-3 w-75 h-100">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-user"></i></span>
+							</div>
+							<input type="text" class="form-control text-field" placeholder="Username">
+						</div>
+						<div class="input-group mb-3 w-75" >
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-lock"></i></span>
+							</div>
+							<input type="text" class="form-control text-field" placeholder="Username">
+						</div>
+					</form>
+				</center>
 			</div>
 		</div>
 	</div>

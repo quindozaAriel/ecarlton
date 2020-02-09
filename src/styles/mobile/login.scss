@@ -9,9 +9,42 @@ html,body
 @import 'mediascreens';
 
 
+.back-ground
+{
+	background-image: linear-gradient(#a1c4fd,#c2e9fb);
+}
+
 .login-box
 {
 	width:90%;
 	height: 90%;
 	border:1px solid red;
+
+}
+
+.logo
+{
+	width:232px;
+	height: 100px;
+}
+
+.input-group
+{
+	border-radius:25px;
+}
+
+.input-group-prepend
+{
+	@extend .input-group;
+}
+
+.input-group-text
+{
+	@extend .input-group;
+}
+
+.text-field
+{
+	@extend .input-group;
+	height:50px;
 }
