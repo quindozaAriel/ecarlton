@@ -61,6 +61,6 @@
 
 @include keyframe(fadein)
 {
-    0% {visibility: hidden;}
-    100%{visibility: visible;}
+    from {height:0;}
+    to{height:200px;}
 }
