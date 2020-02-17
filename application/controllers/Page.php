@@ -8,6 +8,11 @@ class Page extends CI_Controller {
 		$this->load->view('main/login');
 	}
 
+	public function home()
+	{
+		$this->load->view('main/home');
+	}
+
 	public function mobile_login_page()
 	{
 		$this->load->view('mobile/login');

@@ -53,5 +53,7 @@ $route['default_controller'] = 'Page';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['home']['GET'] = 'Page/home';
+
 
 $route['mobile-login']['GET'] = 'Page/mobile_login_page';
