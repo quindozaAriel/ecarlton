@@ -53,7 +53,13 @@ $route['default_controller'] = 'Page';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['home']['GET'] = 'Page/home';
+$route['dashboard']['GET'] = 'Page/dashboard';
+$route['resident']['GET'] = 'Page/resident';
+$route['reservation']['GET'] = 'Page/reservation';
+$route['monthly-due']['GET'] = 'Page/monthly_due';
+$route['notification']['GET'] = 'Page/notification';
+$route['masterlist']['GET'] = 'Page/masterlist';
+$route['admin']['GET'] = 'Page/admin';
 
 
 $route['mobile-login']['GET'] = 'Page/mobile_login_page';

@@ -3,77 +3,83 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url('src/template/admin/')?>assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="<?php echo base_url('src/template/admin/')?>assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
    E-Carlton Residence
-  </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link href="<?php echo base_url('src/template/admin/')?>assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
+ </title>
+ <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+ <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <link href="<?php echo base_url('src/template/admin/')?>assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
+ <?php $this->view($css)?>
 </head>
 
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="blue">
       <div class="logo">
-        <a href="<?php echo base_url('home')?>" class="simple-text logo-mini">
+        <a href="<?php echo base_url('dashboard')?>" class="simple-text logo-mini">
           <i class="now-ui-icons business_bank"></i>
         </a>
-        <a href="<?php echo base_url('home')?>" class="simple-text logo-normal">
+        <a href="<?php echo base_url('dashboard')?>" class="simple-text logo-normal">
           CARLTON RESIDENCE
         </a>
       </div>
+
+      <!-- SIDEBAR -->
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
-          <li class="active ">
-            <a href="./dashboard.html">
+          <li class="<?php echo ($module=='dashboard')?'active':'';?>">
+            <a href="<?php echo base_url('dashboard')?>">
               <i class="now-ui-icons design_app"></i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li>
-            <a href="./icons.html">
+          <li class="<?php echo ($module=='resident')?'active':'';?>">
+            <a href="<?php echo base_url('resident')?>">
               <i class="now-ui-icons business_badge"></i>
               <p>Resident Module</p>
             </a>
           </li>
-          <li>
-            <a href="./map.html">
+          <li class="<?php echo ($module=='reservation')?'active':'';?>">
+            <a href="<?php echo base_url('reservation')?>">
               <i class="now-ui-icons location_map-big"></i>
               <p>Reservation Module</p>
             </a>
           </li>
-          <li>
-            <a href="./notifications.html">
+          <li class="<?php echo ($module=='monthly_due')?'active':'';?>">
+            <a href="<?php echo base_url('monthly-due')?>">
               <i class="now-ui-icons business_money-coins"></i>
               <p>Monthly Due Module</p>
             </a>
           </li>
-          <li>
-            <a href="./user.html">
+          <li class="<?php echo ($module=='notification')?'active':'';?>">
+            <a href="<?php echo base_url('notification')?>">
               <i class="now-ui-icons users_single-02"></i>
               <p>Notification Module</p>
             </a>
           </li>
-          <li>
-            <a href="./tables.html">
+          <li class="<?php echo ($module=='masterlist')?'active':'';?>">
+            <a href="<?php echo base_url('masterlist')?>">
               <i class="now-ui-icons design_bullet-list-67"></i>
               <p>Master List Module</p>
             </a>
           </li>
-          <li>
-            <a href="./typography.html">
+          <li class="<?php echo ($module=='admin')?'active':'';?>">
+            <a href="<?php echo base_url('admin')?>">
               <i class="now-ui-icons users_circle-08"></i>
               <p>Admin Module</p>
             </a>
           </li>
         </ul>
       </div>
+      <!-- SIDEBAR -->
+
     </div>
+
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
@@ -95,16 +101,6 @@
           </button>
 
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-<!--             <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-            </form> -->
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
@@ -132,27 +128,22 @@
         </div>
       </nav>
       <!-- End Navbar -->
-      <div class="panel-header panel-header-lg">
 
-      </div>
-      <div class="content">
-        <div class="row">
-
-
-        </div>
-      </div>
+      <!-- CONTENT -->
+      <?php $this->view($body)?>
+      <!-- CONTENT -->
 
       <footer class="footer">
         <div class=" container-fluid ">
           <nav>
             <ul>
               <li>
-                <a href="https://www.creative-tim.com">
+                <a href="<?php echo base_url()?>">
                   E-Carlton Residence
                 </a>
               </li>
               <li>
-                <a href="http://presentation.creative-tim.com">
+                <a href="<?php echo base_url()?>">
                   About Us
                 </a>
               </li>
@@ -174,6 +165,7 @@
   <script src="<?php echo base_url('src/template/admin/')?>assets/js/plugins/chartjs.min.js"></script>
   <script src="<?php echo base_url('src/template/admin/')?>assets/js/plugins/bootstrap-notify.js"></script>
   <script src="<?php echo base_url('src/template/admin/')?>assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
+  <?php $this->view($js)?>
 </body>
 
 </html>
