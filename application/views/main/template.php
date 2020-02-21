@@ -62,12 +62,6 @@
               <p>Notification Module</p>
             </a>
           </li>
-          <li class="<?php echo ($module=='masterlist')?'active':'';?>">
-            <a href="<?php echo base_url('masterlist')?>">
-              <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Master List Module</p>
-            </a>
-          </li>
           <li class="<?php echo ($module=='admin')?'active':'';?>">
             <a href="<?php echo base_url('admin')?>">
               <i class="now-ui-icons users_circle-08"></i>

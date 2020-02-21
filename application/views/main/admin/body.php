@@ -23,33 +23,33 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>data</td>
-									<td>data</td>
-									<td>data</td>
-									<td>data</td>
-									<td>data</td>
+								<tr> 
+									<td>1</td>
+									<td>Juan Dela Cruz</td>
+									<td>6390909959</td>
+									<td>email@email.com</td>
+									<td>username09</td>
 								</tr>
 								<tr>
-									<td>data</td>
-									<td>data</td>
-									<td>dataasdasdasdasdadadad</td>
-									<td>data</td>
-									<td>data</td>
+									<td>2</td>
+									<td>Juan Dela Cruz</td>
+									<td>6390909959</td>
+									<td>email@email.com</td>
+									<td>username09</td>
 								</tr>
 								<tr>
-									<td>data</td>
-									<td>data</td>
-									<td>data</td>
-									<td>data</td>
-									<td>data</td>
+									<td>3</td>
+									<td>Juan Dela Cruz</td>
+									<td>6390909959</td>
+									<td>email@email.com</td>
+									<td>username09</td>
 								</tr>
 								<tr>
-									<td>data</td>
-									<td>data</td>
-									<td>data</td>
-									<td>data</td>
-									<td>data</td>
+									<td>4</td>
+									<td>Juan Dela Cruz</td>
+									<td>6390909959</td>
+									<td>email@email.com</td>
+									<td>username09</td>
 								</tr>
 							</tbody>
 						</table>
@@ -63,7 +63,7 @@
 				<div class="card-header">
 					<center>
 						<h3>Profile</h3>
-						<img src="" id="avatar_image" class="mb-5">
+						<img class="avatar_image mb-5" src="<?php echo base_url('build/images/avatar.png')?>">
 					</center>
 
 					<form>

@@ -13,8 +13,8 @@ gulp.task('login', function(){
 	.pipe(gulp.dest('build/styles/mobile/'));
 });
 
-gulp.task('admin', function(){
-	return gulp.src('src/styles/main/admin.scss')
+gulp.task('css', function(){
+	return gulp.src('src/styles/main/*.scss')
 	.pipe(sass())
 	.pipe(cssnano())
 	.pipe(gulp.dest('build/styles/main/'));
@@ -29,7 +29,7 @@ gulp.task('image',()=>
 
 gulp.task('watch', function(){
 	// gulp.watch('src/styles/mobile/*.scss', gulp.series('login'));
-	gulp.watch('src/styles/main/*.scss', gulp.series('admin'));
+	gulp.watch('src/styles/main/*.scss', gulp.series('css'));
 });
 
 gulp.task('default',gulp.series('watch'));
