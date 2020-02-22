@@ -36,7 +36,7 @@
 			<div class="card card-chart">
 				<div class="card-header">
 					<h5 class="card-category">Reservation</h5>
-					<h4 class="card-title">Incoming Reservation</h4>
+					<h4 class="card-title">Pending Reservation</h4>
 					<div class="dropdown">
 						<button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
 							<i class="now-ui-icons loader_gear"></i>
@@ -140,12 +140,137 @@
 		<div class="col-lg-7 col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<center><h3>Reservations</h3></center>
+					<center><h3>Reservation Request</h3></center>
 				</div>
 				<div class="card-body">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Requested Date</th>
+								<th>Name</th>
+								<th>Amenities</th>
+								<th>Amount</th>
+								<th>Target Date</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>02-20-2020</td>
+								<td>Juan Dela Cruz</td>
+								<td>
+									Function Hall x 1 <br>
+									Table x 10 <br>
+									Chair x 50 <br>
+								</td>
+								<td>5000</td>
+								<td>04-05-2020</td>
+								<td>
+									<button type="button" class="btn btn-success" title="Approve Request"><i class="fa fa-check"></i></button>
+									<button type="button" class="btn btn-danger" title="Decline Request"><i class="fa fa-times"></i></button>
+								</td>
+							</tr>
+							<tr>
+								<td>02-20-2020</td>
+								<td>Juan Dela Cruz</td>
+								<td>
+									Function Hall x 1 <br>
+									Table x 10 <br>
+									Chair x 50 <br>
+								</td>
+								<td>5000</td>
+								<td>04-05-2020</td>
+								<td>
+									<button type="button" class="btn btn-success" title="Approve Request"><i class="fa fa-check"></i></button>
+									<button type="button" class="btn btn-danger" title="Decline Request"><i class="fa fa-times"></i></button>
+								</td>
+							</tr>
+							<tr>
+								<td>02-20-2020</td>
+								<td>Juan Dela Cruz</td>
+								<td>
+									Function Hall x 1 <br>
+									Table x 10 <br>
+								</td>
+								<td>5000</td>
+								<td>04-05-2020</td>
+								<td>
+									<button type="button" class="btn btn-success" title="Approve Request"><i class="fa fa-check"></i></button>
+									<button type="button" class="btn btn-danger" title="Decline Request"><i class="fa fa-times"></i></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
-
+	</div>
+	<div class="row">
+		<div class="col-lg-7 col-md-12 offset-lg-2">
+			<div class="card">
+				<div class="card-header">
+					<center><h3>Reservation History</h3></center>
+				</div>
+				<div class="card-body">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Requested Date</th>
+								<th>Name</th>
+								<th>Amenities</th>
+								<th>Amount</th>
+								<th>Target Date</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>02-20-2020</td>
+								<td>Juan Dela Cruz</td>
+								<td>
+									Function Hall x 1 <br>
+									Table x 10 <br>
+									Chair x 50 <br>
+								</td>
+								<td>5000</td>
+								<td>04-05-2020</td>
+								<td>
+									<span class="badge badge-info">Finished</span>
+								</td>
+							</tr>
+							<tr>
+								<td>02-20-2020</td>
+								<td>Juan Dela Cruz</td>
+								<td>
+									Function Hall x 1 <br>
+									Table x 10 <br>
+									Chair x 50 <br>
+								</td>
+								<td>5000</td>
+								<td>04-05-2020</td>
+								<td>
+									<span class="badge badge-danger">Declined</span>
+								</td>
+							</tr>
+							<tr>
+								<td>02-20-2020</td>
+								<td>Juan Dela Cruz</td>
+								<td>
+									Function Hall x 1 <br>
+									Table x 10 <br>
+									Chair x 50 <br>
+								</td>
+								<td>5000</td>
+								<td>04-05-2020</td>
+								<td>
+									<span class="badge badge-success">Pending</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
+
