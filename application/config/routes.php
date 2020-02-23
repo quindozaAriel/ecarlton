@@ -53,6 +53,10 @@ $route['default_controller'] = 'Page';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+
+$route['migrate']['GET'] = 'Migrate/do_migration';
+
+
 $route['dashboard']['GET'] = 'Page/dashboard';
 $route['resident']['GET'] = 'Page/resident';
 $route['reservation']['GET'] = 'Page/reservation';

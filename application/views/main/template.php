@@ -14,6 +14,7 @@
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
  <link href="<?php echo base_url('src/template/admin/')?>assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
  <?php $this->view($css)?>
 </head>
 
@@ -159,6 +160,8 @@
   <script src="<?php echo base_url('src/template/admin/')?>assets/js/plugins/chartjs.min.js"></script>
   <script src="<?php echo base_url('src/template/admin/')?>assets/js/plugins/bootstrap-notify.js"></script>
   <script src="<?php echo base_url('src/template/admin/')?>assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
   <?php $this->view($js)?>
 </body>
 
