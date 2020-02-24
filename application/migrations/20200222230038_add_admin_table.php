@@ -33,6 +33,9 @@ class Migration_add_admin_table extends CI_Migration
 			'password' => array(
 				'type' => 'TEXT'
 			),
+			'image' => array(
+				'type' => 'TEXT'
+			),
 			'timestamp' => array(
 				'type' => 'DATETIME'
 			)

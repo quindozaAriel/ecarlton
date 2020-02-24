@@ -375,6 +375,22 @@ class CI_Router {
 		// Get HTTP verb
 		$http_verb = isset($_SERVER['REQUEST_METHOD']) ? strtolower($_SERVER['REQUEST_METHOD']) : 'cli';
 
+		//Fake method request by ariel quindoza jr. March 31,2019 
+		$request_method = "";
+		if(isset($_POST['_method']))
+		{
+			$request_method = strtolower($_POST['_method']);
+		}
+		else if(isset($_GET['_method']))
+		{
+			$request_method = strtolower($_GET['_method']);
+		}
+
+		if ( ! empty($request_method) && in_array($request_method, ['get', 'post', 'put', 'patch', 'delete']))
+		{
+			$http_verb = $request_method;
+		}
+
 		// Loop through the route array looking for wildcards
 		foreach ($this->routes as $key => $val)
 		{

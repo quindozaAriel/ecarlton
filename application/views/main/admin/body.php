@@ -11,7 +11,7 @@
 				</div>
 				<div class="card-body">
 					<div class="table-responsive-sm"> 
-						<table class="table table-hover">
+						<table class="table table-bordered table-hover" id="admin_tbl">
 							<caption>List of registered admin</caption>
 							<thead>
 								<tr>
@@ -20,38 +20,10 @@
 									<th>Name</th>
 									<th>Email</th>
 									<th>Contact No.</th>
+									<th>Action</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr> 
-									<td>1</td>
-									<td>Juan Dela Cruz</td>
-									<td>6390909959</td>
-									<td>email@email.com</td>
-									<td>username09</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Juan Dela Cruz</td>
-									<td>6390909959</td>
-									<td>email@email.com</td>
-									<td>username09</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>Juan Dela Cruz</td>
-									<td>6390909959</td>
-									<td>email@email.com</td>
-									<td>username09</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>Juan Dela Cruz</td>
-									<td>6390909959</td>
-									<td>email@email.com</td>
-									<td>username09</td>
-								</tr>
-							</tbody>
+							<tbody></tbody>
 						</table>
 					</div>
 				</div>
@@ -63,48 +35,106 @@
 				<div class="card-header">
 					<center>
 						<h3>Profile</h3>
-						<img class="avatar_image mb-5" src="<?php echo base_url('build/images/avatar.png')?>">
+						<img class="avatar_image mb-2" id="image" src="<?php echo base_url('build/images/avatar.png')?>">
 					</center>
-
-					<form>
+					<form method="post" id="registration_form">
+						<div class="form-row mb-5">
+							<div class="col-md-6 offset-md-3">
+								<input type="file" class="form-control "  name="image">
+							</div>
+						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6 mb-3">
 								<label for="">First Name</label>
-								<input type="text" class="form-control" id="">
+								<input type="text" class="form-control" id="first_name" name="first_name">
 							</div>
 							<div class="form-group col-md-6 mb-3">
 								<label for="">Middle Name</label>
-								<input type="text" class="form-control" id="">
+								<input type="text" class="form-control" id="middle_name" name="middle_name">
 							</div>
 							<div class="form-group col-md-6 mb-3">
 								<label for="">Last Name</label>
-								<input type="text" class="form-control" id="">
+								<input type="text" class="form-control" id="last_name" name="last_name">
 							</div>
 							<div class="form-group col-md-6 mb-3">
 								<label for="">Email</label>
-								<input type="email" class="form-control" id="">
+								<input type="email" class="form-control" id="email" name="email">
 							</div>
 							<div class="form-group col-md-6 mb-3">
 								<label for="">Contact No.</label>
-								<input type="text" class="form-control" id="">
+								<input type="text" class="form-control" id="contact_number" name="contact_number">
 							</div>
 							<div class="form-group col-md-6 mb-3">
 								<label for="">Username</label>
-								<input type="text" class="form-control" id="">
+								<input type="text" class="form-control" id="username" name="username">
 							</div>
 							<div class="form-group col-md-6 mb-3">
 								<label for="">Password</label>
-								<input type="text" class="form-control" id="">
+								<input type="password" class="form-control" id="password" name="password">
+							</div>
+							<div class="form-group col-md-6 mb-3">
+								<label for="">Confirm Password</label>
+								<input type="password" class="form-control" id="confirm_password" name="confirm_password">
 							</div>
 							<div class="col-md-12 mb-3">
 								<center>
-									<button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Save</button>
-									<button type="submit" class="btn btn-success"><i class="fa fa-edit"></i> Update</button>
-									<button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
+									<button type="submit" class="btn btn-info" id="save_btn"><i class="fa fa-save"></i> Save User</button>
+									<button type="button" class="btn btn-default" onclick="ADMIN.clear();"><i class="fa fa-eraser"></i> Clear</button>
 								</center>
 							</div>
 						</div>
 					</form>
+
+					<form method="post" id="update_form" class="d-none">
+						<div class="form-row mb-5">
+							<div class="col-md-6 offset-md-3">
+								<!-- <input type="file" class="form-control "  name="_image"> -->
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6 mb-3">
+								<label for="">First Name</label>
+								<input type="text" class="form-control" id="_first_name" name="_first_name">
+							</div>
+							<div class="form-group col-md-6 mb-3">
+								<label for="">Middle Name</label>
+								<input type="text" class="form-control" id="_middle_name" name="_middle_name">
+							</div>
+							<div class="form-group col-md-6 mb-3">
+								<label for="">Last Name</label>
+								<input type="text" class="form-control" id="_last_name" name="_last_name">
+							</div>
+							<div class="form-group col-md-6 mb-3">
+								<label for="">Email</label>
+								<input type="email" class="form-control" id="_email" name="_email">
+							</div>
+							<div class="form-group col-md-6 mb-3">
+								<label for="">Contact No.</label>
+								<input type="text" class="form-control" id="_contact_number" name="_contact_number">
+							</div>
+							<div class="form-group col-md-6 mb-3">
+								<label for="">Username</label>
+								<input type="text" class="form-control" id="_username" name="_username" readonly>
+							</div>
+							<div class="form-group col-md-6 mb-3">
+								<label for="">Password</label>
+								<input type="password" class="form-control" id="_password" name="_password">
+							</div>
+							<div class="form-group col-md-6 mb-3">
+								<label for="">Confirm Password</label>
+								<input type="password" class="form-control" id="_confirm_password" name="_confirm_password">
+							</div>
+							<div class="col-md-12 mb-3">
+								<center>
+									<button type="submit" class="btn btn-success" id="update_btn"><i class="fa fa-edit"></i> Update</button>
+									<button type="button" class="btn btn-danger" id="delete_btn" onclick="ADMIN.delete();"><i class="fa fa-trash"></i> Delete</button>
+									<button type="button" class="btn btn-default" onclick="ADMIN.clear();"><i class="fa fa-eraser"></i> Clear</button>
+								</center>
+							</div>
+						</div>
+					</form>
+
+
 				</div>
 			</div>
 		</div>
