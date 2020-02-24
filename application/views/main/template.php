@@ -136,8 +136,8 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Logout</a>
+                  <!-- <a class="dropdown-item" href="#">Profile</a> -->
+                  <a class="dropdown-item" href="<?php echo base_url('logout')?>">Logout</a>
                 </div>
               </li>
 

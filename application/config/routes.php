@@ -57,6 +57,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['migrate']['GET'] = 'Migrate/do_migration';
 
 //PAGES
+$route['login']['GET'] = 'Page/login';
 $route['dashboard']['GET'] = 'Page/dashboard';
 $route['resident']['GET'] = 'Page/resident';
 $route['reservation']['GET'] = 'Page/reservation';
@@ -64,6 +65,10 @@ $route['monthly-due']['GET'] = 'Page/monthly_due';
 $route['notification']['GET'] = 'Page/notification';
 $route['masterlist']['GET'] = 'Page/masterlist';
 $route['admin']['GET'] = 'Page/admin';
+
+//ADMIN LOGIN
+$route['login']['POST'] = 'Login/verify';
+$route['logout']['GET'] = 'Login/logout';
 
 //ADMIN
 $route['admin-list']['GET'] = 'Admin/get';

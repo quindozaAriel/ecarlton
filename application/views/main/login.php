@@ -10,6 +10,7 @@
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('src/template/login/')?>css/util.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('src/template/login/')?>css/main.css">
+	 <link rel="stylesheet" type="text/css" href="<?php echo base_url('src/plugins/izitoast/dist/css/iziToast.css')?>">
 	<!--===============================================================================================-->
 </head>
 <body>
@@ -23,7 +24,7 @@
 					</span>
 				</div>
 
-				<form class="login100-form validate-form">
+				<form method="post" class="login100-form validate-form" id="login_form">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Username</span>
 						<input class="input100" type="text" name="username" placeholder="Enter username">
@@ -32,7 +33,7 @@
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
 						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="pass" placeholder="Enter password">
+						<input class="input100" type="password" name="password" placeholder="Enter password">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -45,7 +46,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" style="background-color:#47a9ea;">
+						<button class="login100-form-btn" type="submit" style="background-color:#47a9ea;">
 							Login
 						</button>
 					</div>
@@ -54,10 +55,14 @@
 		</div>
 	</div>
 	
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url('src/plugins/izitoast/dist/js/iziToast.js');?>"></script>
 	<script src="<?php echo base_url('src/template/login/')?>js/main.js"></script>
+	<script >const base_url = "<?php echo base_url() ?>"</script>
+	<script src="<?php echo base_url('build/scripts/main/login.js')?>"></script>
 
 </body>
 </html>
