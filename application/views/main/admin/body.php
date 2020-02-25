@@ -1,5 +1,8 @@
-<div class="panel-header panel-header-sm">
-
+<div class="panel-header panel-header-md">
+	<div class="overlay-bg">
+		
+	</div>
+	<center><h1>ADMIN MANAGEMENT</h1></center>
 </div>
 <div class="content">
 	<div class="row">
@@ -139,5 +142,64 @@
 			</div>
 		</div>
 
+	</div>
+
+	<div class="row">
+		<div class="col-lg-5">
+			<div class="card">
+				<div class="card-header">
+					<center><h3>Residence Information</h3></center>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-12">
+							<table class="table table-bordered" id="admin_residence">
+								<thead>
+									<tr>
+										<th>Phase No.</th>
+										<th>Lot & Block No.</th>
+									</tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-3">
+			<div class="card">
+				<div class="card-header">
+					<center><h3>Add Residence </h3></center>
+				</div>
+				<div class="card-body">
+
+					<form method="post" id="residence_form">
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="phase_no">Phase No.</label>
+								<input type="number" class="form-control"id="phase_no" name="phase_no" min="0" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="phase_no">Lot No.</label>
+								<input type="number" class="form-control"id="lot_no" name="lot_no" onchange="ADMIN.produce_lot()" min="0" required>
+							</div>
+							<div class="form-group col-12 ">
+								<table id="lot_block_tbl">
+						
+								</table>
+							</div>
+							<div class="form-group col-12 ">
+								<center><button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Save</button></center>
+							</div>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

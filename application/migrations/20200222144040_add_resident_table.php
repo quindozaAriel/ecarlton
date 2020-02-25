@@ -45,6 +45,9 @@ class Migration_add_resident_table extends CI_Migration
 			'password' => array(
 				'type' => 'TEXT'
 			),
+			'status' => array(
+				'type' => 'TEXT'
+			),
 			'timestamp' => array(
 				'type' => 'DATETIME'
 			)

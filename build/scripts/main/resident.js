@@ -1,10 +1,10 @@
 $(document).ready(()=>{
-	ADMIN.load_admin_list();
-	ADMIN.load_residence();
+	RESIDENT.load_list();
+	RESIDENT.load_residence();
 });
 
 
-const ADMIN = (() =>{
+const RESIDENT = (() =>{
 	var hidden_id = 0;
 
 	var regForm = $('#registration_form').validate({
@@ -23,16 +23,10 @@ const ADMIN = (() =>{
 				minlength:11,
 				maxlength:11
 			},
-			username:"required",
-			password: {
-				required: true,
-				minlength: 8	
-			},
-			confirm_password:{
-				required:true,
-				equalTo:"#password"
-			},
-			image:"required"
+			image:"required",
+			phase_no:"required",
+			lot_no:"required",
+			block_no:"required"
 		},
 		messages: {
 			first_name:"Please specify your first name.",
@@ -48,24 +42,17 @@ const ADMIN = (() =>{
 				minlength:"Maximum of 11 character. Ex:09999999999",
 				maxlength:"Maximum of 11 character. Ex:09999999999",
 			},
-			username:"Username required.",
-			password:{
-				required:"Please input your password.",
-				minlength:"Your password must atleast 8 character long.",
-				nowhitespace:"Password can't contain whitespaces."
-			},
-			confirm_password:{
-				required:"Please input password confirmation",
-				equalTo: "Your password does not match."
-			},
-			image:"Please select image to upload"
+			image:"Please select image to upload",
+			phase_no:"required",
+			lot_no:"required",
+			block_no:"required"
 		},	
 		submitHandler:(form, event) => { 
 			event.preventDefault();
 			var formData = new FormData($('#registration_form')[0]);	
 			$.ajax({
 				type:'POST',
-				url:base_url+'admin',
+				url:base_url+'resident',
 				data:formData,
 				dataType:'json',
 				contentType: false,
@@ -80,6 +67,7 @@ const ADMIN = (() =>{
 							position:'bottomCenter'
 						});
 						$('#registration_form')[0].reset();
+						RESIDENT.clear();
 					}
 					else if(result == false)
 					{
@@ -98,76 +86,43 @@ const ADMIN = (() =>{
 					});
 				},
 				complete:() => {
-					ADMIN.load_admin_list();
+					RESIDENT.load_list();
 				}
 			});
-		},highlight:(element) => {
-			$(element).removeClass('valid-input');
-			$(element).addClass('invalid-input');
-		},
-		unhighlight:(element) => {
-			$(element).removeClass('invalid-input');
-			$(element).addClass('valid-input');
 		}
 	});
-
-
 
 	var updateForm = $('#update_form').validate({
 		debug: false,
 		rules: {
-			_first_name:"required",
-			_middle_name:"required",
-			_last_name:"required",
-			_email:{
-				required:true,
-				email:true
-			},
-			_contact_number:{
+			first_name:"required",
+			middle_name:"required",
+			last_name:"required",
+			contact_number:{
 				required:true,
 				number:true,
 				minlength:11,
-				maxlength:11,
-			},
-			_password: {
-				minlength: 8	
-			},
-			_confirm_password:{
-				equalTo:"#_password"
-			},
+				maxlength:11
+			}
 		},
 		messages: {
-			_first_name:"Please specify your first name.",
-			_middle_name:"Please specify your middle name.",
-			_last_name:"Please specify your last name.",
-			_email: {
-				required: "Email required.",
-				email: "Your email address must be in the format of name@domain.com."
-			},
-			_contact_number:{
+			first_name:"Please specify your first name.",
+			middle_name:"Please specify your middle name.",
+			last_name:"Please specify your last name.",
+			contact_number:{
 				required:"Please input your contact number.",
 				number:"Number only",
-				minlength:"Minimum of 11 character. Ex:09999999999",
+				minlength:"Maximum of 11 character. Ex:09999999999",
 				maxlength:"Maximum of 11 character. Ex:09999999999",
-			},
-			_password:{
-				minlength:"Your password must atleast 8 character long.",
-			},
-			_confirm_password:{
-				
-				equalTo: "Your password does not match."
-			},
+			}
 		},	
 		submitHandler:(form, event) => { 
 			event.preventDefault();
-			
 			var update_data = {
 				'first_name':$('#_first_name').val(),
 				'middle_name':$('#_middle_name').val(),
 				'last_name':$('#_last_name').val(),
-				'email':$('#_email').val(),
 				'contact_number':$('#_contact_number').val(),
-				'password':$('#_password').val(),
 			}
 
 			var data = {
@@ -177,7 +132,7 @@ const ADMIN = (() =>{
 
 			$.ajax({
 				type:'POST',
-				url:base_url+'admin/'+hidden_id,
+				url:base_url+'resident/'+hidden_id,
 				dataType:'json',
 				data:data,
 				cache: false,
@@ -190,7 +145,7 @@ const ADMIN = (() =>{
 							position:'bottomCenter'
 						});
 						$('#update_form')[0].reset();
-						// ADMIN.load_admin_list();
+						RESIDENT.clear();
 					}
 					else if(result == false)
 					{
@@ -209,73 +164,18 @@ const ADMIN = (() =>{
 					});
 				},
 				complete:() => {
-					ADMIN.load_admin_list();
-					ADMIN.clear();
+					RESIDENT.load_list();
 				}
 			});
-		},highlight:(element) => {
-			$(element).removeClass('valid-input');
-			$(element).addClass('invalid-input');
-		},
-		unhighlight:(element) => {
-			$(element).removeClass('invalid-input');
-			$(element).addClass('valid-input');
 		}
 	});
+	var ret = {};
 
-	$('#residence_form').on('submit',(e)=>{
-		e.preventDefault();
-		var formData = new FormData($('#residence_form')[0]);	
-
-		$.ajax({
-			type:'POST',
-			url:base_url+'admin-residence',
-			data:formData,
-			dataType:'json',
-			contentType: false,
-			cache:false,
-			processData:false,
-			success:(result) => {
-				if(result == true)
-				{
-					iziToast.success({
-						title: 'Success',
-						message: 'Residence added',
-						position:'bottomCenter'
-					});
-					$('#residence_form')[0].reset();
-					ADMIN.residence_clear();
-				}
-				else if(result == false)
-				{
-					iziToast.warning({
-						title: 'Invalid',
-						message: 'Residence not added',
-						position:'bottomCenter'
-					});
-				}
-			},
-			error:() => {
-				iziToast.error({
-					title: 'Error',
-					message: 'Unexpected error occured',
-					position:'bottomCenter'
-				});
-			},
-			complete:() => {
-				ADMIN.load_residence();
-			}
-		});
-	});
-
-	let ret = {};
-
-
-	ret.load_admin_list = ()=>
+	ret.load_list = ()=>
 	{
 		$.ajax({
 			type:'GET',
-			url:base_url+'admin-list',
+			url:base_url+'resident-list',
 			dataType:'json',
 			cache:false,
 			success:(result) => {
@@ -284,16 +184,19 @@ const ADMIN = (() =>{
 				$.each(result,(key,val)=>{
 					tbody += `<tr>
 					'<td>${key+1}</td>'
-					'<td>${val['username']}</td>'
 					'<td>${val['first_name']}  ${val['last_name']}</td>'
-					'<td>${val['email']}</td>'
 					'<td>${val['contact_number']}</td>'
-					'<td><button type="button" class="btn btn-info" onclick="ADMIN.load_info(\'${val['id']}\')"><i class="fa fa-edit"></i> Edit</button></td>'
+					'<td>${val['email']}</td>'
+					'<td>${val['username']}</td>'
+					'<td>PHASE: ${val['phase_no']} LOT: ${val['lot_no']} BLOCK: ${val['block_no']} </td>'
+					'<td>
+					<button type="button" class="btn btn-info" onclick="RESIDENT.load_info(\'${val['id']}\')"><i class="fa fa-edit"></i></button>
+					</td>'
 					</tr>`;
 				});
 
-				$('#admin_tbl tbody').html(tbody);
-				$('#admin_tbl').DataTable();
+				$('#resident_tbl tbody').html(tbody);
+				$('#resident_tbl').DataTable();
 				$('input[type="search"]').addClass('form-control');	
 			},
 			error:() => {
@@ -314,7 +217,7 @@ const ADMIN = (() =>{
 
 		$.ajax({
 			type:'GET',
-			url:base_url+`admin/${id}`,
+			url:base_url+`resident/${id}`,
 			dataType:'json',
 			cache:false,
 			success:(result) => {
@@ -324,13 +227,17 @@ const ADMIN = (() =>{
 					$('#update_form').removeClass('d-none');
 
 					hidden_id = id;	
-					$('#image').prop('src',base_url+`uploads/admin/${result.image}`);
+					$('#image').prop('src',base_url+`uploads/resident/${result.image}`);
 					$('#_first_name').val(result.first_name);
 					$('#_middle_name').val(result.middle_name);
 					$('#_last_name').val(result.last_name);
 					$('#_email').val(result.email);
 					$('#_contact_number').val(result.contact_number);
 					$('#_username').val(result.username);
+					// $('#_phase_no').val(result.phase_no);
+					// $('#_lot_no').val(result.lot_no);
+					// $('#_block_no').val(result.block_no);
+					RESIDENT._load_residence();
 				}
 			},
 			error:() => {
@@ -342,7 +249,7 @@ const ADMIN = (() =>{
 			},
 			complete:() => {
 				regForm.resetForm();
-				updateForm.resetForm();
+				// updateForm.resetForm();
 			}
 		});
 	}
@@ -360,7 +267,7 @@ const ADMIN = (() =>{
 			['<button>Yes</button>', function (instance, toast) {
 				$.ajax({
 					type:'POST',
-					url:base_url+'admin/'+hidden_id,
+					url:base_url+'resident/'+hidden_id,
 					dataType:'json',
 					data:{'_method':'DELETE'},
 					cache:false,
@@ -373,7 +280,6 @@ const ADMIN = (() =>{
 								message: 'Account deleted.',
 								position:'bottomCenter'
 							});
-							// ADMIN.load_admin_list();
 						}
 						else if(result == false)
 						{
@@ -394,8 +300,8 @@ const ADMIN = (() =>{
 					},
 					complete:()=>
 					{
-						ADMIN.load_admin_list();
-						ADMIN.clear();
+						RESIDENT.load_list();
+						RESIDENT.clear();
 					}
 				});
 				instance.hide({
@@ -415,65 +321,40 @@ const ADMIN = (() =>{
 	ret.clear = () =>
 	{
 		$('#registration_form')[0].reset();
-		$('#update_form')[0].reset();
+		// $('#update_form')[0].reset();
 		$('#image').prop('src',base_url+`build/images/avatar.png`);
 		$('#registration_form').removeClass('d-none');
 		hidden_id = 0;
-		regForm.resetForm();
-		updateForm.resetForm();
+		// regForm.resetForm();
+		// updateForm.resetForm();
 		$('#update_form').addClass('d-none');
 		$('#registration_form').removeClass('d-none');
+		$('#lot_no').html('');
+		$('#block_no').html('');
+		$('#lot_no').prop('disabled',true);
+		$('#block_no').prop('disabled',true);
 
+		$('#_lot_no').html('');
+		$('#_block_no').html('');
+		$('#_lot_no').prop('disabled',true);
+		$('#_block_no').prop('disabled',true);
 	}	
-
-	ret.produce_lot = () =>
-	{
-		$('#lot_block_tbl tbody').html('');
-		var lot_count = $('#lot_no').val();
-
-		var html_data = `<tr>
-		<td>Lot No.</td>
-		<td>Block No.</td>
-		</tr>`;
-		
-		var i;
-		for (i = 1; i <= parseInt(lot_count); i++) {
-			html_data += `
-			<tr>
-			<td><input type="number" class="form-control text-center" name="_lot_no[]" value="${i}" readonly required></td></td>
-			<td><input type="number" class="form-control text-center" name="_block_no[]" min="0" required></td>
-			</tr>
-			`;
-		}
-		
-
-		$('#lot_block_tbl').html(html_data);
-	}
 
 	ret.load_residence = () =>
 	{
 		$.ajax({
 			type:'GET',
-			url:base_url+'admin-residence',
+			url:base_url+'load-phase',
 			dataType:'json',
 			cache:false,
 			success:(result) => {
-				var tbody = "";
+				
+
+				var html = "";
 				$.each(result,(key,val)=>{
-					tbody += `<tr>
-					<td>${val['phase']}</td>
-					<td>
-					<select class="form-control w-50" style="display:inline-block;height: 45px;">`;
-					$.each(val['lot_block'],(kkey,vval)=>{
-						tbody += `<option>${vval['lot']}</option>`;
-					});
-					tbody += `</select>
-					</td>
-					</tr>`;
+					html += `<option value="${val['id']}">${val['phase']}</option>`
 				});
-
-				$('#admin_residence tbody').html(tbody);
-
+				$('#phase_no').html(html);
 			},
 			error:() => {
 				iziToast.error({
@@ -488,11 +369,163 @@ const ADMIN = (() =>{
 		});
 	}
 
-	ret.residence_clear = () =>
+	ret.load_lot = () =>
 	{
-		$('#lot_block_tbl').html('');
-		$('#lot_no').val('');
-		$('#phase_no').val('');
+		var phase_id = $('#phase_no').val();
+		$.ajax({
+			type:'GET',
+			url:base_url+'load-lot/'+phase_id,
+			dataType:'json',
+			cache:false,
+			success:(result) => {
+				$('#lot_no').prop('disabled',false);
+
+				var html = "";
+				$.each(result,(key,val)=>{
+					html += `<option value="${val['id']}">${val['lot']}</option>`
+				});
+				$('#lot_no').html(html);
+			},
+			error:() => {
+				iziToast.error({
+					title: 'Error',
+					message: 'Unexpected error occured',
+					position:'bottomCenter'
+				});
+			},
+			complete:() => {
+
+			}
+		});
 	}
+
+	ret.load_block = () =>
+	{
+		var lot_id = $('#lot_no').val();
+		$.ajax({
+			type:'GET',
+			url:base_url+'load-block/'+lot_id,
+			dataType:'json',
+			cache:false,
+			success:(result) => {
+				$('#block_no').prop('disabled',false);
+
+				var html = "";
+				var ctr = parseInt(result['block_count']);
+				var i;
+
+				for(i = 1;i <= ctr;i++)
+				{
+					html += `<option value="${i}">${i}</option>`;
+				}
+				$('#block_no').html(html);
+			},
+			error:() => {
+				iziToast.error({
+					title: 'Error',
+					message: 'Unexpected error occured',
+					position:'bottomCenter'
+				});
+			},
+			complete:() => {
+
+			}
+		});
+	}
+
+	ret._load_residence = () =>
+	{
+		$.ajax({
+			type:'GET',
+			url:base_url+'load-phase',
+			dataType:'json',
+			cache:false,
+			success:(result) => {
+				
+
+				var html = "";
+				$.each(result,(key,val)=>{
+					html += `<option value="${val['id']}">${val['phase']}</option>`
+				});
+				$('#_phase_no').html(html);
+			},
+			error:() => {
+				iziToast.error({
+					title: 'Error',
+					message: 'Unexpected error occured',
+					position:'bottomCenter'
+				});
+			},
+			complete:() => {
+
+			}
+		});
+	}
+
+	ret._load_lot = () =>
+	{
+		var phase_id = $('#_phase_no').val();
+		$.ajax({
+			type:'GET',
+			url:base_url+'load-lot/'+phase_id,
+			dataType:'json',
+			cache:false,
+			success:(result) => {
+				$('#_lot_no').prop('disabled',false);
+
+				var html = "";
+				$.each(result,(key,val)=>{
+					html += `<option value="${val['id']}">${val['lot']}</option>`
+				});
+				$('#_lot_no').html(html);
+			},
+			error:() => {
+				iziToast.error({
+					title: 'Error',
+					message: 'Unexpected error occured',
+					position:'bottomCenter'
+				});
+			},
+			complete:() => {
+
+			}
+		});
+	}
+
+	ret._load_block = () =>
+	{
+		var lot_id = $('#_lot_no').val();
+		$.ajax({
+			type:'GET',
+			url:base_url+'load-block/'+lot_id,
+			dataType:'json',
+			cache:false,
+			success:(result) => {
+				$('#_block_no').prop('disabled',false);
+
+				var html = "";
+				var ctr = parseInt(result['block_count']);
+				var i;
+
+				for(i = 1;i <= ctr;i++)
+				{
+					html += `<option value="${i}">${i}</option>`;
+				}
+				$('#_block_no').html(html);
+			},
+			error:() => {
+				iziToast.error({
+					title: 'Error',
+					message: 'Unexpected error occured',
+					position:'bottomCenter'
+				});
+			},
+			complete:() => {
+
+			}
+		});
+	}
+
 	return ret;
+
 })()||{};

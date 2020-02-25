@@ -76,6 +76,19 @@ $route['admin/(:any)']['GET'] = 'Admin/read/$1';
 $route['admin']['POST'] = 'Admin/insert';
 $route['admin/(:any)']['PATCH'] = 'Admin/update/$1';
 $route['admin/(:any)']['DELETE'] = 'Admin/delete/$1';
+$route['admin-residence']['POST'] = 'Admin/add_residence';
+$route['admin-residence']['GET'] = 'Admin/load_residence';
+
+//RESIDENT
+$route['resident-list']['GET'] = 'Resident/get';
+$route['resident/(:any)']['GET'] = 'Resident/read/$1';
+$route['resident']['POST'] = 'Resident/insert';
+$route['resident/(:any)']['PATCH'] = 'Resident/update/$1';
+$route['resident/(:any)']['DELETE'] = 'Resident/delete/$1';
+$route['load-phase']['GET'] = 'Resident/load_phase';
+$route['load-lot/(:any)']['GET'] = 'Resident/load_lot/$1';
+$route['load-block/(:any)']['GET'] = 'Resident/load_block/$1';
+
 
 
 //MOBILE

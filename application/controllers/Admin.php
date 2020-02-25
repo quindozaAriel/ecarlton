@@ -76,4 +76,46 @@ class Admin extends CI_Controller
 		$result = $this->admin->delete($id);
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
+
+	public function add_residence()
+	{
+		$post_data = $this->input->post();
+
+		$phase_tbl_data  = [
+			'phase' => $post_data['phase_no'],
+			'lot_count' => $post_data['lot_no']
+		];
+
+		$phase_id = $this->admin->insert_phase_data($phase_tbl_data);
+
+		if($phase_id !== FALSE)
+		{
+			$lot_ctr = count($post_data['_lot_no']);
+			$lot_tbl_data = [];
+
+			for($i = 0;$i < $lot_ctr;$i++)
+			{
+				$lot_data = [
+					'phase_id'      => $phase_id,
+					'lot'           => $post_data['_lot_no'][$i],
+					'block_count'   => $post_data['_block_no'][$i]
+				];
+
+				array_push($lot_tbl_data,$lot_data);
+			}
+
+			$result = $this->admin->insert_lot_data($lot_tbl_data);
+			$this->output->set_content_type('application/json')->set_output(json_encode($result));
+		}
+		else
+		{
+			$this->output->set_content_type('application/json')->set_output(json_encode(FALSE));
+		}
+	}
+
+	public function load_residence()
+	{
+		$result = $this->admin->load_residence();
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
 }
