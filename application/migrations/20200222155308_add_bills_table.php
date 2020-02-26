@@ -21,6 +21,12 @@ public function up()
 			'due_date' => array(
 				'type' => 'DATE'
 			),
+			'type' => array(
+				'type' => 'TEXT'
+			),
+			'status' => array(
+				'type' => 'TEXT'
+			),
 			'timestamp' => array(
 				'type' => 'DATETIME'
 			)

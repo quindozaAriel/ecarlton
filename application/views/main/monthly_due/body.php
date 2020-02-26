@@ -89,7 +89,7 @@
 					<center><h3>Monthly Dues</h3></center>
 				</div>
 				<div class="card-body">
-					<button type="button" class="btn btn-info"><i class="fa fa-plus"></i> Add Bills</button>
+					<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add Bills</button>
 					<table class="table table-bordered">
 						<thead>
 							<tr>
@@ -294,3 +294,38 @@
 	</div>
 </div>
 
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<h4 class="modal-title">Add Monthly Due</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+
+			<div class="modal-body">
+				<form method="post" id="registration_form">
+					<div class="form-row">
+						<div class="form-group col-md-12 mb-3">
+							<label for="">Description</label>
+							<textarea class="form-control" id="first_name" name="first_name"></textarea>
+						</div>
+						<div class="form-group col-md-6 mb-3">
+							<label for="">Amount</label>
+							<input type="text" class="form-control" id="middle_name" name="middle_name">
+						</div>
+						<div class="form-group col-md-6 mb-3">
+							<label for="">Due Date</label>
+							<input type="date" class="form-control" id="last_name" name="last_name">
+						</div>
+					</div>
+
+					<button type="submit" class="btn btn-info" data-dismiss="modal"><i class="fa fa-save"></i>&nbsp; Save</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp; Close</button>
+				</form>
+			</div>
+
+
+		</div>
+	</div>
+</div>
