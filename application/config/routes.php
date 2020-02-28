@@ -89,6 +89,9 @@ $route['load-phase']['GET'] = 'Resident/load_phase';
 $route['load-lot/(:any)']['GET'] = 'Resident/load_lot/$1';
 $route['load-block/(:any)']['GET'] = 'Resident/load_block/$1';
 
+//MONTHLY
+$route['monthly']['POST'] = 'Monthly/insert';
+
 
 
 //MOBILE

@@ -294,12 +294,12 @@
 	</div>
 </div>
 
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog">
 		<div class="modal-content">
 
 			<div class="modal-header">
-				<h4 class="modal-title">Add Monthly Due</h4>
+				<center><h4 class="modal-title">Add Monthly Due</h4></center>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 
@@ -308,20 +308,28 @@
 					<div class="form-row">
 						<div class="form-group col-md-12 mb-3">
 							<label for="">Description</label>
-							<textarea class="form-control" id="first_name" name="first_name"></textarea>
+							<textarea class="form-control" id="description" name="description"></textarea>
 						</div>
 						<div class="form-group col-md-6 mb-3">
 							<label for="">Amount</label>
-							<input type="text" class="form-control" id="middle_name" name="middle_name">
+							<input type="text" class="form-control" id="amount" name="amount">
 						</div>
 						<div class="form-group col-md-6 mb-3">
+							<label for="">Type</label>
+							<select class="form-control" onchange="MONTHLY.change_type($(this).val())" id="type" name="type">
+								<option value="MONTHLY">Monthly</option>
+								<option value="ONCE">Occasional</option>
+							</select>
+						</div>
+						<div class="form-group col-md-6 mb-3 ">
 							<label for="">Due Date</label>
-							<input type="date" class="form-control" id="last_name" name="last_name">
+							<input type="date" class="form-control d-none" id="due_date" name="due_date">
+							<input type="number" class="form-control d-none" id="due_day" name="due_date" min="1" max="31">
 						</div>
 					</div>
 
-					<button type="submit" class="btn btn-info" data-dismiss="modal"><i class="fa fa-save"></i>&nbsp; Save</button>
-					<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp; Close</button>
+					<button type="submit" class="btn btn-info float-right" data-dismiss="modal"><i class="fa fa-save"></i>&nbsp; Save</button>
+					<button type="button" class="btn btn-danger float-right" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp; Close</button>
 				</form>
 			</div>
 
