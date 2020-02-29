@@ -96,6 +96,13 @@ $route['monthly/(:any)']['DELETE'] = 'Monthly/delete/$1';
 $route['monthly-payment']['POST'] = 'Monthly/load_payment_history';
 $route['monthly-due-bills']['GET'] = 'Monthly/load_due_bills';
 
+//MONTHLY
+$route['notification-list']['GET'] = 'Notification/get';
+$route['notification']['POST'] = 'Notification/insert';
+$route['notification/(:any)']['GET'] = 'Notification/read/$1';
+$route['notification/(:any)']['PATCH'] = 'Notification/update/$1';
+$route['notification/(:any)']['DELETE'] = 'Notification/delete/$1';
+$route['notification-all']['GET'] = 'Notification/load_all_notification';
 
 
 //MOBILE

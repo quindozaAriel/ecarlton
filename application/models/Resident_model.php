@@ -15,7 +15,7 @@ class Resident_model extends CI_Model
 
 	public function get()
 	{
-		// $this->db->where('status','ACTIVE');
+		$this->db->where('status','ACTIVE');
 		$this->db->select('*');
 		$this->db->from('resident_tbl');
 		return $this->db->get()->result_array();

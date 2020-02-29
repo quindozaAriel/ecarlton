@@ -192,6 +192,7 @@ const MONTHLY = (()=>{
 
 				$('#bills_table tbody').html(tbody);
 				$('#bills_table').DataTable();
+				$('input[type="search"]').addClass('form-control');	
 			},
 			error:() => {
 				iziToast.error({
