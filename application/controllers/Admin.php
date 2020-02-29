@@ -44,7 +44,7 @@ class Admin extends CI_Controller
 				$data = $this->upload->data();
 
 				$post_data['image'] = $data['file_name'];
-				$post_data['timestamp'] = date('Y/m/d H:i:s');
+				$post_data['timestamp'] = date('Y-m-d H:i:s');
 				$post_data['password'] = password_hash($post_data['password'],PASSWORD_BCRYPT);
 				unset($post_data['confirm_password']);
 

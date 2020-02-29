@@ -90,7 +90,11 @@ $route['load-lot/(:any)']['GET'] = 'Resident/load_lot/$1';
 $route['load-block/(:any)']['GET'] = 'Resident/load_block/$1';
 
 //MONTHLY
+$route['monthly']['GET'] = 'Monthly/get';
 $route['monthly']['POST'] = 'Monthly/insert';
+$route['monthly/(:any)']['DELETE'] = 'Monthly/delete/$1';
+$route['monthly-payment']['POST'] = 'Monthly/load_payment_history';
+$route['monthly-due-bills']['GET'] = 'Monthly/load_due_bills';
 
 
 

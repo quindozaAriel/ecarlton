@@ -33,8 +33,20 @@ class Monthly extends CI_Controller
 
 
 		$post_data['status'] = 'ACTIVE';
-		$post_data['timestamp'] = date('Y/m/d H:i:s');
+		$post_data['timestamp'] = date('Y-m-d H:i:s');
 
+		if($post_data['type'] == 'MONTHLY')
+		{
+			$post_data['due_date'] = $post_data['dueday'];
+			unset($post_data['dueday']);
+			unset($post_data['duedate']);
+		}
+		else
+		{
+			$post_data['due_date'] = $post_data['duedate'];
+			unset($post_data['dueday']);
+			unset($post_data['duedate']);
+		}
 		$result = $this->monthly->insert($post_data);
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
@@ -50,6 +62,19 @@ class Monthly extends CI_Controller
 	public function delete($id)
 	{
 		$result = $this->monthly->delete($id);
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
+	public function load_payment_history()
+	{
+		$post_data = $this->input->post();
+		$result = $this->monthly->load_payment_history($post_data['date_from'],$post_data['date_to']);
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
+	public function load_due_bills()
+	{
+		$result = $this->monthly->load_due_bills();
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 }

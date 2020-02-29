@@ -19,7 +19,7 @@ public function up()
 				'type' => 'DECIMAL'
 			),
 			'due_date' => array(
-				'type' => 'DATE'
+				'type' => 'TEXT'
 			),
 			'type' => array(
 				'type' => 'TEXT'
