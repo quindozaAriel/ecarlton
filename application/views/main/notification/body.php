@@ -54,6 +54,7 @@
 							<div class="col-md-12 mb-3">
 								<center>
 									<button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Save</button>
+									<button type="button" class="btn btn-default" onclick="NOTIFICATION.clear();"><i class="fa fa-eraser"></i> Clear</button>
 									
 								</center>
 							</div>
@@ -77,6 +78,7 @@
 							<div class="col-md-12 mb-3">
 								<center>
 									<button type="submit" class="btn btn-success"><i class="fa fa-edit"></i> Update</button>
+									<button type="button" class="btn btn-default" onclick="NOTIFICATION.clear();"><i class="fa fa-eraser"></i> Clear</button>
 								</center>
 							</div>
 						</div>

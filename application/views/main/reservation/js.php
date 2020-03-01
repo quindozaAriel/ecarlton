@@ -1,3 +1,4 @@
+<script type="text/javascript" src="<?php echo base_url('build/scripts/main/amenities.js')?>"></script>
 <script>
 
 	$(document).ready(function() {

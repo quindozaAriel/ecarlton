@@ -104,6 +104,13 @@ $route['notification/(:any)']['PATCH'] = 'Notification/update/$1';
 $route['notification/(:any)']['DELETE'] = 'Notification/delete/$1';
 $route['notification-all']['GET'] = 'Notification/load_all_notification';
 
+//AMENITY
+$route['amenities-list']['GET'] = 'Amenities/get';
+$route['amenities']['POST'] = 'Amenities/insert';
+$route['amenities/(:any)']['GET'] = 'Amenities/read/$1';
+$route['amenities/(:any)']['PATCH'] = 'Amenities/update/$1';
+$route['amenities/(:any)']['DELETE'] = 'Amenities/delete/$1';
+$route['reservation-history']['GET'] = 'Reservation/load_reservation_history';
 
 //MOBILE
 $route['mobile-login']['GET'] = 'Page/mobile_login_page';
