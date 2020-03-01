@@ -1,5 +1,6 @@
 $(document).ready(()=>{
 	AMENITY.load_amenities();
+	AMENITY.load_reservation_history();
 });
 
 
@@ -203,50 +204,6 @@ const AMENITY = (() =>{
 		});
 	}
 
-	ret.load_reservation_history = ()=>
-	{
-		$.ajax({
-			type:'GET',
-			url:base_url+'reservation-history',
-			dataType:'json',
-			cache:false,
-			success:(result) => {
-				var tbody = "";
-
-				$.each(result,(key,val)=>{
-					tbody += `<tr>
-					<td>02-20-2020</td>
-					<td>Juan Dela Cruz</td>
-					<td>
-					Function Hall x 1 <br>
-					Table x 10 <br>
-					Chair x 50 <br>
-					</td>
-					<td>5000</td>
-					<td>04-05-2020</td>
-					<td>
-					<span class="badge badge-info">Finished</span>
-					</td>
-					</tr>`;
-				});
-
-				$('#reservation_history tbody').html(tbody);
-				$('#reservation_history').DataTable();
-				$('input[type="search"]').addClass('form-control');	
-			},
-			error:() => {
-				iziToast.error({
-					title: 'Error',
-					message: 'Unexpected error occured',
-					position:'bottomCenter'
-				});
-			},
-			complete:() => {
-
-			}
-		});
-	}
-
 	ret.load_info = (id)=>
 	{
 
@@ -353,6 +310,51 @@ const AMENITY = (() =>{
 		hidden_id = 0;
 		$('#update_form').addClass('d-none');
 	}	
+
+
+	ret.load_reservation_history = ()=>
+	{
+		$.ajax({
+			type:'GET',
+			url:base_url+'reservation-history',
+			dataType:'json',
+			cache:false,
+			success:(result) => {
+				var tbody = "";
+
+				$.each(result,(key,val)=>{
+					tbody += `<tr>
+					<td>${val['timestamp']}</td>
+					<td>${val['first_name']} ${val['middle_name']} ${val['last_name']}</td>
+					<td>
+					Table x 10 <br>
+					Chair x 50 <br>
+					</td>
+					<td>${val['total_amount']}</td>
+					<td>${val['date']}</td>
+					<td>
+					<span class="badge badge-info">${status}</span>
+					</td>
+					</tr>`;
+				});
+
+				$('#reservation_history tbody').html(tbody);
+				$('#reservation_history').DataTable();
+				$('input[type="search"]').addClass('form-control');	
+			},
+			error:() => {
+				iziToast.error({
+					title: 'Error',
+					message: 'Unexpected error occured',
+					position:'bottomCenter'
+				});
+			},
+			complete:() => {
+
+			}
+		});
+	}
+
 	return ret;
 
 })()||{};

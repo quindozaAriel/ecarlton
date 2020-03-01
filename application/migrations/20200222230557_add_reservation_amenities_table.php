@@ -12,7 +12,7 @@ public function up()
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE
 			),
-			'resident_id' => array(
+			'reservation_id' => array(
 				'type' => 'INT'
 			),
 			'amenities_id' => array(

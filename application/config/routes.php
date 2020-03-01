@@ -110,6 +110,8 @@ $route['amenities']['POST'] = 'Amenities/insert';
 $route['amenities/(:any)']['GET'] = 'Amenities/read/$1';
 $route['amenities/(:any)']['PATCH'] = 'Amenities/update/$1';
 $route['amenities/(:any)']['DELETE'] = 'Amenities/delete/$1';
+
+//RESERVATION
 $route['reservation-history']['GET'] = 'Reservation/load_reservation_history';
 
 //MOBILE
