@@ -115,4 +115,11 @@ $route['amenities/(:any)']['DELETE'] = 'Amenities/delete/$1';
 $route['reservation-history']['GET'] = 'Reservation/load_reservation_history';
 
 //MOBILE
+
+//LOGIN
 $route['mobile-login']['GET'] = 'Page/mobile_login_page';
+$route['mobile-login']['POST'] = 'Login/verify_mobile_login';
+
+
+
+$route['mobile-home']['GET'] = 'Page/mobile_home_page';

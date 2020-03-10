@@ -86,4 +86,9 @@ class Page extends CI_Controller {
 	{
 		$this->load->view('mobile/login');
 	}
+
+	public function mobile_home_page()
+	{
+		$this->load->view('mobile/template',['body' => 'mobile/home/body','css' => 'mobile/home/css','js' => 'mobile/home/js','module' => 'home']);
+	}
 }
