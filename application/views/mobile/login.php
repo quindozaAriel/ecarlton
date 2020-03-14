@@ -30,8 +30,8 @@
 					<div class="col-12">
 						<p class="login-title mt-5 mb-4"><b>LOGIN</b></p>
 						<form method="post" id="login_form">
-							<input type="text" class="text-field mb-3" placeholder="Username" name="username">
-							<input type="password" class="text-field" placeholder="Password" name="password">
+							<input type="text" class="text-field mb-3" placeholder="Username" name="username" autocomplete="off">
+							<input type="password" class="text-field" placeholder="Password" name="password" autocomplete="off">
 							<a href="#" class="forgot-password mt-2"><u>Forgot Password?</u></a>
 
 							<button type="submit" class="login-btn mt-4">LOGIN</button>

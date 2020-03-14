@@ -27,6 +27,18 @@ class Page extends CI_Controller {
 			die();
 		}
 	}
+
+	public function _mobile_login_verification()
+	{
+		if(isset($_SESSION['mobile_logged']) && $_SESSION['mobile_logged'] === TRUE)
+		{
+		}
+		else
+		{
+			redirect(base_url('login'));
+			die();
+		}
+	}
 	
 	public function login()
 	{
@@ -84,11 +96,19 @@ class Page extends CI_Controller {
 
 	public function mobile_login_page()
 	{
-		$this->load->view('mobile/login');
+		if(isset($_SESSION['mobile_logged']) && $_SESSION['mobile_logged'] === TRUE)
+		{
+			$this->mobile_home_page();
+		}
+		else
+		{
+			$this->load->view('mobile/login');
+		}
 	}
 
 	public function mobile_home_page()
 	{
+		$this->_mobile_login_verification();
 		$this->load->view('mobile/template',['body' => 'mobile/home/body','css' => 'mobile/home/css','js' => 'mobile/home/js','module' => 'home']);
 	}
 }

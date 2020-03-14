@@ -22,6 +22,7 @@ class Login extends CI_Controller
 				'middle_name'    => $result['middle_name'],
 				'last_name'      => $result['last_name'],
 				'email'          => $result['email'],
+				'image'          => $result['image'],
 				'contact_number' => $result['contact_number'],
 				'username'       => $result['username'],
 				'admin_logged'   => TRUE
@@ -66,6 +67,7 @@ class Login extends CI_Controller
 				'email'          => $result['email'],
 				'contact_number' => $result['contact_number'],
 				'username'       => $result['username'],
+				'image'          => $result['image'],
 				'phase_no'       => $result['phase_no'],
 				'lot_no'         => $result['lot_no'],
 				'block_no'       => $result['block_no'],

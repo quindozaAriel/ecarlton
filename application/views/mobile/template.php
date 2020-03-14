@@ -10,7 +10,7 @@
    E-Carlton Residence
  </title>
  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+ <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
  <link href="<?php echo base_url('src/template/admin/')?>assets/css/now-ui-dashboard.css" rel="stylesheet" />
@@ -58,32 +58,44 @@
         <ul class="nav">
           <li class="<?php echo ($module=='home')?'active':'';?>">
             <a href="<?php echo base_url('mobile-home')?>">
-              <i class="now-ui-icons business_badge"></i>
+              <i class="now-ui-icons business_bank"></i>
               <p>Home</p>
-            </a>
-          </li>
-          <li class="<?php echo ($module=='reservation')?'active':'';?>">
-            <a href="<?php echo base_url('reservation')?>">
-              <i class="now-ui-icons location_map-big"></i>
-              <p>Reservation Module</p>
             </a>
           </li>
           <li class="<?php echo ($module=='monthly_due')?'active':'';?>">
             <a href="<?php echo base_url('monthly-due')?>">
               <i class="now-ui-icons business_money-coins"></i>
-              <p>Monthly Due Module</p>
+              <p>Bills</p>
+            </a>
+          </li>
+          <li class="<?php echo ($module=='reservation')?'active':'';?>">
+            <a href="<?php echo base_url('reservation')?>">
+              <i class="now-ui-icons ui-1_calendar-60"></i>
+              <p>Reservation</p>
             </a>
           </li>
           <li class="<?php echo ($module=='notification')?'active':'';?>">
             <a href="<?php echo base_url('notification')?>">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>Notification Module</p>
+              <i class="now-ui-icons ui-1_bell-53"></i>
+              <p>Notification</p>
+            </a>
+          </li>
+          <li class="<?php echo ($module=='notification')?'active':'';?>">
+            <a href="<?php echo base_url('notification')?>">
+              <i class="now-ui-icons ui-1_bell-53"></i>
+              <p>Messages</p>
             </a>
           </li>
           <li class="<?php echo ($module=='admin')?'active':'';?>">
             <a href="<?php echo base_url('admin')?>">
               <i class="now-ui-icons users_circle-08"></i>
-              <p>Admin Module</p>
+              <p>Profile</p>
+            </a>
+          </li>
+          <li class="<?php echo ($module=='admin')?'active':'';?>">
+            <a href="<?php echo base_url('logout')?>">
+              <i class="now-ui-icons arrows-1_minimal-left"></i>
+              <p>Logout</p>
             </a>
           </li>
         </ul>
@@ -104,31 +116,9 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-           <!--  <a class="navbar-brand" href="<?php echo base_url('dashboard')?>">Dashboard</a> -->
           </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
 
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <ul class="navbar-nav">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons users_single-02"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Account</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <!-- <a class="dropdown-item" href="#">Profile</a> -->
-                  <a class="dropdown-item" href="<?php echo base_url('logout')?>">Logout</a>
-                </div>
-              </li>
 
-            </ul>
-          </div>
         </div>
       </nav>
       <!-- End Navbar -->
