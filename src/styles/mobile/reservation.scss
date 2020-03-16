@@ -1,0 +1,17 @@
+@import 'general';
+@import 'animation';
+@import 'mediascreens';
+
+input
+{
+	text-align: center;
+}
+
+.panel-header
+{
+	// background-image: linear-gradient(to left top, #354bd8, #0067e5, #007feb, #0094ec, #00a7ea, #00b1ea, #15bbea, #31c5e8, #2dcaec, #28cfef, #23d4f3, #1ed9f6) !important;
+	background: linear-gradient(90deg,#1ED9F6,#36BEE3,#41ADAE,#1ED9F6);
+	background-size:400%;
+	@include animation(0,10s,moveGradient,infinite,linear);
+}
+

@@ -2,7 +2,7 @@
 	<center><img class="" id="user_image" src="<?php echo base_url('uploads/resident/').$_SESSION['image'];?>"></center>
 </div>
 <div class="content">
-	<div lo,class="row">
+	<div class="row">
 
 		<div class="col-12">
 			<div class="card">

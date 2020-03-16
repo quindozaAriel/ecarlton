@@ -1,58 +1,64 @@
-<div class="panel-header panel-header-md">
-	<center><img class="" id="user_image" src="<?php echo base_url('uploads/resident/').$_SESSION['image'];?>"></center>
+<div class="panel-header panel-header-sm">
+
 </div>
 <div class="content">
-	<div lo,class="row">
-
+	<div class="row">
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<center><h3>Hi <span style="color:gray;"><?php echo $_SESSION['first_name']?></span>!</h3></center>
+					<center><h6>MY RESERVATION</h6></center>
 				</div>
 				<div class="card-body">
 					<div class="row">
-						<div class="col-4 mb-4 pl-1 pr-2">
-							<a style="text-decoration:none;" href="<?php echo base_url('mobile-home')?>">
-							<div class="option-group p-1 mt-1">
-								<i class="fas fa-money-bill fa-3x mb-2"></i>
-								<label>Bills<span class="badge text-danger"></span></label>
-							</div>
-							</a>
-						</div>
-						<div class="col-4 mb-4 pl-1 pr-2">
-							<div class="option-group p-1 mt-1">
-								<i class="fas fa-calendar-alt fa-3x mb-2"></i>
-								<label>Reservation<span class="badge text-danger"></span></label>
-							</div>
-						</div>
-						<div class="col-4 mb-4 pl-1 pr-2">
-							<div class="option-group p-1 mt-1">
-								<i class="fas fa-bell fa-3x mb-2"></i>
-								<label>Notification<span class="badge text-danger"></span></label>
-							</div>
-						</div>
-						<div class="col-4 mb-4 pl-1 pr-2">
-							<div class="option-group p-1 mt-1">
-								<i class="fas fa-envelope fa-3x mb-2"></i>
-								<label>Messages<span class="badge text-danger"></span></label>
-							</div>
-						</div>
-						<div class="col-4 mb-4 pl-1 pr-2">
-							<div class="option-group p-1 mt-1">
-								<i class="fas fa-user fa-3x mb-2"></i>
-								<label>Profile</label>
-							</div>
-						</div>
-						<div class="col-4 mb-4 pl-1 pr-2">
-							<div class="option-group p-1 mt-1">
-								<i class="fas fa-user-times fa-3x mb-2"></i>
-								<label>Logout</label>
-							</div>
+						<div class="col-12">
+							<center><label>NOTHING RESERVED</label></center>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header">
+					<center><h6>SCHEDULE RESERVATION</h6></center>
+				</div>
+				<div class="card-body">
+					<form method="post" id="reservation_form">
+						<div class="row">
 
+							<div class="col-12">
+								<label class="d-block">Amenity</label>
+								<select class="form-control" id="amenities" name="amenities" onchange="RESERVATION.load_amenities_information();"></select>
+							</div>
+							<div class="col-4 mt-3">
+								<label class="d-block">Available Qty</label>
+								<input type="number" class="form-control" id="available_qty" name="available_qty" readonly disabled>
+							</div>
+							<div class="col-4 mt-3">
+								<label class="d-block">Amount</label>
+								<input type="text" class="form-control" id="amount" name="amount" readonly disabled>
+							</div>
+							<div class="col-4 mt-3">
+								<label class="d-block">Quantity</label>
+								<input type="text" class="form-control" id="quantity" name="quantity">
+							</div>
+							<div class="col-6 mt-3">
+								<label class="d-block">Date From</label>
+								<input type="text" id="date_from" class="form-control datepicker" name="date_from"></p>
+							</div>
+							<div class="col-6 mt-3">
+								<label class="d-block">Date To</label>
+								<input type="date_to" id="" class="form-control datepicker" name="date_to"></p>
+							</div>
+							<div class="col-12">
+								<center><button class="btn btn-info">Place Reservation</button></center>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

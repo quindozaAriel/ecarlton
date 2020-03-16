@@ -82,7 +82,7 @@
           </li>
           <li class="<?php echo ($module=='messages')?'active':'';?>">
             <a href="<?php echo base_url('mobile-messages')?>">
-              <i class="now-ui-icons ui-1_bell-53"></i>
+              <i class="now-ui-icons files_single-copy-04"></i>
               <p>Messages</p>
             </a>
           </li>
