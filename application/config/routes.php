@@ -129,8 +129,9 @@ $route['mobile-notification']['GET'] = 'Page/mobile_notification_page';
 $route['mobile-messages']['GET'] = 'Page/mobile_messages_page';
 $route['mobile-profile']['GET'] = 'Page/mobile_profile_page';
 
-
-
 //PROFILE
 $route['mobile-profile-change-password/(:any)']['PATCH'] = 'Profile/update_password/$1';
 $route['mobile-profile-change-image']['POST'] = 'Profile/update_image';
+
+//NOTIFICATION
+$route['realtime-notification']['GET'] = 'Notification/realtime_retrieving';

@@ -51,4 +51,10 @@ class Notification extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
+	public function realtime_retrieving()
+	{
+		$result = $this->notification->realtime_retrieving();
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
 }

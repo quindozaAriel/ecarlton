@@ -14,6 +14,7 @@ class Notification_model extends CI_Model
 		$this->db->where('date >=',date('Y-m-d'));
 		$this->db->select('*');
 		$this->db->from('notification_tbl');
+		$this->db->order_by('date','DESC');
 		return $this->db->get()->result_array();
 	}
 
@@ -78,5 +79,21 @@ class Notification_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('notification_tbl');
 		return $this->db->get()->result_array();
+	}
+
+	public function realtime_retrieving()
+	{
+		$this->db->select('*');
+		$this->db->from('notification_tbl');
+		$this->db->order_by('date','DESC');
+		$notifications = $this->db->get()->result_array();
+
+		$this->db->select('MAX(id) as id');
+		$this->db->from('notification_tbl');
+		$last_notification =  $this->db->get()->row_array();
+
+		return ['notifications' => $notifications,
+				'last_notification' => $last_notification['id']
+			   ];
 	}
 }
