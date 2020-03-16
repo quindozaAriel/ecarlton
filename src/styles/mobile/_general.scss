@@ -5,7 +5,7 @@ html,body
 	margin:0;
 	box-sizing: border-box;
 	font-family: 'Quicksand', sans-serif;
-	overflow: hidden;
+	// overflow: hidden;
 }
 
 input:focus,
@@ -20,4 +20,16 @@ a:link {
 } 
 a:hover { 
 	text-decoration: none; 
+}
+
+.bg-white {
+    background:transparent !important;
+}
+#user_image
+{
+	width:150px;
+	height:150px;
+	border-radius: 250px;
+	border:2px solid #FFFFFF;
+	margin-top: -20px;
 }

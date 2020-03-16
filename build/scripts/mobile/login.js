@@ -33,7 +33,7 @@ const LOGIN = (()=>{
 						iziToast.warning({
 							title: 'Invalid',
 							message: 'Username or Password is incorrect.',
-							position:'bottomCenter'
+							position:'topCenter'
 						});
 					}
 					else

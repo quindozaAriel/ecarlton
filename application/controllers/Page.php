@@ -35,7 +35,7 @@ class Page extends CI_Controller {
 		}
 		else
 		{
-			redirect(base_url('login'));
+			redirect(base_url('mobile-login'));
 			die();
 		}
 	}
@@ -110,5 +110,35 @@ class Page extends CI_Controller {
 	{
 		$this->_mobile_login_verification();
 		$this->load->view('mobile/template',['body' => 'mobile/home/body','css' => 'mobile/home/css','js' => 'mobile/home/js','module' => 'home']);
+	}
+
+	public function mobile_bills_page()
+	{
+		$this->_mobile_login_verification();
+		$this->load->view('mobile/template',['body' => 'mobile/bills/body','css' => 'mobile/bills/css','js' => 'mobile/bills/js','module' => 'bills']);
+	}
+
+	public function mobile_reservation_page()
+	{
+		$this->_mobile_login_verification();
+		$this->load->view('mobile/template',['body' => 'mobile/reservation/body','css' => 'mobile/reservation/css','js' => 'mobile/reservation/js','module' => 'reservation']);
+	}
+
+	public function mobile_notification_page()
+	{
+		$this->_mobile_login_verification();
+		$this->load->view('mobile/template',['body' => 'mobile/notification/body','css' => 'mobile/notification/css','js' => 'mobile/notification/js','module' => 'notification']);
+	}
+
+	public function mobile_messages_page()
+	{
+		$this->_mobile_login_verification();
+		$this->load->view('mobile/template',['body' => 'mobile/messages/body','css' => 'mobile/messages/css','js' => 'mobile/messages/js','module' => 'messages']);
+	}
+
+	public function mobile_profile_page()
+	{
+		$this->_mobile_login_verification();
+		$this->load->view('mobile/template',['body' => 'mobile/profile/body','css' => 'mobile/profile/css','js' => 'mobile/profile/js','module' => 'profile']);
 	}
 }

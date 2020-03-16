@@ -62,37 +62,37 @@
               <p>Home</p>
             </a>
           </li>
-          <li class="<?php echo ($module=='monthly_due')?'active':'';?>">
-            <a href="<?php echo base_url('monthly-due')?>">
+          <li class="<?php echo ($module=='bills')?'active':'';?>">
+            <a href="<?php echo base_url('mobile-bills')?>">
               <i class="now-ui-icons business_money-coins"></i>
               <p>Bills</p>
             </a>
           </li>
           <li class="<?php echo ($module=='reservation')?'active':'';?>">
-            <a href="<?php echo base_url('reservation')?>">
+            <a href="<?php echo base_url('mobile-reservation')?>">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Reservation</p>
             </a>
           </li>
           <li class="<?php echo ($module=='notification')?'active':'';?>">
-            <a href="<?php echo base_url('notification')?>">
+            <a href="<?php echo base_url('mobile-notification')?>">
               <i class="now-ui-icons ui-1_bell-53"></i>
               <p>Notification</p>
             </a>
           </li>
-          <li class="<?php echo ($module=='notification')?'active':'';?>">
-            <a href="<?php echo base_url('notification')?>">
+          <li class="<?php echo ($module=='messages')?'active':'';?>">
+            <a href="<?php echo base_url('mobile-messages')?>">
               <i class="now-ui-icons ui-1_bell-53"></i>
               <p>Messages</p>
             </a>
           </li>
-          <li class="<?php echo ($module=='admin')?'active':'';?>">
-            <a href="<?php echo base_url('admin')?>">
+          <li class="<?php echo ($module=='profile')?'active':'';?>">
+            <a href="<?php echo base_url('mobile-profile')?>">
               <i class="now-ui-icons users_circle-08"></i>
               <p>Profile</p>
             </a>
           </li>
-          <li class="<?php echo ($module=='admin')?'active':'';?>">
+          <li>
             <a href="<?php echo base_url('logout')?>">
               <i class="now-ui-icons arrows-1_minimal-left"></i>
               <p>Logout</p>

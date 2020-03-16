@@ -2,6 +2,11 @@
 @import 'animation';
 @import 'mediascreens';
 
+input
+{
+	text-align: center;
+}
+
 .panel-header
 {
 	// background-image: linear-gradient(to left top, #354bd8, #0067e5, #007feb, #0094ec, #00a7ea, #00b1ea, #15bbea, #31c5e8, #2dcaec, #28cfef, #23d4f3, #1ed9f6) !important;
@@ -10,34 +15,7 @@
 	@include animation(0,10s,moveGradient,infinite,linear);
 }
 
-.option-group
+p
 {
-	width:100%;
-	height: 80px;
-	text-align: center;
-	transition: .5s;
-
-	.fas
-	{
-		color:#69afb9;
-		display: block;
-	}
-
-	label
-	{
-		color:#312f2f;
-		display: block;
-	}
-}
-
-a
-{
-	z-index: 10;
-}
-
-
-.option-group:hover
-{
-	background-color: #dce8ea;
-	border-radius:10px; 
+	margin-bottom: 0;
 }

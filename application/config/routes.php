@@ -121,5 +121,16 @@ $route['mobile-login']['GET'] = 'Page/mobile_login_page';
 $route['mobile-login']['POST'] = 'Login/verify_mobile_login';
 
 
-
+//PAGES
 $route['mobile-home']['GET'] = 'Page/mobile_home_page';
+$route['mobile-bills']['GET'] = 'Page/mobile_bills_page';
+$route['mobile-reservation']['GET'] = 'Page/mobile_reservation_page';
+$route['mobile-notification']['GET'] = 'Page/mobile_notification_page';
+$route['mobile-messages']['GET'] = 'Page/mobile_messages_page';
+$route['mobile-profile']['GET'] = 'Page/mobile_profile_page';
+
+
+
+//PROFILE
+$route['mobile-profile-change-password/(:any)']['PATCH'] = 'Profile/update_password/$1';
+$route['mobile-profile-change-image']['POST'] = 'Profile/update_image';

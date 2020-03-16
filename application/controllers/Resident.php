@@ -46,7 +46,7 @@ class Resident extends CI_Controller
 				$post_data['image'] = $data['file_name'];
 				$post_data['timestamp'] = date('Y-m-d H:i:s');
 				$post_data['password'] = password_hash($post_data['username'],PASSWORD_BCRYPT);
-				$post_data['status'] = 'INACTIVE';
+				$post_data['status'] = 'ACTIVE';
 
 				$result = $this->resident->insert($post_data);
 				$this->output->set_content_type('application/json')->set_output(json_encode($result));
