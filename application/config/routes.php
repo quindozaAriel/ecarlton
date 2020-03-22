@@ -135,3 +135,12 @@ $route['mobile-profile-change-image']['POST'] = 'Profile/update_image';
 
 //NOTIFICATION
 $route['realtime-notification']['GET'] = 'Notification/realtime_retrieving';
+
+//RESERVATION
+$route['reservation-availability/(:any)/(:any)/(:any)/(:any)']['GET'] = 'Reservation/load_availability/$1/$2/$3/$4';
+$route['reservation-load-amenity/(:any)']['GET'] = 'Reservation/load_amenity_reservation/$1';
+$route['reservation']['POST'] = 'Reservation/insert';
+$route['my_reservation']['GET'] = 'Reservation/my_reservation';
+
+
+

@@ -325,13 +325,9 @@ const AMENITY = (() =>{
 				$.each(result,(key,val)=>{
 					tbody += `<tr>
 					<td>${val['timestamp']}</td>
-					<td>${val['first_name']} ${val['middle_name']} ${val['last_name']}</td>
-					<td>
-					Table x 10 <br>
-					Chair x 50 <br>
-					</td>
-					<td>${val['total_amount']}</td>
-					<td>${val['date']}</td>
+					<td>${val['first_name']} ${val['last_name']}</td>
+					<td>${val['description']} x ${val['reserved_qty']} = ₱${val['total_amount']}</td>
+					<td>${val['date_from']}<br>${val['date_to']}</td>
 					<td>
 					<span class="badge badge-info">${status}</span>
 					</td>

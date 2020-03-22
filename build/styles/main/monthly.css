@@ -1,1 +1,1 @@
-textarea.form-control{max-width:100%;max-height:80px;padding:10px 10px 0 0;resize:none;border:1px solid #e3e3e3;border-radius:0;line-height:2}
+body,html{height:100%;padding:0;margin:0;box-sizing:border-box}body,button,html,input,select,select option{font-family:Quicksand,sans-serif}textarea.form-control{max-width:100%;max-height:80px;padding:10px 10px 0 0;resize:none;border:1px solid #e3e3e3;border-radius:0;line-height:2}

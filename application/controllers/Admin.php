@@ -32,12 +32,17 @@ class Admin extends CI_Controller
 		$post_data = $this->input->post();
 		if(isset($_FILES["image"]["name"]))  
 		{  
-			$config['upload_path'] = APPPATH.'./uploads/admin/';  
-			$config['allowed_types'] = 'jpg|jpeg|png|gif';  
+			$config['upload_path'] = './uploads/admin/';  
+			$config['allowed_types'] = 'jpg|jpeg|png|gif';
+			$config['max_size']             = 100;
+			$config['max_width']            = 1024;
+			$config['max_height']           = 768;  
 			$this->load->library('upload', $config);  
 			if(!$this->upload->do_upload("image"))  
 			{  
-				$this->output->set_content_type('application/json')->set_output(json_encode(FALSE));
+				  $error = array('error' => $this->upload->display_errors());
+
+				$this->output->set_content_type('application/json')->set_output(json_encode($error));
 			}  
 			else 
 			{  

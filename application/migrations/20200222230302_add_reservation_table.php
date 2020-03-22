@@ -15,8 +15,17 @@ public function up()
 			'resident_id' => array(
 				'type' => 'INT'
 			),
-			'date' => array(
-				'type' => 'DATETIME'
+			'amenities_id' => array(
+				'type' => 'INT'
+			),
+			'date_from' => array(
+				'type' => 'DATE'
+			),
+			'date_to' => array(
+				'type' => 'DATE'
+			),
+			'quantity' => array(
+				'type' => 'DECIMAL'
 			),
 			'total_amount' => array(
 				'type' => 'DECIMAL'

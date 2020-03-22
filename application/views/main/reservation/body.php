@@ -248,8 +248,7 @@
 							<tr>
 								<th>Requested Date</th>
 								<th>Name</th>
-								<th>Amenities</th>
-								<th>Amount</th>
+								<th>Description</th>
 								<th>Target Date</th>
 								<th>Status</th>
 							</tr>
