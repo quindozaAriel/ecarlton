@@ -13,7 +13,7 @@
 					<center><h3>Residents</h3></center>
 				</div>
 				<div class="card-body">
-					<div class="table-responsive-sm"> 
+					<div class="table-responsive"> 
 						<table class="table table-hover" id="resident_tbl">
 							<caption>List of registered resident</caption>
 							<thead>

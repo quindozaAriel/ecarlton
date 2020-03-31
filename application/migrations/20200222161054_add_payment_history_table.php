@@ -12,16 +12,13 @@ public function up()
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE
 			),
-			'rb_id' => array(
+			'resident_id' => array(
 				'type' => 'INT'
 			),
-			'amount' => array(
+			'payment_amount' => array(
 				'type' => 'DECIMAL'
 			),
-			'payment_date' => array(
-				'type' => 'DATE'
-			),
-			'timestamp' => array(
+			'payment_datetime' => array(
 				'type' => 'DATETIME'
 			)
 

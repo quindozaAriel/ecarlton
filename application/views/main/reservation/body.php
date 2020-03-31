@@ -89,19 +89,21 @@
 					<center><h3>Amenities List</h3></center>
 				</div>
 				<div class="card-body">
-					<table class="table table-bordered" id="amenities_tbl">
-						<thead>
-							<tr>
-								<th>No.</th>
-								<th>Amenities</th>
-								<th>Qty</th>
-								<th>Available Qty</th>
-								<th>Amount</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody></tbody>
-					</table>
+					<div class="table-responsive">
+						<table class="table table-bordered" id="amenities_tbl">
+							<thead>
+								<tr>
+									<th>No.</th>
+									<th>Amenities</th>
+									<th>Qty</th>
+									<th>Available Qty</th>
+									<th>Amount</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -175,64 +177,66 @@
 					<center><h3>Reservation Request</h3></center>
 				</div>
 				<div class="card-body">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Requested Date</th>
-								<th>Name</th>
-								<th>Amenities</th>
-								<th>Amount</th>
-								<th>Target Date</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>02-20-2020</td>
-								<td>Juan Dela Cruz</td>
-								<td>
-									Function Hall x 1 <br>
-									Table x 10 <br>
-									Chair x 50 <br>
-								</td>
-								<td>5000</td>
-								<td>04-05-2020</td>
-								<td>
-									<button type="button" class="btn btn-success" title="Approve Request"><i class="fa fa-check"></i></button>
-									<button type="button" class="btn btn-danger" title="Decline Request"><i class="fa fa-times"></i></button>
-								</td>
-							</tr>
-							<tr>
-								<td>02-20-2020</td>
-								<td>Juan Dela Cruz</td>
-								<td>
-									Function Hall x 1 <br>
-									Table x 10 <br>
-									Chair x 50 <br>
-								</td>
-								<td>5000</td>
-								<td>04-05-2020</td>
-								<td>
-									<button type="button" class="btn btn-success" title="Approve Request"><i class="fa fa-check"></i></button>
-									<button type="button" class="btn btn-danger" title="Decline Request"><i class="fa fa-times"></i></button>
-								</td>
-							</tr>
-							<tr>
-								<td>02-20-2020</td>
-								<td>Juan Dela Cruz</td>
-								<td>
-									Function Hall x 1 <br>
-									Table x 10 <br>
-								</td>
-								<td>5000</td>
-								<td>04-05-2020</td>
-								<td>
-									<button type="button" class="btn btn-success" title="Approve Request"><i class="fa fa-check"></i></button>
-									<button type="button" class="btn btn-danger" title="Decline Request"><i class="fa fa-times"></i></button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+					<div class="table-responsive">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Requested Date</th>
+									<th>Name</th>
+									<th>Amenities</th>
+									<th>Amount</th>
+									<th>Target Date</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>02-20-2020</td>
+									<td>Juan Dela Cruz</td>
+									<td>
+										Function Hall x 1 <br>
+										Table x 10 <br>
+										Chair x 50 <br>
+									</td>
+									<td>5000</td>
+									<td>04-05-2020</td>
+									<td>
+										<button type="button" class="btn btn-success" title="Approve Request"><i class="fa fa-check"></i></button>
+										<button type="button" class="btn btn-danger" title="Decline Request"><i class="fa fa-times"></i></button>
+									</td>
+								</tr>
+								<tr>
+									<td>02-20-2020</td>
+									<td>Juan Dela Cruz</td>
+									<td>
+										Function Hall x 1 <br>
+										Table x 10 <br>
+										Chair x 50 <br>
+									</td>
+									<td>5000</td>
+									<td>04-05-2020</td>
+									<td>
+										<button type="button" class="btn btn-success" title="Approve Request"><i class="fa fa-check"></i></button>
+										<button type="button" class="btn btn-danger" title="Decline Request"><i class="fa fa-times"></i></button>
+									</td>
+								</tr>
+								<tr>
+									<td>02-20-2020</td>
+									<td>Juan Dela Cruz</td>
+									<td>
+										Function Hall x 1 <br>
+										Table x 10 <br>
+									</td>
+									<td>5000</td>
+									<td>04-05-2020</td>
+									<td>
+										<button type="button" class="btn btn-success" title="Approve Request"><i class="fa fa-check"></i></button>
+										<button type="button" class="btn btn-danger" title="Decline Request"><i class="fa fa-times"></i></button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -243,21 +247,23 @@
 					<center><h3>Reservation History</h3></center>
 				</div>
 				<div class="card-body">
-					<table class="table table-bordered" id="reservation_history">
-						<thead>
-							<tr>
-								<th>Requested Date</th>
-								<th>Name</th>
-								<th>Description</th>
-								<th>Target Date</th>
-								<th>Status</th>
-							</tr>
-						</thead>
-						<tbody>
-							
-							
-						</tbody>
-					</table>
+					<div class="table-responsive">
+						<table class="table table-bordered" id="reservation_history">
+							<thead>
+								<tr>
+									<th>Requested Date</th>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Target Date</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+								
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -10,7 +10,7 @@
 					<center><h3>Notifications</h3></center>
 				</div>
 				<div class="card-body">
-					<div class="table-responsive-sm"> 
+					<div class="table-responsive"> 
 						<table class="table table-hover" id="notification_tbl">
 							<thead>
 								<tr>
@@ -95,7 +95,7 @@
 					<center><h3>Notification History</h3></center>
 				</div>
 				<div class="card-body">
-					<div class="table-responsive-sm"> 
+					<div class="table-responsive"> 
 						<table class="table table-hover" id="all_notif_tbl">
 							<thead>
 								<tr>

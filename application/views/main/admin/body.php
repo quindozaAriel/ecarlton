@@ -13,7 +13,7 @@
 					<center><h3>Admin List</h3></center>
 				</div>
 				<div class="card-body">
-					<div class="table-responsive-sm"> 
+					<div class="table-responsive"> 
 						<table class="table table-bordered table-hover" id="admin_tbl">
 							<caption>List of registered admin</caption>
 							<thead>
@@ -153,17 +153,19 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-12">
-							<table class="table table-bordered" id="admin_residence">
-								<thead>
-									<tr>
-										<th>Phase No.</th>
-										<th>Lot & Block No.</th>
-									</tr>
-								</thead>
-								<tbody>
-									
-								</tbody>
-							</table>
+							<div class="table-responsive">
+								<table class="table table-bordered" id="admin_residence">
+									<thead>
+										<tr>
+											<th>Phase No.</th>
+											<th>Lot & Block No.</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -189,7 +191,7 @@
 							</div>
 							<div class="form-group col-12 ">
 								<table id="lot_block_tbl">
-						
+									
 								</table>
 							</div>
 							<div class="form-group col-12 ">

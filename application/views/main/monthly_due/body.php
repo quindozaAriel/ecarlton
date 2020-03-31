@@ -90,18 +90,20 @@
 				</div>
 				<div class="card-body">
 					<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add Bills</button>
-					<table class="table table-bordered" id="bills_table">
-						<thead>
-							<tr>
-								<th>No.</th>
-								<th>Description</th>
-								<th>Amount</th>
-								<th>Due Date</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody></tbody>
-					</table>
+					<div class="table-responsive">
+						<table class="table table-bordered" id="bills_table">
+							<thead>
+								<tr>
+									<th>No.</th>
+									<th>Description</th>
+									<th>Amount</th>
+									<th>Due Date</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

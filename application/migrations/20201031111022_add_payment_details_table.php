@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_add_resident_bills_table extends CI_Migration 
+class Migration_add_payment_details_table extends CI_Migration 
 {
-	public function up()
+public function up()
 	{
 		$fields = array(
 			'id' => array(
@@ -12,14 +12,14 @@ class Migration_add_resident_bills_table extends CI_Migration
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE
 			),
-			'resident_id' => array(
+			'payment_id' => array(
 				'type' => 'INT'
 			),
-			'bill_id' => array(
+			'bills_id' => array(
 				'type' => 'INT'
 			),
-			'status' => array(
-				'type' => 'TEXT'
+			'amount' => array(
+				'type' => 'DECIMAL'
 			),
 			'timestamp' => array(
 				'type' => 'DATETIME'
@@ -28,11 +28,11 @@ class Migration_add_resident_bills_table extends CI_Migration
 		);
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('id',TRUE);
-		$this->dbforge->create_table('resident_bills_tbl',TRUE); 
+		$this->dbforge->create_table('payment_details_tbl',TRUE); 
 	}
 
 	public function down()
 	{
-		$this->dbforge->drop_table('resident_bills_tbl', TRUE);
+		$this->dbforge->drop_table('payment_details_tbl', TRUE);
 	}
 }

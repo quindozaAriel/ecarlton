@@ -172,6 +172,7 @@ const RESERVATION = (()=>{
 		var date_from = $('#date_from').val();
 		var date_to = $('#date_to').val();
 		var request_qty = $('#quantity').val();
+		var available_qty = $('#available_qty').val();
 
 		var date1 = new Date(date_from); 
 		var date2 = new Date(date_to); 
@@ -185,54 +186,65 @@ const RESERVATION = (()=>{
 		}
 		else
 		{
-			if(date1 <= date2)
+			if(request_qty <= available_qty)
 			{
-				$.ajax({
-					type:'GET',
-					url:base_url+`reservation-availability/${amenity_id}/${date_from}/${date_to}/${request_qty}`,
-					dataType:'json',
-					cache:false,
-					success:(result) =>
-					{
-						if(result == 'AVAILABLE')
+				if(date1 <= date2)
+				{
+					$.ajax({
+						type:'GET',
+						url:base_url+`reservation-availability/${amenity_id}/${date_from}/${date_to}/${request_qty}`,
+						dataType:'json',
+						cache:false,
+						success:(result) =>
 						{
-							iziToast.success({
-								title: 'Success',
-								message: 'Schedule available',
+							if(result == 'AVAILABLE')
+							{
+								iziToast.success({
+									title: 'Success',
+									message: 'Schedule available',
+									position:'topCenter'
+								});
+								$('#pr_btn').removeClass('d-none');
+								$('#ca_btn').addClass('d-none');
+
+							}
+							else if(result == 'FULL')
+							{
+								iziToast.warning({
+									title: 'Info',
+									message: 'Sorry your requested amenity was fully book on your chosen date',
+									position:'topCenter'
+								});
+							}
+						},
+						error:() => 
+						{
+							iziToast.error({
+								title: 'Error',
+								message: 'Unexpected error occured',
 								position:'topCenter'
 							});
-							$('#pr_btn').removeClass('d-none');
-							$('#ca_btn').addClass('d-none');
-
-						}
-						else if(result == 'FULL')
+						},
+						complete:() => 
 						{
-							iziToast.warning({
-								title: 'Info',
-								message: 'Sorry your requested amenity was fully book on your chosen date',
-								position:'topCenter'
-							});
-						}
-					},
-					error:() => 
-					{
-						iziToast.error({
-							title: 'Error',
-							message: 'Unexpected error occured',
-							position:'topCenter'
-						});
-					},
-					complete:() => 
-					{
 
-					}
-				});
+						}
+					});
+				}
+				else
+				{
+					iziToast.error({
+						title: 'Invalid Date',
+						message: 'Please check schedule date',
+						position:'topCenter'
+					});
+				}
 			}
 			else
 			{
 				iziToast.error({
 					title: 'Invalid Date',
-					message: 'Please check schedule date',
+					message: 'Your request quantity is greater than available quantity',
 					position:'topCenter'
 				});
 			}

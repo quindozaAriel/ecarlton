@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Migration_add_bills_table extends CI_Migration 
 {
-public function up()
+	public function up()
 	{
 		$fields = array(
 			'id' => array(
@@ -19,10 +19,10 @@ public function up()
 				'type' => 'DECIMAL'
 			),
 			'due_date' => array(
-				'type' => 'TEXT'
+				'type' => 'INT'
 			),
-			'type' => array(
-				'type' => 'TEXT'
+			'notif_date' => array(
+				'type' => 'INT'
 			),
 			'status' => array(
 				'type' => 'TEXT'
