@@ -1,5 +1,6 @@
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="<?php echo base_url('build/scripts/main/monthly.js')?>"></script>
-<script>
+<!-- <script>
 
 	$(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
@@ -588,4 +589,4 @@ initGoogleMaps: function() {
     marker.setMap(map);
 }
 };
-</script>
+</script> -->

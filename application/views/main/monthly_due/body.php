@@ -83,18 +83,18 @@
 
 	<div class="row">
 
-		<div class="col-lg-6 col-md-12">
+		<div class="col-9">
 			<div class="card">
 				<div class="card-header">
 					<center><h3>Monthly Dues</h3></center>
 				</div>
 				<div class="card-body">
-					<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add Bills</button>
 					<div class="table-responsive">
 						<table class="table table-bordered" id="bills_table">
 							<thead>
 								<tr>
-									<th>No.</th>
+									<th width="5%">No.</th>
+									<th>Type</th>
 									<th>Description</th>
 									<th>Amount</th>
 									<th>Due Date</th>
@@ -107,7 +107,87 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-12">
+		<div class="col-3">
+			<div class="card">
+				<div class="card-header text-center">
+					<h3>Informatioon</h3>
+				</div>
+				<div class="card-body">
+					<form method="post" id="registration_form">
+						<div class="form-row">
+							<div class="form-group col-md-12 mb-3">
+								<label for="">Description</label>
+								<textarea class="form-control" id="description" name="description"></textarea>
+							</div>
+							<div class="form-group col-md-6 mb-3">
+								<label for="">Amount</label>
+								<input type="text" class="form-control" id="amount" name="amount">
+							</div>
+							<div class="form-group col-md-6 mb-3">
+								<label for="">Type</label>
+								<select class="form-control" onchange="MONTHLY.change_type($(this).val())" id="type" name="bill_type">
+									<option value=""></option>
+									<option value="MONTHLY">Monthly</option>
+									<option value="OCCASIONAL">Occasional</option>
+								</select>
+							</div>
+							<div class="form-group col-md-6 mb-3 ">
+								<label for="">Starting Notification Date </label>
+								<input type="number" class="form-control d-none" id="notif_day" name="notifday" min="1" max="31" disabled>
+								<input type="text" id="notif_date" class="form-control datepicker d-none" name="notifdate" disabled></p>
+							</div>
+							<div class="form-group col-md-6 mb-3 ">
+								<label for="">Due Date</label>
+								<input type="number" class="form-control d-none" id="due_day" name="dueday" min="1" max="31" disabled>
+								<input type="text" id="due_date" class="form-control datepicker d-none" name="duedate" disabled></p>
+							</div>
+						</div>
+
+						<center>
+							<button type="submit" class="btn btn-info" ><i class="fa fa-save"></i>&nbsp; Save</button>
+							<button type="button" class="btn btn-danger" onclick="MONTHLY.registration_clear()"><i class="fa fa-times"></i>&nbsp; Clear</button>
+						</center>
+					</form>
+
+					<form method="post" id="update_form" class="d-none">
+						<div class="form-row">
+							<div class="form-group col-md-12 mb-3">
+								<label for="">Description</label>
+								<textarea class="form-control" id="_description" name="_description"></textarea>
+							</div>
+							<div class="form-group col-md-6 mb-3">
+								<label for="">Amount</label>
+								<input type="text" class="form-control" id="_amount" name="_amount">
+							</div>
+							<div class="form-group col-md-6 mb-3">
+								<label for="">Type</label>
+								<select class="form-control" onchange="MONTHLY._change_type($(this).val())" id="_type" name="_bill_type">
+									<option value=""></option>
+									<option value="MONTHLY">Monthly</option>
+									<option value="OCCASIONAL">Occasional</option>
+								</select>
+							</div>
+							<div class="form-group col-md-6 mb-3 ">
+								<label for="">Starting Notification Date </label>
+								<input type="number" class="form-control d-none" id="_notif_day" name="_notifday" min="1" max="31" disabled>
+								<input type="text" id="_notif_date" class="form-control datepicker d-none" name="_notifdate" disabled></p>
+							</div>
+							<div class="form-group col-md-6 mb-3 ">
+								<label for="">Due Date</label>
+								<input type="number" class="form-control d-none" id="_due_day" name="_dueday" min="1" max="31" disabled>
+								<input type="text" id="_due_date" class="form-control datepicker d-none" name="_duedate" disabled></p>
+							</div>
+						</div>
+
+						<center>
+							<button type="submit" class="btn btn-success" ><i class="fa fa-edit"></i>&nbsp; Update</button>
+							<button type="button" class="btn btn-danger" onclick="MONTHLY.update_clear();"><i class="fa fa-times"></i>&nbsp; Clear</button>
+						</center>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
 					<center><h3>Due Bills</h3></center>
@@ -129,7 +209,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class=" col-md-12">
+		<div class=" col-12">
 			<div class="card">
 				<div class="card-header">
 					<center><h3>Monthly Bills Payment History</h3></center>
@@ -167,50 +247,5 @@
 
 
 
-	</div>
-</div>
-
-<div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false">
-	<div class="modal-dialog">
-		<div class="modal-content">
-
-			<div class="modal-header">
-				<center><h4 class="modal-title">Add Monthly Due</h4></center>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-
-			<div class="modal-body">
-				<form method="post" id="registration_form">
-					<div class="form-row">
-						<div class="form-group col-md-12 mb-3">
-							<label for="">Description</label>
-							<textarea class="form-control" id="description" name="description"></textarea>
-						</div>
-						<div class="form-group col-md-6 mb-3">
-							<label for="">Amount</label>
-							<input type="text" class="form-control" id="amount" name="amount">
-						</div>
-						<div class="form-group col-md-6 mb-3">
-							<label for="">Type</label>
-							<select class="form-control" onchange="MONTHLY.change_type($(this).val())" id="type" name="type">
-								<option value=""></option>
-								<option value="MONTHLY">Monthly</option>
-								<option value="ONCE">Occasional</option>
-							</select>
-						</div>
-						<div class="form-group col-md-6 mb-3 ">
-							<label for="">Due Date</label>
-							<input type="date" class="form-control d-none" id="due_date" name="duedate" disabled>
-							<input type="number" class="form-control d-none" id="due_day" name="dueday" min="1" max="31" disabled>
-						</div>
-					</div>
-
-					<button type="submit" class="btn btn-info float-right" ><i class="fa fa-save"></i>&nbsp; Save</button>
-					<button type="button" class="btn btn-danger float-right" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp; Close</button>
-				</form>
-			</div>
-
-
-		</div>
 	</div>
 </div>

@@ -91,12 +91,14 @@ $route['load-block/(:any)']['GET'] = 'Resident/load_block/$1';
 
 //MONTHLY
 $route['monthly']['GET'] = 'Monthly/get';
+$route['monthly/(:any)']['GET'] = 'Monthly/read/$1';
 $route['monthly']['POST'] = 'Monthly/insert';
+$route['monthly/(:any)']['PATCH'] = 'Monthly/update/$1';
 $route['monthly/(:any)']['DELETE'] = 'Monthly/delete/$1';
 $route['monthly-payment']['POST'] = 'Monthly/load_payment_history';
 $route['monthly-due-bills']['GET'] = 'Monthly/load_due_bills';
 
-//MONTHLY
+//NOTIFICATION
 $route['notification-list']['GET'] = 'Notification/get';
 $route['notification']['POST'] = 'Notification/insert';
 $route['notification/(:any)']['GET'] = 'Notification/read/$1';

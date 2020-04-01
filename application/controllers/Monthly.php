@@ -35,17 +35,23 @@ class Monthly extends CI_Controller
 		$post_data['status'] = 'ACTIVE';
 		$post_data['timestamp'] = date('Y-m-d H:i:s');
 
-		if($post_data['type'] == 'MONTHLY')
+		if($post_data['bill_type'] == 'MONTHLY')
 		{
 			$post_data['due_date'] = $post_data['dueday'];
+			$post_data['notif_date'] = $post_data['notifday'];
 			unset($post_data['dueday']);
 			unset($post_data['duedate']);
+			unset($post_data['notifday']);
+			unset($post_data['notifdate']);
 		}
 		else
 		{
 			$post_data['due_date'] = $post_data['duedate'];
+			$post_data['notif_date'] = $post_data['notifdate'];
 			unset($post_data['dueday']);
 			unset($post_data['duedate']);
+			unset($post_data['notifday']);
+			unset($post_data['notifdate']);
 		}
 		$result = $this->monthly->insert($post_data);
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));

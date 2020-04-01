@@ -19,10 +19,13 @@ class Migration_add_bills_table extends CI_Migration
 				'type' => 'DECIMAL'
 			),
 			'due_date' => array(
-				'type' => 'INT'
+				'type' => 'TEXT'
 			),
 			'notif_date' => array(
-				'type' => 'INT'
+				'type' => 'TEXT'
+			),
+			'bill_type' => array(
+				'type' => 'TEXT'
 			),
 			'status' => array(
 				'type' => 'TEXT'
