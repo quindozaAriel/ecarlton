@@ -144,5 +144,7 @@ $route['reservation-load-amenity/(:any)']['GET'] = 'Reservation/load_amenity_res
 $route['reservation']['POST'] = 'Reservation/insert';
 $route['my_reservation']['GET'] = 'Reservation/my_reservation';
 
+//BILLS
+$route['bills']['GET'] = 'Bills/get';
 
 

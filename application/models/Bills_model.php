@@ -11,24 +11,27 @@ class Bills_model extends CI_Model
 
 	public function get()
 	{
-		$this->db->where('a.due_date >=',date('d'));
+		$this->db->where('MONTH(b.timestamp) !=',date('m'));
+		$this->db->where('a.due_date >=',date('d'));	
 		$this->db->where('a.status','ACTIVE');
 		$this->db->where('a.bill_type','MONTHLY');
-		$this->db->select('*');
+		$this->db->select('a.*,c.payment_amount,b.timestamp');
 		$this->db->from('bills_tbl a');
+		$this->db->join('payment_details_tbl b','b.bills_id = a.id','LEFT');
+		$this->db->join('payment_history_tbl c','c.id = b.payment_id','LEFT');
 		$monthly_bills =  $this->db->get()->result_array();
 
-		$this->db->where('MONTH(a.due_date) =',date('m'));
+		$this->db->where('b.bills_id IS NULL');
+		$this->db->where('MONTH(a.due_date)',date('m'));
 		$this->db->where('a.due_date >=',date('Y-m-d'));
 		$this->db->where('a.status','ACTIVE');
 		$this->db->where('a.bill_type','OCCASIONAL');
-		$this->db->select('*');
+		$this->db->select('a.*');
 		$this->db->from('bills_tbl a');
+		$this->db->join('payment_details_tbl b','b.bills_id = a.id','LEFT');
 		$occasional_bills =  $this->db->get()->result_array();
 
 		$final_result = array_merge($monthly_bills,$occasional_bills);
-		// return ['monthly_bills'    => $monthly_bills,
-		//         'occasional_bills' => $occasional_bills];
 
 		return $final_result;
 	}
