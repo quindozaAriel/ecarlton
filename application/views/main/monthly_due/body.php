@@ -131,12 +131,7 @@
 									<option value="OCCASIONAL">Occasional</option>
 								</select>
 							</div>
-							<div class="form-group col-md-6 mb-3 ">
-								<label for="">Starting Notification Date </label>
-								<input type="number" class="form-control d-none" id="notif_day" name="notifday" min="1" max="31" disabled>
-								<input type="text" id="notif_date" class="form-control datepicker d-none" name="notifdate" disabled></p>
-							</div>
-							<div class="form-group col-md-6 mb-3 ">
+							<div class="form-group col-md-12 mb-3 ">
 								<label for="">Due Date</label>
 								<input type="number" class="form-control d-none" id="due_day" name="dueday" min="1" max="31" disabled>
 								<input type="text" id="due_date" class="form-control datepicker d-none" name="duedate" disabled></p>
@@ -167,12 +162,7 @@
 									<option value="OCCASIONAL">Occasional</option>
 								</select>
 							</div>
-							<div class="form-group col-md-6 mb-3 ">
-								<label for="">Starting Notification Date </label>
-								<input type="number" class="form-control d-none" id="_notif_day" name="_notifday" min="1" max="31" disabled>
-								<input type="text" id="_notif_date" class="form-control datepicker d-none" name="_notifdate" disabled></p>
-							</div>
-							<div class="form-group col-md-6 mb-3 ">
+							<div class="form-group col-md-12 mb-3 ">
 								<label for="">Due Date</label>
 								<input type="number" class="form-control d-none" id="_due_day" name="_dueday" min="1" max="31" disabled>
 								<input type="text" id="_due_date" class="form-control datepicker d-none" name="_duedate" disabled></p>

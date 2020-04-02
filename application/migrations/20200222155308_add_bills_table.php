@@ -21,9 +21,6 @@ class Migration_add_bills_table extends CI_Migration
 			'due_date' => array(
 				'type' => 'TEXT'
 			),
-			'notif_date' => array(
-				'type' => 'TEXT'
-			),
 			'bill_type' => array(
 				'type' => 'TEXT'
 			),

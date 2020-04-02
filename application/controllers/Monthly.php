@@ -38,23 +38,15 @@ class Monthly extends CI_Controller
 		if($post_data['bill_type'] == 'MONTHLY')
 		{
 			$dueday_padded = sprintf("%02d", $post_data['dueday']);
-			$notifday_padded = sprintf("%02d", $post_data['notifday']);
-
 			$post_data['due_date'] = $dueday_padded;
-			$post_data['notif_date'] = $notifday_padded;
 			unset($post_data['dueday']);
 			unset($post_data['duedate']);
-			unset($post_data['notifday']);
-			unset($post_data['notifdate']);
 		}
 		else
 		{
 			$post_data['due_date'] = $post_data['duedate'];
-			$post_data['notif_date'] = $post_data['notifdate'];
 			unset($post_data['dueday']);
 			unset($post_data['duedate']);
-			unset($post_data['notifday']);
-			unset($post_data['notifdate']);
 		}
 		$result = $this->monthly->insert($post_data);
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
@@ -66,7 +58,6 @@ class Monthly extends CI_Controller
 
 		if($post_data['data']['bill_type'] == 'MONTHLY')
 		{
-			$post_data['data']['notif_date'] = sprintf("%02d", $post_data['data']['notif_date']);
 			$post_data['data']['due_date']   = sprintf("%02d", $post_data['data']['due_date']);
 		}
 

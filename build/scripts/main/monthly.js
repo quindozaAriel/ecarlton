@@ -20,9 +20,7 @@ const MONTHLY = (()=>{
 			},
 			bill_type:"required",
 			duedate:"required",
-			notifdate:"required",
 			dueday:"required",
-			notifday:"required",
 		},
 		messages: {
 			description:"Description is required.",
@@ -33,8 +31,6 @@ const MONTHLY = (()=>{
 			bill_type:"Please specify type.",
 			duedate:"Please select type and due date.",
 			dueday:"Please select type and due date.",
-			notifdate:"Please select type and due date.",
-			notifday:"Please select type and due date.",
 		},	
 		submitHandler:(form, event) => { 
 			event.preventDefault();
@@ -99,9 +95,7 @@ const MONTHLY = (()=>{
 			},
 			_bill_type:"required",
 			_duedate:"required",
-			_notifdate:"required",
 			_dueday:"required",
-			_notifday:"required",
 		},
 		messages: {
 			_description:"Description is required.",
@@ -112,32 +106,26 @@ const MONTHLY = (()=>{
 			_bill_type:"Please specify type.",
 			_duedate:"Please select type and due date.",
 			_dueday:"Please select type and due date.",
-			_notifdate:"Please select type and due date.",
-			_notifday:"Please select type and due date.",
 		},	
 		submitHandler:(form, event) => { 
 			event.preventDefault();
 
 			var due_date_val = "";
-			var notif_date_val = "";
 
 			if($('#_type').val() == 'MONTHLY')
 			{
 				due_date_val = $('#_due_day').val();
-				notif_date_val = $('#_notif_day').val();
 			}
 			else if($('#_type').val() == 'OCCASIONAL')
 			{
 				due_date_val = $('#_due_date').val();
-				notif_date_val = $('#_notif_date').val();
 			}
 
 			var update_data = {
 				'description':$('#_description').val(),
 				'amount':$('#_amount').val(),
 				'bill_type':$('#_type').val(),
-				'due_date':due_date_val,
-				'notif_date':notif_date_val,
+				'due_date':due_date_val
 			}
 
 			var data = {
@@ -251,25 +239,17 @@ const MONTHLY = (()=>{
 		{
 			$('#due_date').addClass('d-none');
 			$('#due_date').prop('disabled',true);
-			$('#notif_date').addClass('d-none');
-			$('#notif_date').prop('disabled',true);
 
 			$('#due_day').removeClass('d-none');
 			$('#due_day').prop('disabled',false);
-			$('#notif_day').removeClass('d-none');
-			$('#notif_day').prop('disabled',false);
 		}
 		else if(value == "OCCASIONAL")
 		{
 			$('#due_day').addClass('d-none');
 			$('#due_day').prop('disabled',true);
-			$('#notif_day').addClass('d-none');
-			$('#notif_day').prop('disabled',true);
 
 			$('#due_date').removeClass('d-none');
 			$('#due_date').prop('disabled',false);
-			$('#notif_date').removeClass('d-none');
-			$('#notif_date').prop('disabled',false);
 		}
 	}
 
@@ -279,25 +259,17 @@ const MONTHLY = (()=>{
 		{
 			$('#_due_date').addClass('d-none');
 			$('#_due_date').prop('disabled',true);
-			$('#_notif_date').addClass('d-none');
-			$('#_notif_date').prop('disabled',true);
 
 			$('#_due_day').removeClass('d-none');
 			$('#_due_day').prop('disabled',false);
-			$('#_notif_day').removeClass('d-none');
-			$('#_notif_day').prop('disabled',false);
 		}
 		else if(value == "OCCASIONAL")
 		{
 			$('#_due_day').addClass('d-none');
 			$('#_due_day').prop('disabled',true);
-			$('#_notif_day').addClass('d-none');
-			$('#_notif_day').prop('disabled',true);
 
 			$('#_due_date').removeClass('d-none');
 			$('#_due_date').prop('disabled',false);
-			$('#_notif_date').removeClass('d-none');
-			$('#_notif_date').prop('disabled',false);
 		}
 	}
 
@@ -378,15 +350,10 @@ const MONTHLY = (()=>{
 				{
 					$('#_due_date').addClass('d-none');
 					$('#_due_date').prop('disabled',true);
-					$('#_notif_date').addClass('d-none');
-					$('#_notif_date').prop('disabled',true);
 
 					$('#_due_day').removeClass('d-none');
 					$('#_due_day').prop('disabled',false);
-					$('#_notif_day').removeClass('d-none');
-					$('#_notif_day').prop('disabled',false);
 
-					$('#_notif_day').val(result.notif_date);
 					$('#_due_day').val(result.due_date);
 
 				}
@@ -394,15 +361,10 @@ const MONTHLY = (()=>{
 				{
 					$('#_due_day').addClass('d-none');
 					$('#_due_day').prop('disabled',true);
-					$('#_notif_day').addClass('d-none');
-					$('#_notif_day').prop('disabled',true);
 
 					$('#_due_date').removeClass('d-none');
 					$('#_due_date').prop('disabled',false);
-					$('#_notif_date').removeClass('d-none');
-					$('#_notif_date').prop('disabled',false);	
 
-					$('#_notif_date').val(result.notif_date);
 					$('#_due_date').val(result.due_date);
 				}
 				
@@ -525,13 +487,9 @@ const MONTHLY = (()=>{
 
 		$('#due_day').addClass('d-none');
 		$('#due_day').prop('disabled',true);
-		$('#notif_day').addClass('d-none');
-		$('#notif_day').prop('disabled',true);
 
 		$('#due_date').addClass('d-none');
 		$('#due_date').prop('disabled',true);
-		$('#notif_date').addClass('d-none');
-		$('#notif_date').prop('disabled',true);
 	}
 
 	ret.update_clear = ()=>
@@ -543,13 +501,9 @@ const MONTHLY = (()=>{
 
 		$('#_due_day').addClass('d-none');
 		$('#_due_day').prop('disabled',true);
-		$('#_notif_day').addClass('d-none');
-		$('#_notif_day').prop('disabled',true);
 
 		$('#_due_date').addClass('d-none');
 		$('#_due_date').prop('disabled',true);
-		$('#_notif_date').addClass('d-none');
-		$('#_notif_date').prop('disabled',true);
 	}
 
 
