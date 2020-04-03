@@ -11,22 +11,20 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-12">
-							<h6>For Month of February</h6>
+							<h6>For Month of <?php echo date("F", strtotime(date('Y-m-d')));?></h6>
 						</div>
 						<div class="col-6">
-							<center>
-								<label>Power</label><br>
-								<label>Garbage</label><br>
-							</center>
+							<div id="description_container" class="text-center">
+							
+							</div>
 						</div>
 						<div class="col-6">
-							<center>
-								<label>₱ 100.00</label><br>
-								<label>₱ 50.00</label><br>
-							</center>
+							<div id="amount_container" class="text-center">
+							
+							</div>
 						</div>
 						<div class="col-8 offset-4 mt-3">
-							<h6>GRAND TOTAL : ₱ 150.00</h6>
+							<h6>GRAND TOTAL : ₱ <span id="total_amount"></span></h6>
 						</div>
 					</div>
 				</div>
