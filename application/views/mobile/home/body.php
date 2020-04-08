@@ -30,19 +30,11 @@
 						<div class="col-4 mb-4 pl-1 pr-2">
 							<a style="text-decoration:none;"  href="<?php echo base_url('mobile-notification')?>">
 								<div class="option-group p-1 mt-1">
-									<i class="fas fa-bell fa-3x mb-2"></i>
-									<label>Notification<span class="badge text-danger"></span></label>
+									<i class="fas fa-bell fa-3x mb-2"></i><span class="badge" id="span_notif"></span>
+									<label>Notification</label>
 								</div>
 							</a>
 						</div>
-			<!-- 			<div class="col-4 mb-4 pl-1 pr-2">
-							<a style="text-decoration:none;"  href="<?php echo base_url('mobile-messages')?>">
-								<div class="option-group p-1 mt-1">
-									<i class="fas fa-envelope fa-3x mb-2"></i>
-									<label>Messages<span class="badge text-danger"></span></label>
-								</div>
-							</a>
-						</div> -->
 						<div class="col-4 mb-4 pl-1 pr-2">
 							<a style="text-decoration:none;"  href="<?php echo base_url('mobile-profile')?>">
 								<div class="option-group p-1 mt-1">

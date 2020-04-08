@@ -92,8 +92,6 @@ class Notification_model extends CI_Model
 		$this->db->from('notification_tbl');
 		$last_notification =  $this->db->get()->row_array();
 
-		return ['notifications' => $notifications,
-				'last_notification' => $last_notification['id']
-			   ];
+		return ['notifications' => $notifications,'last_notification' => $last_notification['id']];
 	}
 }

@@ -150,3 +150,5 @@ $route['bills-transaction-history']['GET'] = 'Bills/transaction_history';
 $route['bills']['POST'] = 'Bills/insert';
 
 
+//HOME
+$route['check-notification']['GET'] = 'Home/check_notification';
