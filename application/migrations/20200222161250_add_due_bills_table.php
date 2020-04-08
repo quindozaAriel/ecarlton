@@ -12,8 +12,17 @@ class Migration_add_due_bills_table extends CI_Migration
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE
 			),
-			'rb_id' => array(
+			'resident_id' => array(
 				'type' => 'INT'
+			),
+			'bills_id' => array(
+				'type' => 'INT'
+			),
+			'payment_id' => array(
+				'type' => 'INT'
+			),
+			'due_amount' => array(
+				'type' => 'DECIMAL'
 			),
 			'due_date' => array(
 				'type' => 'DATE'

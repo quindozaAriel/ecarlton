@@ -16,9 +16,9 @@ class Bills extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
-	public function read($id)
+	public function transaction_history()
 	{
-		$result = $this->notification->read($id);
+		$result = $this->bill->transaction_history();
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
@@ -26,35 +26,44 @@ class Bills extends CI_Controller
 	{
 		$post_data = $this->input->post();
 
-		$post_data['timestamp'] = date('Y-m-d H:i:s');
-		$result = $this->notification->insert($post_data);
-		$this->output->set_content_type('application/json')->set_output(json_encode($result));
-	}
+		$payment_history_insert_data = [
+			'resident_id'      => $_SESSION['id'],
+			'payment_amount'   => $post_data['total_amount'],
+			'payment_datetime' => date('Y-m-d H:i:s')
+		];
 
-	public function update($id)
-	{
-		$post_data = $this->input->post();
+		$payment_id = $this->bill->insert_payment_history($payment_history_insert_data);
 
-		$result = $this->notification->update($id,$post_data['data']);
-		$this->output->set_content_type('application/json')->set_output(json_encode($result));
-	}
+		$bills = [];
+		foreach ($post_data['bills'] as $row)
+		{
+			$row = str_replace("-","_",$row);
+			$new_data = explode("_",$row);
+			$bills[] = $new_data;
+		}
 
-	public function delete($id)
-	{
-		$result = $this->notification->delete($id);
-		$this->output->set_content_type('application/json')->set_output(json_encode($result));
-	}
+		$payment_details_insert_data = [];
+		foreach ($bills as $val)
+		{
+			$bill_type = "NORMAL";
+			if($val[0] == "due")
+			{
+				$this->bill->update_due_bills($val[1],$payment_id);
+				$bill_type = "DUE";
+			}
 
-	public function load_all_notification()
-	{
-		$result = $this->notification->load_all_notification();
-		$this->output->set_content_type('application/json')->set_output(json_encode($result));
-	}
+			$payment_details_insert_data[] = [
+				'payment_id' => $payment_id,
+				'bills_id'   => $val[1],
+				'bill_type'  => $bill_type,
+				'amount'     => $val[2],
+				'timestamp'  => date('Y-m-d H:i:s')
+			];
+		}
 
-	public function realtime_retrieving()
-	{
-		$result = $this->notification->realtime_retrieving();
+		$result = $this->bill->insert_payment_details($payment_details_insert_data);
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+
 	}
 
 }

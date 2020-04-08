@@ -5,32 +5,58 @@
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
-				<div class="card-header">
-					<center><h3>Bills</h3></center>
-				</div>
-				<div class="card-body">
-					<div class="row">
-						<div class="col-12">
-							<h6>For Month of <?php echo date("F", strtotime(date('Y-m-d')));?></h6>
-						</div>
-						<div class="col-6">
-							<div id="description_container" class="text-center">
-							
+				<form method="post" id="payment_form">
+					<div class="card-header">
+						<center><h3>Bills</h3></center>
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-12">
+								<h6>Your Current Bills</h6>
 							</div>
-						</div>
-						<div class="col-6">
-							<div id="amount_container" class="text-center">
-							
+							<div class="col-5">
+								<div id="description_container" class="">
+
+								</div>
 							</div>
-						</div>
-						<div class="col-8 offset-4 mt-3">
-							<h6>GRAND TOTAL : ₱ <span id="total_amount"></span></h6>
+							<div class="col-3">
+								<div id="amount_container" class="text-center">
+
+								</div>
+							</div>
+							<div class="col-4">
+								<div id="duedate_container" class="text-center">
+
+								</div>
+							</div>
+							<div class="col-12 mt-3">
+								<h6>Due Bills</h6>
+							</div>
+							<div class="col-5">
+								<div id="due_description_container" class="">
+
+								</div>
+							</div>
+							<div class="col-3">
+								<div id="due_amount_container" class="text-center">
+
+								</div>
+							</div>
+							<div class="col-4">
+								<div id="due_duedate_container" class="text-center">
+
+								</div>
+							</div>
+							<div class="col-8 offset-4 mt-3">
+								<h6>GRAND TOTAL : ₱ <span id="total_amount"></span></h6>
+								<input type="hidden" name="total_amount" id="hidden_total_amount">
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="card-footer">
-					<center><button class="btn btn-info">PROCEED TO PAYMENT</button></center>
-				</div>
+					<div class="card-footer">
+						<center><button  type="submit" id="payment_btn" class="btn btn-info" disabled="true">PROCEED TO PAYMENT</button></center>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

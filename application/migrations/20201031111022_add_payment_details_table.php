@@ -18,6 +18,9 @@ public function up()
 			'bills_id' => array(
 				'type' => 'INT'
 			),
+			'bill_type' => array(
+				'type' => 'TEXT'
+			),
 			'amount' => array(
 				'type' => 'DECIMAL'
 			),

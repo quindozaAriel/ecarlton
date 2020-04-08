@@ -146,5 +146,7 @@ $route['my_reservation']['GET'] = 'Reservation/my_reservation';
 
 //BILLS
 $route['bills']['GET'] = 'Bills/get';
+$route['bills-transaction-history']['GET'] = 'Bills/transaction_history';
+$route['bills']['POST'] = 'Bills/insert';
 
 
