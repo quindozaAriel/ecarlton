@@ -16,4 +16,10 @@ class Home extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
+	public function check_bills()
+	{
+		$result = $this->home->check_bills();
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
 }

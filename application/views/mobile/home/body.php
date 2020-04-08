@@ -14,8 +14,8 @@
 						<div class="col-4 mb-4 pl-1 pr-2">
 							<a style="text-decoration:none;"  href="<?php echo base_url('mobile-bills')?>">
 								<div class="option-group p-1 mt-1">
-									<i class="fas fa-money-bill fa-3x mb-2"></i>
-									<label>Bills<span class="badge text-danger"></span></label>
+									<i class="fas fa-money-bill fa-3x mb-2"></i><span class="badge" id="span_bills"></span>
+									<label>Bills</label>
 								</div>
 							</a>
 						</div>
@@ -23,7 +23,7 @@
 							<a style="text-decoration:none;"  href="<?php echo base_url('mobile-reservation')?>">
 								<div class="option-group p-1 mt-1">
 									<i class="fas fa-calendar-alt fa-3x mb-2"></i>
-									<label>Reservation<span class="badge text-danger"></span></label>
+									<label>Reservation</label>
 								</div>
 							</a>
 						</div>
@@ -39,7 +39,7 @@
 							<a style="text-decoration:none;"  href="<?php echo base_url('mobile-profile')?>">
 								<div class="option-group p-1 mt-1">
 									<i class="fas fa-user fa-3x mb-2"></i>
-									<label>Profile<span class="badge text-danger"></span></label>
+									<label>Profile</label>
 								</div>
 							</a>
 						</div>
@@ -47,7 +47,7 @@
 							<a style="text-decoration:none;"  href="<?php echo base_url('logout')?>">
 								<div class="option-group p-1 mt-1">
 									<i class="fas fa-user-times fa-3x mb-2"></i>
-									<label>Logout<span class="badge text-danger"></span></label>
+									<label>Logout</label>
 								</div>
 							</a>
 						</div>
