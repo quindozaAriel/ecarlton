@@ -110,4 +110,26 @@ class Home_model extends CI_Model
 		$result= array_merge($monthly_bills,$occasional_bills_result, $due_bills);
 		return $result;
 	}
+
+	public function check_reservation()
+	{
+		$this->db->where('status','PENDING');
+		$this->db->select('COUNT(*) as PENDING');
+		$this->db->from('reservation_tbl');
+		$pending =  $this->db->get()->result_array();
+
+		$this->db->where('status','APPROVED');
+		$this->db->select('COUNT(*) as APPROVED');
+		$this->db->from('reservation_tbl');
+		$approved =  $this->db->get()->result_array();
+
+		$this->db->where('status','REJECTED');
+		$this->db->select('COUNT(*) as REJECTED');
+		$this->db->from('reservation_tbl');
+		$rejected =  $this->db->get()->result_array();
+
+		$result = array_merge($pending,$approved,$rejected);
+
+		return $result;
+	}
 }

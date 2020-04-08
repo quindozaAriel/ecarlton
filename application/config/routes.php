@@ -153,3 +153,4 @@ $route['bills']['POST'] = 'Bills/insert';
 //HOME
 $route['check-notification']['GET'] = 'Home/check_notification';
 $route['check-bills']['GET'] = 'Home/check_bills';
+$route['check-reservation']['GET'] = 'Home/check_reservation';

@@ -22,7 +22,7 @@
 						<div class="col-4 mb-4 pl-1 pr-2">
 							<a style="text-decoration:none;"  href="<?php echo base_url('mobile-reservation')?>">
 								<div class="option-group p-1 mt-1">
-									<i class="fas fa-calendar-alt fa-3x mb-2"></i>
+									<i class="fas fa-calendar-alt fa-3x mb-2"></i><span class="badge" id="span_reservation"></span>
 									<label>Reservation</label>
 								</div>
 							</a>

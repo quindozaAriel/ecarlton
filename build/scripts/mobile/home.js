@@ -1,10 +1,11 @@
 $(document).ready(()=>{
 	HOME.check_notification();
 	HOME.check_bills();
+	HOME.check_reservation();
+	setInterval(()=>{
+		HOME.check_notification();
+	},5000);
 
-	// setInterval(()=>{
-	// 	HOME.check_notification();
-	// },5000);
 });
 
 
@@ -92,6 +93,45 @@ const HOME = (()=>{
 						message: `You have ${notif_count} available bill.`,
 						position:'topCenter'
 					});
+				}
+				
+			},
+			error:() => {
+				iziToast.error({
+					title: 'Error',
+					message: 'Unexpected error occured',
+					position:'topCenter'
+				});
+			},
+			complete:() => {
+
+			}
+		});
+	}
+
+	_this.check_reservation = () =>
+	{
+		$.ajax({
+			type:'GET',
+			url:base_url+'check-reservation',
+			dataType:'json',
+			cache:false,
+			success:(result) =>
+			{
+				if(result != null && result != "")
+				{
+					
+					var notif_count = parseInt(result[0]['PENDING']) + parseInt(result[1]['APPROVED']);
+
+					$('#span_reservation').html(notif_count);
+
+					iziToast.show({
+						theme: 'dark',
+						title: 'Information',
+						message: `You have ${notif_count} reservation.`,
+						position:'topCenter'
+					});
+
 				}
 				
 			},
