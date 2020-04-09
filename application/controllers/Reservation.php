@@ -59,4 +59,24 @@ class Reservation extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
+	public function load_reservation_request()
+	{
+		$result = $this->reservation->load_reservation_request();
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
+	public function request_action($reservation_id,$action)
+	{
+		$update_data = ['status' => $action];
+		$result = $this->reservation->request_action($reservation_id,$update_data);
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
+	public function load_pending_reservation()
+	{
+		$result = $this->reservation->load_pending_reservation();
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
+
 }

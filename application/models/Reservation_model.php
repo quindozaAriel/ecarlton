@@ -10,16 +10,18 @@ class Reservation_model extends CI_Model
 
 	public function load_reservation_history()
 	{
-		$this->db->where('a.status','FINISHED');
-		$this->db->select('a.date_from,a.date_to,a.total_amount,a.quantity as reserved_qty,a.timestamp,
-			b.first_name,b.middle_name,b.last_name,
-			d.description
+		$this->db->where('reservation.status','FINISHED');
+		$this->db->or_where('reservation.status','REJECTED');
+		$this->db->select('reservation.id as reservation_id,reservation.date_from,reservation.date_to,reservation.quantity,reservation.total_amount,reservation.timestamp,reservation.status,
+			amenity.description,
+			resident.first_name,resident.last_name
 			');
-		$this->db->from('reservation_tbl as a');
-		$this->db->join('resident_tbl as b','b.id = a.resident_id','left');
-		$this->db->join('amenities_tbl as d','d.id = a.amenities_id','left');
-		$this->db->group_by('d.description');
-		return $this->db->get()->result_array();
+		$this->db->from('reservation_tbl as reservation');
+		$this->db->join('amenities_tbl as amenity','amenity.id = reservation.amenities_id');
+		$this->db->join('resident_tbl as resident','resident.id = reservation.resident_id');
+		$this->db->order_by('reservation.timestamp');
+		$result = $this->db->get()->result_array();
+		return $result;
 	}
 
 	public function load_availability($amenities_id,$date_from,$date_to,$request_qty)
@@ -269,5 +271,49 @@ class Reservation_model extends CI_Model
 
 
 		return $array; 
-	} 
+	}
+
+	public function load_reservation_request()
+	{
+		$this->db->where('reservation.status','PENDING');
+		$this->db->select('reservation.id as reservation_id,reservation.date_from,reservation.date_to,reservation.quantity,reservation.total_amount,reservation.timestamp,
+			amenity.description,
+			resident.first_name,resident.last_name
+			');
+		$this->db->from('reservation_tbl as reservation');
+		$this->db->join('amenities_tbl as amenity','amenity.id = reservation.amenities_id');
+		$this->db->join('resident_tbl as resident','resident.id = reservation.resident_id');
+		$result = $this->db->get()->result_array();
+		return $result;
+	}
+
+	public function request_action($reservation_id,$data)
+	{
+		$this->db->where('id',$reservation_id);
+		$this->db->update('reservation_tbl',$data);
+		$affected_row = $this->db->affected_rows();
+
+		if($affected_row == 0)
+		{
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
+
+	public function load_pending_reservation()
+	{
+		$this->db->where('reservation.status','APPROVED');
+		$this->db->select('reservation.id as reservation_id,reservation.date_from,reservation.date_to,reservation.quantity,reservation.total_amount,reservation.timestamp,
+			amenity.description,
+			resident.first_name,resident.last_name
+			');
+		$this->db->from('reservation_tbl as reservation');
+		$this->db->join('amenities_tbl as amenity','amenity.id = reservation.amenities_id');
+		$this->db->join('resident_tbl as resident','resident.id = reservation.resident_id');
+		$result = $this->db->get()->result_array();
+		return $result;
+	}
 }

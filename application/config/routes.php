@@ -115,6 +115,9 @@ $route['amenities/(:any)']['DELETE'] = 'Amenities/delete/$1';
 
 //RESERVATION
 $route['reservation-history']['GET'] = 'Reservation/load_reservation_history';
+$route['reservation-request']['GET'] = 'Reservation/load_reservation_request';
+$route['reservation-action/(:any)/(:any)']['PATCH'] = 'Reservation/request_action/$1/$2';
+$route['reservation-pending']['GET'] = 'Reservation/load_pending_reservation';
 
 //MOBILE
 

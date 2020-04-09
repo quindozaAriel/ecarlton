@@ -1,3 +1,6 @@
+<style>
+
+</style>
 <div class="panel-header panel-header-lg">
 	<canvas id="bigDashboardChart"></canvas>
 </div>
@@ -89,7 +92,8 @@
 					<center><h3>Amenities List</h3></center>
 				</div>
 				<div class="card-body">
-					<div class="table-responsive">
+					
+					<div class="table-responsive ">
 						<table class="table table-bordered" id="amenities_tbl">
 							<thead>
 								<tr>
@@ -104,6 +108,7 @@
 							<tbody></tbody>
 						</table>
 					</div>
+
 				</div>
 			</div>
 		</div>
@@ -178,64 +183,54 @@
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th>Requested Date</th>
-									<th>Name</th>
-									<th>Amenities</th>
-									<th>Amount</th>
-									<th>Target Date</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>02-20-2020</td>
-									<td>Juan Dela Cruz</td>
-									<td>
-										Function Hall x 1 <br>
-										Table x 10 <br>
-										Chair x 50 <br>
-									</td>
-									<td>5000</td>
-									<td>04-05-2020</td>
-									<td>
-										<button type="button" class="btn btn-success" title="Approve Request"><i class="fa fa-check"></i></button>
-										<button type="button" class="btn btn-danger" title="Decline Request"><i class="fa fa-times"></i></button>
-									</td>
-								</tr>
-								<tr>
-									<td>02-20-2020</td>
-									<td>Juan Dela Cruz</td>
-									<td>
-										Function Hall x 1 <br>
-										Table x 10 <br>
-										Chair x 50 <br>
-									</td>
-									<td>5000</td>
-									<td>04-05-2020</td>
-									<td>
-										<button type="button" class="btn btn-success" title="Approve Request"><i class="fa fa-check"></i></button>
-										<button type="button" class="btn btn-danger" title="Decline Request"><i class="fa fa-times"></i></button>
-									</td>
-								</tr>
-								<tr>
-									<td>02-20-2020</td>
-									<td>Juan Dela Cruz</td>
-									<td>
-										Function Hall x 1 <br>
-										Table x 10 <br>
-									</td>
-									<td>5000</td>
-									<td>04-05-2020</td>
-									<td>
-										<button type="button" class="btn btn-success" title="Approve Request"><i class="fa fa-check"></i></button>
-										<button type="button" class="btn btn-danger" title="Decline Request"><i class="fa fa-times"></i></button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+						<center>
+							<table class="table table-bordered" id="reservation_request">
+								<thead>
+									<tr>
+										<th>Date Requested</th>
+										<th>Reservation Date</th>
+										<th>Name</th>
+										<th>Amenity</th>
+										<th>Quantity</th>
+										<th>Amount</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-12 col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<center><h3>Pending Reservation</h3></center>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<center>
+							<table class="table table-bordered" id="pending_reservation">
+								<thead>
+									<tr>
+										<th>Date Requested</th>
+										<th>Reservation Date</th>
+										<th>Name</th>
+										<th>Amenity</th>
+										<th>Quantity</th>
+										<th>Amount</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</center>
 					</div>
 				</div>
 			</div>
@@ -251,10 +246,12 @@
 						<table class="table table-bordered" id="reservation_history">
 							<thead>
 								<tr>
-									<th>Requested Date</th>
+									<th>Date Requested</th>
+									<th>Reservation Date</th>
 									<th>Name</th>
-									<th>Description</th>
-									<th>Target Date</th>
+									<th>Amenity</th>
+									<th>Quantity</th>
+									<th>Amount</th>
 									<th>Status</th>
 								</tr>
 							</thead>

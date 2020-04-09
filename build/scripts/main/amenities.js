@@ -1,6 +1,8 @@
 $(document).ready(()=>{
 	AMENITY.load_amenities();
 	AMENITY.load_reservation_history();
+	AMENITY.load_reservation_request();
+	AMENITY.load_pending_reservation();
 });
 
 
@@ -324,18 +326,148 @@ const AMENITY = (() =>{
 
 				$.each(result,(key,val)=>{
 					tbody += `<tr>
-					<td>${val['timestamp']}</td>
-					<td>${val['first_name']} ${val['last_name']}</td>
-					<td>${val['description']} x ${val['reserved_qty']} = ₱${val['total_amount']}</td>
-					<td>${val['date_from']}<br>${val['date_to']}</td>
-					<td>
-					<span class="badge badge-info">${status}</span>
+					<td>${val.timestamp}</td>
+					<td>${val.date_from} to ${val.date_to}</td>
+					<td>${val.first_name} ${val.last_name}</td>
+					<td>${val.description}</td>
+					<td>${val.quantity}</td>
+					<td>₱ ${val.total_amount}</td>
+					<td>${val.status}</td>
+					</tr>`;
+				});
+
+				$('#reservation_request').DataTable().destroy();
+				$('#reservation_history tbody').html(tbody);
+				$('#reservation_history').DataTable();
+				$('input[type="search"]').addClass('form-control');	
+			},
+			error:() => {
+				iziToast.error({
+					title: 'Error',
+					message: 'Unexpected error occured',
+					position:'bottomCenter'
+				});
+			},
+			complete:() => {
+
+			}
+		});
+	}
+
+	ret.load_reservation_request = () =>
+	{
+		$.ajax({
+			type:'GET',
+			url:base_url+'reservation-request',
+			dataType:'json',
+			cache:false,
+			success:(result) => {
+				var tbody = "";
+
+				$.each(result,(key,val)=>{
+					tbody += `<tr>
+					<td>${val.timestamp}</td>
+					<td>${val.date_from} to ${val.date_to}</td>
+					<td>${val.first_name} ${val.last_name}</td>
+					<td>${val.description}</td>
+					<td>${val.quantity}</td>
+					<td>₱ ${val.total_amount}</td>
+					<td>		
+					<button type="button" class="btn btn-success" onclick="AMENITY.request_action(\'${val.reservation_id}\','APPROVED')" title="Approve Request"><i class="fa fa-check"></i></button>
+					<button type="button" class="btn btn-danger" onclick="AMENITY.request_action(\'${val.reservation_id}\','REJECTED')" title="Decline Request"><i class="fa fa-times"></i></button>
 					</td>
 					</tr>`;
 				});
 
-				$('#reservation_history tbody').html(tbody);
-				$('#reservation_history').DataTable();
+				$('#reservation_request').DataTable().destroy();
+				$('#reservation_request tbody').html(tbody);
+				$('#reservation_request').DataTable();
+				$('input[type="search"]').addClass('form-control');	
+			},
+			error:() => {
+				iziToast.error({
+					title: 'Error',
+					message: 'Unexpected error occured',
+					position:'bottomCenter'
+				});
+			},
+			complete:() => {
+
+			}
+		});
+	}
+
+	ret.request_action = (reservation_id,action) =>
+	{
+		$.ajax({
+			type:'POST',
+			url:base_url+'reservation-action/'+reservation_id+'/'+action,
+			dataType:'json',
+			data:{'_method':'PATCH'},
+			cache:false,
+			success:(result)=>
+			{
+				if(result == true)
+				{
+					iziToast.success({
+						title: 'Success',
+						message: 'Action Successful.',
+						position:'center'
+					});
+				}
+				else if(result == false)
+				{
+					iziToast.warning({
+						title: 'Failed',
+						message: 'Action not successful.',
+						position:'center'
+					});
+				}
+			},
+			error:() => {
+				iziToast.error({
+					title: 'Error',
+					message: 'Unexpected error occured',
+					position:'center'
+				});
+			},
+			complete:() => {
+				AMENITY.load_amenities();
+				AMENITY.load_reservation_history();
+				AMENITY.load_reservation_request();
+				AMENITY.load_pending_reservation();
+			}
+		});
+	}
+
+
+	ret.load_pending_reservation = () =>
+	{
+		$.ajax({
+			type:'GET',
+			url:base_url+'reservation-pending',
+			dataType:'json',
+			cache:false,
+			success:(result) => {
+				var tbody = "";
+
+				$.each(result,(key,val)=>{
+					tbody += `<tr>
+					<td>${val.timestamp}</td>
+					<td>${val.date_from} to ${val.date_to}</td>
+					<td>${val.first_name} ${val.last_name}</td>
+					<td>${val.description}</td>
+					<td>${val.quantity}</td>
+					<td>₱ ${val.total_amount}</td>
+					<td>		
+					<button type="button" class="btn btn-success" onclick="AMENITY.request_action(\'${val.reservation_id}\','FINISHED')" title="Finish Request"><i class="fa fa-check"></i></button>
+					</td>
+					</tr>`;
+				});
+
+				$('#pending_reservation').DataTable().destroy();
+				$('#pending_reservation tbody').html(tbody);
+				$('#pending_reservation').DataTable();
 				$('input[type="search"]').addClass('form-control');	
 			},
 			error:() => {
