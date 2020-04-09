@@ -32,7 +32,7 @@
 						<form method="post" id="login_form">
 							<input type="text" class="text-field mb-3" placeholder="Username" name="username" autocomplete="off">
 							<input type="password" class="text-field" placeholder="Password" name="password" autocomplete="off">
-							<a href="#" class="forgot-password mt-2"><u>Forgot Password?</u></a>
+							<!-- <a href="#" class="forgot-password mt-2"><u>Forgot Password?</u></a> -->
 
 							<button type="submit" class="login-btn mt-4">LOGIN</button>
 						</form>

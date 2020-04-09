@@ -38,12 +38,16 @@
   table.dataTable thead th, table.dataTable tfoot th {
     font-weight: normal;
   }
+  .sidebar .nav li>a
+  {
+    font-size: 12px!important;
+  }
 </style>
 </head>
 
 <body class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="blue">
+    <div class="sidebar" data-color="yellow">
       <div class="logo">
         <a href="<?php echo base_url('dashboard')?>" class="simple-text logo-mini">
           <i class="now-ui-icons business_bank"></i>
