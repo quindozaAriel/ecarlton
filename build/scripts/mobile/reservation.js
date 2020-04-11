@@ -322,11 +322,33 @@ const RESERVATION = (()=>{
 				var tbody ="";
 				$.each(result,(key,val)=>{
 
+					var stat  = "";
+					if(val['status'] == 'APPROVED')
+					{
+						stat = `<button class="btn btn-info p-1" type="button" onclick="RESERVATION.pay(\'${val.id}\',\'${val['total_amount']}\')"><i class="fas fa-money-bill"></i> CLICK TO PAY</button>`;
+					}
+					else if(val['status'] == 'REJECTED')
+					{
+						stat = `<span class="badge badge-danger">${val['status']}</span>`;
+					}
+					else if(val['status'] == 'PENDING')
+					{
+						stat = `<span class="badge badge-secondary">${val['status']}</span>`;
+					}
+					else if(val['status'] == 'FINISHED')
+					{
+						stat = `<span class="badge badge-dark">${val['status']}</span>`;
+					}
+					else if(val['status'] == 'PAID')
+					{
+						stat = `<span class="badge badge-success">${val['status']}</span>`;
+					}
+
 					tbody += `<tr>
 					<td>${val['date_from']}<br>${val['date_to']}</td>
 					<td>
 					${val['description']} x ${val['quantity']} = ₱${val['total_amount']}<br>
-					<span class="badge badge-info">${val['status']}</span>
+					${stat}
 					</td>
 					</tr>`;
 				});
@@ -334,6 +356,7 @@ const RESERVATION = (()=>{
 				$('#my_reservation_table').DataTable().destroy();
 				$('#my_reservation_table tbody').html(tbody);
 				$('#my_reservation_table').DataTable();
+
 			},
 			error:() => {
 				iziToast.error({
@@ -347,6 +370,72 @@ const RESERVATION = (()=>{
 			}
 		});
 	}	
+
+	_this.pay = (id,amount) =>
+	{	
+
+		iziToast.show({
+			theme: 'dark',
+			icon: 'fa fa-question',
+			message: 'Are you sure to proceed to payment?',
+			position: 'center', 
+			progressBarColor: 'rgb(0, 255, 184)',
+			buttons: [
+			['<button style="width:70px;height:30px;">Yes</button>', function (instance, toast) {
+				$.ajax({
+					type:'POST',
+					url:base_url+'pay-reservation',
+					data:{
+						id:id,
+						amount:amount
+					},
+					dataType:'json',
+					cache:false,
+					success:(result) => {
+						if(result == true)
+						{
+							iziToast.success({
+								title: 'Success',
+								message: 'Payment Success',
+								position:'topCenter'
+							});
+
+							RESERVATION.load_my_reservation();
+						}
+						else if(result == false)
+						{
+							iziToast.warning({
+								title: 'Invalid',
+								message: 'Please try again.',
+								position:'topCenter'
+							});
+						}
+					},
+					error:() => {
+						iziToast.error({
+							title: 'Error',
+							message: 'Unexpected error occured',
+							position:'topCenter'
+						});
+					},
+					complete:() => {
+					}
+				});
+				instance.hide({
+					transitionOut: 'fadeOutUp',
+				}, toast, 'buttonName');
+
+			}, true],
+			['<button style="width:60px;height:30px;">No</button>', function (instance, toast) {
+				instance.hide({
+					transitionOut: 'fadeOutUp',
+				}, toast, 'buttonName');
+			}]
+			]
+		});
+		
+		
+	}
 
 	return _this;
 

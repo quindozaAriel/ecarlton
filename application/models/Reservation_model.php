@@ -339,6 +339,37 @@ class Reservation_model extends CI_Model
 		return $result;
 	}
 
+	public function pay_reservation($data)
+	{
+		$this->db->insert('payment_history_tbl',$data);
+		$insert_id = $this->db->insert_id();
+
+		if($insert_id == 0)
+		{
+			return FALSE;
+		}
+		else
+		{
+			return $insert_id;
+		}
+	}
+
+	public function update_payment($data,$id)
+	{
+		$this->db->where('id',$id);
+		$this->db->update('reservation_tbl',$data);
+		$affected_row = $this->db->affected_rows();
+
+		if($affected_row == 0)
+		{
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}	
+
 	// public function looper2()
 	// {
 	// 	$array = [];

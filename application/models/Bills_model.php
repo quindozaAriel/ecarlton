@@ -25,8 +25,8 @@ class Bills_model extends CI_Model
 
 		$resident_bills_query = $this->db->query('SELECT bills.id as bills_id,bills.description,bills.amount,bills.due_date,bills.bill_type
 			FROM payment_history_tbl as history
-			LEFT JOIN payment_details_tbl as details ON details.payment_id = history.id
-			LEFT JOIN bills_tbl as bills ON bills.id = details.bills_id
+			INNER JOIN payment_details_tbl as details ON details.payment_id = history.id
+			INNER JOIN bills_tbl as bills ON bills.id = details.bills_id
 			WHERE history.resident_id = '.$user_id.'
 			AND MONTH(history.payment_datetime) = '.date('n').'
 			AND bills.bill_type = "MONTHLY"
@@ -47,21 +47,18 @@ class Bills_model extends CI_Model
 			}
 		}
 
-		$occasional_bills_query = $this->db->query('SELECT bills.id as bills_id,bills.description,bills.amount,bills.due_date,bills.bill_type
-			FROM bills_tbl as bills
-			WHERE bills.status = "ACTIVE"
-			AND bills.bill_type = "OCCASIONAL"
-			AND MONTH(bills.due_date) = '.date('n').'
-			AND bills.due_date >= '.date('Y-m-d').'
-			ORDER BY bills.id
-			');
-
-		$occasional_bills_result = $occasional_bills_query->result_array();
+		$this->db->where('a.due_date >=',date('Y-m-d'));
+		$this->db->where('MONTH(a.due_date)',date('n'));
+		$this->db->where('a.status','ACTIVE');
+		$this->db->where('a.bill_type','OCCASIONAL');
+		$this->db->select('a.id as bills_id,a.description,a.amount,a.due_date,a.bill_type');
+		$this->db->from('bills_tbl a');
+		$occasional_bills_result = $this->db->get()->result_array();
 
 		$resident_bills_occasional = $this->db->query('SELECT bills.id as bills_id,bills.description,bills.amount,bills.due_date,bills.bill_type
 			FROM payment_history_tbl as history
-			LEFT JOIN payment_details_tbl as details ON details.payment_id = history.id
-			LEFT JOIN bills_tbl as bills ON bills.id = details.bills_id
+			INNER JOIN payment_details_tbl as details ON details.payment_id = history.id
+			INNER JOIN bills_tbl as bills ON bills.id = details.bills_id
 			WHERE history.resident_id = '.$user_id.'
 			AND bills.bill_type = "OCCASIONAL"
 			AND details.bill_type = "NORMAL"

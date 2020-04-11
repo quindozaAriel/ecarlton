@@ -27,6 +27,9 @@ public function up()
 			'quantity' => array(
 				'type' => 'DECIMAL'
 			),
+			'payment_id' => array(
+				'type' => 'INT'
+			),
 			'total_amount' => array(
 				'type' => 'DECIMAL'
 			),

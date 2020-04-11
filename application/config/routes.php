@@ -149,6 +149,7 @@ $route['reservation-availability/(:any)/(:any)/(:any)/(:any)']['GET'] = 'Reserva
 $route['reservation-load-amenity/(:any)']['GET'] = 'Reservation/load_amenity_reservation/$1';
 $route['reservation']['POST'] = 'Reservation/insert';
 $route['my_reservation']['GET'] = 'Reservation/my_reservation';
+$route['pay-reservation']['POST'] = 'Reservation/pay_reservation';
 
 //BILLS
 $route['bills']['GET'] = 'Bills/get';

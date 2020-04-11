@@ -84,4 +84,24 @@ class Reservation extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
+	public function pay_reservation()
+	{
+		$post_data = $this->input->post();
+		$insert_data = [
+			'resident_id'      => $_SESSION['id'],
+			'payment_amount'   => $post_data['amount'],
+			'payment_datetime' => date('Y-m-d H:i:s')
+		];
+		$payment_id = $this->reservation->pay_reservation($insert_data);
+
+		$update_reservation = [
+			'payment_id' => $payment_id,
+			'status'     => "PAID"
+		];
+
+		$result = $this->reservation->update_payment($update_reservation,$post_data['id']);
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
+
 }
