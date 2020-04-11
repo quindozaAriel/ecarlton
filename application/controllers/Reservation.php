@@ -103,5 +103,11 @@ class Reservation extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
+	public function load_sales_per_month()
+	{
+		$result = $this->reservation->looper2();
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
 
 }

@@ -370,25 +370,36 @@ class Reservation_model extends CI_Model
 		}
 	}	
 
-	// public function looper2()
-	// {
-	// 	$array = [];
-	// 	for ($i=1; $i <= 12; $i++)
-	// 	{ 
-	// 		$array[$i] = $this->load_reservation_per_month($i);	
-	// 	}
-	// 	return $array;
-	// }
+	public function looper2()
+	{
+		$array = [];
+		for ($i=1; $i <= 12; $i++)
+		{ 
+			$result = $this->load_sales_per_month($i);	
+			if($result['total_amount'] == null)
+			{
+				$array[$i] = 0;
+			}
+			else
+			{
+				$array[$i] = $result;
+			}
+		}
+		return $array;
+	}
 
-	// public function load_reservation_per_month($month)
-	// {
-	// 	$query = $this->db->query('SELECT COUNT(*) AS count
-	// 		FROM reservation_tbl
-	// 		where status = "PAID" AND status = "FINISHED"
-	// 		AND YEAR(timestamp) = '.date("Y").'
-	// 		AND MONTH(timestamp) = '.$month.'
-	// 		');
-	// 	$result = $query->row_array();
-	// 	return $result;
-	// }
+	public function load_sales_per_month($month)
+	{	
+		$query = $this->db->query('SELECT SUM(history.payment_amount) as total_amount
+			FROM reservation_tbl as reservation
+			LEFT JOIN payment_history_tbl as history ON history.id = reservation.payment_id
+			where  YEAR(reservation.timestamp) = '.date("Y").'
+			AND (reservation.status = "FINISHED" OR reservation.status = "PAID")
+			AND (history.id IS NOT NULL OR history.id != 0)
+			AND MONTH(reservation.timestamp) = '.$month.'
+			');
+
+		$result = $query->row_array();
+		return $result;
+	}
 }

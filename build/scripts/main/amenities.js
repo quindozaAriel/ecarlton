@@ -4,7 +4,7 @@ $(document).ready(()=>{
 	AMENITY.load_reservation_request();
 	AMENITY.load_pending_reservation();
 	AMENITY.load_dashboard();
-	AMENITY.sale_chart();
+	AMENITY.load_graph_sales();
 });
 
 
@@ -514,6 +514,35 @@ const AMENITY = (() =>{
 		});
 	}
 
+	ret.load_graph_sales = () =>
+	{	
+		$.ajax({
+			type:'GET',
+			url:base_url+'reservation-sales-per-month',
+			dataType:'json',
+			cache:false,
+			success:(result) => {
+
+				var data = [];
+				$.each(result,(key,val)=>{
+					data.push(val.total_amount);
+				});
+				AMENITY.sale_chart(data);
+			},
+			error:() => {
+				iziToast.error({
+					title: 'Error',
+					message: 'Unexpected error occured',
+					position:'topCenter'
+				});
+			},
+			complete:() => {
+
+			}
+		});
+	}
+
+
 	ret.dashboard = (dashboard_data)=>
 	{
 
@@ -709,7 +738,7 @@ const AMENITY = (() =>{
 			}
 		});
 	}
-	ret.sale_chart = (dashboard_data)=>
+	ret.sale_chart = (data)=>
 	{
 
 		chartColor = "#FFFFFF";
@@ -836,7 +865,7 @@ const AMENITY = (() =>{
 					pointRadius: 4,
 					fill: true,
 					borderWidth: 1,
-					data: [80, 99, 86, 96, 123, 85, 100, 75, 88, 90, 123, 155]
+					data:data
 				}]
 			},
 			options: {
