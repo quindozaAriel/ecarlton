@@ -97,6 +97,7 @@ $route['monthly/(:any)']['PATCH'] = 'Monthly/update/$1';
 $route['monthly/(:any)']['DELETE'] = 'Monthly/delete/$1';
 $route['monthly-payment']['POST'] = 'Monthly/load_payment_history';
 $route['monthly-due-bills']['GET'] = 'Monthly/load_due_bills';
+$route['monthly-sales-per-month']['GET'] = 'Monthly/load_sales_per_month';
 
 //NOTIFICATION
 $route['notification-list']['GET'] = 'Notification/get';

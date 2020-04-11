@@ -2,7 +2,7 @@ $(document).ready(()=>{
 	NOTIFICATION.load_list();
 	NOTIFICATION.load_all_notification();
 	NOTIFICATION.load_dashboard();
-	
+
 });
 
 
@@ -468,7 +468,7 @@ const NOTIFICATION = (() =>{
 			data: {
 				labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
 				datasets: [{
-					label: "Reservation Count",
+					label: "Notification Count",
 					borderColor: chartColor,
 					pointBorderColor: chartColor,
 					pointBackgroundColor: "#1e3d60",

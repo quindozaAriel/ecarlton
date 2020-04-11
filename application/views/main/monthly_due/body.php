@@ -3,7 +3,7 @@
 </div>
 <div class="content">
 	<div class="row">
-		<div class="col-lg-4">
+<!-- 		<div class="col-lg-4">
 			<div class="card card-chart">
 				<div class="card-header">
 					<h5 class="card-category">Monthly Dues</h5>
@@ -31,7 +31,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 <!-- 		<div class="col-lg-4 col-md-6">
 			<div class="card card-chart">
 				<div class="card-header">
@@ -61,7 +61,7 @@
 				</div>
 			</div>
 		</div> -->
-		<div class="col-lg-4 col-md-6">
+		<!-- <div class="col-lg-4 col-md-6">
 			<div class="card card-chart">
 				<div class="card-header">
 					<h5 class="card-category">Carlton Residence Income</h5>
@@ -78,7 +78,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 	<div class="row">

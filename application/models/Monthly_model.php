@@ -103,4 +103,36 @@ class Monthly_model extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
+	public function looper()
+	{
+		$array = [];
+		for ($i=1; $i <= 12; $i++)
+		{ 
+			$result = $this->load_sales_per_month($i);
+			if($result['total_amount'] == null)
+			{
+				$array[$i] = 0;
+			}
+			else
+			{
+				$array[$i] = $result['total_amount'];
+			}
+				
+		}
+		return $array;
+	}
+
+	public function load_sales_per_month($month)
+	{	
+		$query = $this->db->query('SELECT SUM(detail.amount) as total_amount
+			FROM payment_history_tbl as history
+			INNER JOIN payment_details_tbl as detail ON detail.payment_id = history.id
+			where  YEAR(history.payment_datetime) = '.date("Y").'
+			AND MONTH(history.payment_datetime) = '.$month.'
+			');
+
+		$result = $query->row_array();
+		return $result;
+	}
+
 }
