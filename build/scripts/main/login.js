@@ -39,7 +39,7 @@ const LOGIN = (()=>{
 					}
 					else
 					{
-						window.location.replace(base_url+'/dashboard');
+						window.location.replace(base_url+'/admin');
 					}
 				},
 				error:function()

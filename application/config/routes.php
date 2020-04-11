@@ -105,6 +105,9 @@ $route['notification/(:any)']['GET'] = 'Notification/read/$1';
 $route['notification/(:any)']['PATCH'] = 'Notification/update/$1';
 $route['notification/(:any)']['DELETE'] = 'Notification/delete/$1';
 $route['notification-all']['GET'] = 'Notification/load_all_notification';
+$route['notification-per-month']['GET'] = 'Notification/load_notification_per_month';
+
+
 
 //AMENITY
 $route['amenities-list']['GET'] = 'Amenities/get';

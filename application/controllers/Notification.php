@@ -57,4 +57,10 @@ class Notification extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
+	public function load_notification_per_month()
+	{
+		$result = $this->notification->looper();
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
 }

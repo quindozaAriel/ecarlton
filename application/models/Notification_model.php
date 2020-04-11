@@ -94,4 +94,25 @@ class Notification_model extends CI_Model
 
 		return ['notifications' => $notifications,'last_notification' => $last_notification['id']];
 	}
+
+	public function looper()
+	{
+		$array = [];
+		for ($i=1; $i <= 12; $i++)
+		{ 
+			$array[$i] = $this->load_notification_per_month($i);	
+		}
+		return $array;
+	}
+
+	public function load_notification_per_month($month)
+	{
+		$query = $this->db->query('SELECT COUNT(*) AS count
+			FROM notification_tbl
+			where YEAR(date) = '.date("Y").'
+			AND MONTH(date) = '.$month.' 
+			');
+		$result = $query->row_array();
+		return $result;
+	}
 }
