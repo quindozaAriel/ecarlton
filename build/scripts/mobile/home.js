@@ -41,17 +41,23 @@ const HOME = (()=>{
 
 					var notif_count = result['notifications'].length;
 
-					$('#span_notif').html(notif_count);
-
-					if(last_notification_id == 0)
+					if(notif_count != 0)
 					{
-						iziToast.show({
-							theme: 'dark',
-							title: 'Information',
-							message: `You have ${notif_count} notifications`,
-							position:'topCenter'
-						});
+						$('#span_notif').html(notif_count);
+
+						
+						if(last_notification_id == 0)
+						{
+							iziToast.show({
+								theme: 'dark',
+								title: 'Information',
+								message: `You have ${notif_count} notifications`,
+								position:'topCenter'
+							});
+						}
+
 					}
+
 
 					last_notification_id = result['last_notification'];
 				}
@@ -84,15 +90,20 @@ const HOME = (()=>{
 
 					var notif_count = result.length;
 
-					$('#span_bills').html(notif_count);
+					if(notif_count != 0)
+					{
+						$('#span_bills').html(notif_count);
+						iziToast.show({
+							theme: 'dark',
+							title: 'Information',
+							message: `You have ${notif_count} available bill.`,
+							position:'topCenter'
+						});
+					}
+					
 
 
-					iziToast.show({
-						theme: 'dark',
-						title: 'Information',
-						message: `You have ${notif_count} available bill.`,
-						position:'topCenter'
-					});
+
 				}
 				
 			},
@@ -123,14 +134,21 @@ const HOME = (()=>{
 					
 					var notif_count = parseInt(result[0]['PENDING']) + parseInt(result[1]['APPROVED']);
 
-					$('#span_reservation').html(notif_count);
+					if(notif_count != 0)
+					{
+						$('#span_reservation').html(notif_count);
 
-					iziToast.show({
-						theme: 'dark',
-						title: 'Information',
-						message: `You have ${notif_count} reservation.`,
-						position:'topCenter'
-					});
+						iziToast.show({
+							theme: 'dark',
+							title: 'Information',
+							message: `You have ${notif_count} reservation.`,
+							position:'topCenter'
+						});
+					}
+					
+
+
+
 
 				}
 				

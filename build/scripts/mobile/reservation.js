@@ -176,6 +176,7 @@ const RESERVATION = (()=>{
 
 		var date1 = new Date(date_from); 
 		var date2 = new Date(date_to); 
+
 		if(amenity_id == "" || date_from == "" || date_to == "" || request_qty == "")
 		{
 			iziToast.error({
@@ -186,7 +187,15 @@ const RESERVATION = (()=>{
 		}
 		else
 		{
-			if(request_qty <= available_qty)
+			if(parseInt(request_qty) > parseInt(available_qty))
+			{
+				iziToast.error({
+					title: 'Invalid',
+					message: 'Your request quantity is greater than available quantity',
+					position:'topCenter'
+				});
+			}
+			else
 			{
 				if(date1 <= date2)
 				{
@@ -239,14 +248,6 @@ const RESERVATION = (()=>{
 						position:'topCenter'
 					});
 				}
-			}
-			else
-			{
-				iziToast.error({
-					title: 'Invalid Date',
-					message: 'Your request quantity is greater than available quantity',
-					position:'topCenter'
-				});
 			}
 		}
 
@@ -345,7 +346,7 @@ const RESERVATION = (()=>{
 
 			}
 		});
-	}
+	}	
 
 	return _this;
 

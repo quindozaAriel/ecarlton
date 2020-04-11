@@ -44,11 +44,11 @@
 							</div>
 							<div class="col-6 mt-3">
 								<label class="d-block">Quantity</label>
-								<input type="number" class="form-control" id="available_qty"  readonly disabled>
+								<input type="number" class="form-control" id="available_qty"  readonly readonly>
 							</div>
 							<div class="col-6 mt-3">
 								<label class="d-block">Amount</label>
-								<input type="text" class="form-control d-inline" id="amount" readonly disabled>
+								<input type="text" class="form-control d-inline" id="amount" readonly readonly>
 							</div>
 							<div class="col-6 mt-3">
 								<label class="d-block">Date From</label>

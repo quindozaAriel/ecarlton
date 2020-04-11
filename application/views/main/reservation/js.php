@@ -1,5 +1,5 @@
 <script type="text/javascript" src="<?php echo base_url('build/scripts/main/amenities.js')?>"></script>
-<script>
+<!-- <script>
 
 	$(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
@@ -588,4 +588,4 @@ initGoogleMaps: function() {
     marker.setMap(map);
 }
 };
-</script>
+</script> -->

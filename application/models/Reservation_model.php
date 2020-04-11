@@ -316,4 +316,48 @@ class Reservation_model extends CI_Model
 		$result = $this->db->get()->result_array();
 		return $result;
 	}
+
+	public function looper()
+	{
+		$array = [];
+		for ($i=1; $i <= 12; $i++)
+		{ 
+			$array[$i] = $this->load_reservation_per_month($i);	
+		}
+		return $array;
+	}
+
+	public function load_reservation_per_month($month)
+	{
+		$query = $this->db->query('SELECT COUNT(*) AS count
+			FROM reservation_tbl
+			where status != "REJECTED" AND status != "PENDING" AND status != "APPROVED"
+			AND YEAR(date_from) = '.date("Y").' and YEAR(date_to) = '.date("Y").'
+			AND (MONTH(date_from) = '.$month.' OR MONTH(date_to) = '.$month.')
+			');
+		$result = $query->row_array();
+		return $result;
+	}
+
+	// public function looper2()
+	// {
+	// 	$array = [];
+	// 	for ($i=1; $i <= 12; $i++)
+	// 	{ 
+	// 		$array[$i] = $this->load_reservation_per_month($i);	
+	// 	}
+	// 	return $array;
+	// }
+
+	// public function load_reservation_per_month($month)
+	// {
+	// 	$query = $this->db->query('SELECT COUNT(*) AS count
+	// 		FROM reservation_tbl
+	// 		where status = "PAID" AND status = "FINISHED"
+	// 		AND YEAR(timestamp) = '.date("Y").'
+	// 		AND MONTH(timestamp) = '.$month.'
+	// 		');
+	// 	$result = $query->row_array();
+	// 	return $result;
+	// }
 }
