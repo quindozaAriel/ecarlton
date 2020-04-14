@@ -92,6 +92,12 @@
               <p>Admin Module</p>
             </a>
           </li>
+<!--           <li class="<?php echo ($module=='dashboard')?'active':'';?>">
+            <a href="<?php echo base_url('dashboard')?>">
+              <i class="fa fa-eye"></i>
+              <p>Dashboard</p>
+            </a>
+          </li> -->
         </ul>
       </div>
       <!-- SIDEBAR -->
@@ -110,7 +116,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="<?php echo base_url('dashboard')?>">Dashboard</a>
+            <!--      <a class="navbar-brand" href="#">Dashboard</a> -->
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>

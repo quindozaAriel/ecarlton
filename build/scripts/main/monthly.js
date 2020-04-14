@@ -1,7 +1,7 @@
 $(document).ready(()=>{
 	MONTHLY.load_bills_list();
 	MONTHLY.load_dashboard();
-	// MONTHLY.load_due_bills();
+	MONTHLY.load_due_bills();
 });
 
 var dateToday = new Date();
@@ -207,12 +207,13 @@ const MONTHLY = (()=>{
 
 					$.each(result,(key,val)=>{
 						tbody += `<tr>
-						<td>${val['payment_date']}</td>
+						<td>${val['payment_datetime']}</td>
 						<td>${val['first_name']} ${val['middle_name']} ${val['last_name']}</td>
 						<td>${val['description']}</td>
 						<td>${val['amount']}</td>
 						</tr>`;
 					});
+					$('#payment_tbl').DataTable().destroy();
 
 					$('#payment_tbl tbody').html(tbody);
 					$('#payment_tbl').DataTable();
@@ -459,7 +460,7 @@ const MONTHLY = (()=>{
 
 				$.each(result,(key,val)=>{
 					tbody += `<tr>
-					<td>${val['payment_date']}</td>
+					<td>${val['due_date']}</td>
 					<td>${val['first_name']} ${val['middle_name']} ${val['last_name']}</td>
 					<td>${val['description']}</td>
 					<td>${val['amount']}</td>
