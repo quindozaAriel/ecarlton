@@ -113,22 +113,33 @@ class Home_model extends CI_Model
 
 	public function check_reservation()
 	{
+		$id = $_SESSION['id'];
+
+		$this->db->where('resident_id',$id);
 		$this->db->where('status','PENDING');
 		$this->db->select('COUNT(*) as PENDING');
 		$this->db->from('reservation_tbl');
 		$pending =  $this->db->get()->result_array();
 
+		$this->db->where('resident_id',$id);
 		$this->db->where('status','APPROVED');
 		$this->db->select('COUNT(*) as APPROVED');
 		$this->db->from('reservation_tbl');
 		$approved =  $this->db->get()->result_array();
 
+		$this->db->where('resident_id',$id);
+		$this->db->where('status','PAID');
+		$this->db->select('COUNT(*) as PAID');
+		$this->db->from('reservation_tbl');
+		$paid =  $this->db->get()->result_array();
+
+		$this->db->where('resident_id',$id);
 		$this->db->where('status','REJECTED');
 		$this->db->select('COUNT(*) as REJECTED');
 		$this->db->from('reservation_tbl');
 		$rejected =  $this->db->get()->result_array();
 
-		$result = array_merge($pending,$approved,$rejected);
+		$result = array_merge($pending,$approved,$rejected,$paid);
 
 		return $result;
 	}

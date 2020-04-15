@@ -166,3 +166,10 @@ $route['bills']['POST'] = 'Bills/insert';
 $route['check-notification']['GET'] = 'Home/check_notification';
 $route['check-bills']['GET'] = 'Home/check_bills';
 $route['check-reservation']['GET'] = 'Home/check_reservation';
+
+
+//CRON JOB
+$route['record-occasional-due-bills']['GET'] = 'Standby/check_occasional_due_bills';
+$route['record-due-bills']['GET'] = 'Standby/check_due_bills';
+
+

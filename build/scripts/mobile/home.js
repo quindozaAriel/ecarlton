@@ -132,7 +132,7 @@ const HOME = (()=>{
 				if(result != null && result != "")
 				{
 					
-					var notif_count = parseInt(result[0]['PENDING']) + parseInt(result[1]['APPROVED']);
+					var notif_count = parseInt(result[0]['PENDING']) + parseInt(result[1]['APPROVED'])  + parseInt(result[3]['PAID']);
 
 					if(notif_count != 0)
 					{

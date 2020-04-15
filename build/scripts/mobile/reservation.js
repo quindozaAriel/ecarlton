@@ -23,6 +23,12 @@ const RESERVATION = (()=>{
 		RESERVATION.compute_amount();
 	});
 
+	$('#amenities').on('change',()=>{
+		$('#pr_btn').addClass('d-none');
+		$('#ca_btn').removeClass('d-none');
+		RESERVATION.compute_amount();
+	});
+
 	$('#reservation_form').validate({
 		debug: false,
 		rules: {

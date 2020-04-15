@@ -218,7 +218,7 @@ const BILLS = (()=>{
 					<td>${val[0]['payment_datetime']}</td>
 					</tr>`;
 				});
-
+				$('#transaction_history_table').DataTable().destroy();
 				$('#transaction_history_table tbody').html(tbody);
 				$('#transaction_history_table').DataTable();
 				$('input[type="search"]').addClass('form-control');	
