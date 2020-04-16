@@ -5,7 +5,9 @@ $(document).ready(()=>{
 	AMENITY.load_pending_reservation();
 	AMENITY.load_dashboard();
 	AMENITY.load_graph_sales();
+	AMENITY.load_forpayment_reservation();
 });
+
 
 
 const AMENITY = (() =>{
@@ -166,6 +168,16 @@ const AMENITY = (() =>{
 		}
 	});
 	var ret = {};
+
+	ret.function_loader = () =>
+	{
+		AMENITY.load_dashboard();
+		AMENITY.load_graph_sales();
+		AMENITY.load_reservation_request();
+		AMENITY.load_pending_reservation();
+		AMENITY.load_forpayment_reservation();
+		AMENITY.load_reservation_history();
+	}
 
 	ret.load_amenities = ()=>
 	{
@@ -434,11 +446,7 @@ const AMENITY = (() =>{
 				});
 			},
 			complete:() => {
-				AMENITY.load_amenities();
-				AMENITY.load_reservation_history();
-				AMENITY.load_reservation_request();
-				AMENITY.load_pending_reservation();
-				AMENITY.load_dashboard();
+				AMENITY.function_loader();
 			}
 		});
 	}
@@ -471,6 +479,48 @@ const AMENITY = (() =>{
 				$('#pending_reservation').DataTable().destroy();
 				$('#pending_reservation tbody').html(tbody);
 				$('#pending_reservation').DataTable();
+				$('input[type="search"]').addClass('form-control');	
+			},
+			error:() => {
+				iziToast.error({
+					title: 'Error',
+					message: 'Unexpected error occured',
+					position:'bottomCenter'
+				});
+			},
+			complete:() => {
+
+			}
+		});
+	}
+
+	ret.load_forpayment_reservation = () =>
+	{
+		$.ajax({
+			type:'GET',
+			url:base_url+'reservation-for-payment',
+			dataType:'json',
+			cache:false,
+			success:(result) => {
+				var tbody = "";
+
+				$.each(result,(key,val)=>{
+					tbody += `<tr>
+					<td>${val.timestamp}</td>
+					<td>${val.date_from} to ${val.date_to}</td>
+					<td>${val.first_name} ${val.last_name}</td>
+					<td>${val.description}</td>
+					<td>${val.quantity}</td>
+					<td>₱ ${val.total_amount}</td>
+					<td>		
+					<button type="button" class="btn btn-danger" onclick="AMENITY.request_action(\'${val.reservation_id}\','REJECTED')" title="REJECT REQUEST"><i class="fa fa-times"></i></button>
+					</td>
+					</tr>`;
+				});
+
+				$('#forpayment_reservation').DataTable().destroy();
+				$('#forpayment_reservation tbody').html(tbody);
+				$('#forpayment_reservation').DataTable();
 				$('input[type="search"]').addClass('form-control');	
 			},
 			error:() => {

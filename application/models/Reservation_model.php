@@ -119,9 +119,8 @@ class Reservation_model extends CI_Model
 	}
 
 	public function load_amenity_reservation($amenity_id)
-	{
-		$this->db->where('a.status','ACTIVE');
-		$this->db->where('b.status ','APPROVED');
+	{	
+		$this->db->where('b.status ','PAID');
 		$this->db->where('b.amenities_id',$amenity_id);
 		$this->db->select('a.description,a.quantity,a.amount,
 			b.id,b.date_from,b.date_to,b.quantity as reserved_qty,b.total_amount,
@@ -305,7 +304,7 @@ class Reservation_model extends CI_Model
 
 	public function load_pending_reservation()
 	{
-		$this->db->where('reservation.status','APPROVED');
+		$this->db->where('reservation.status','PAID');
 		$this->db->select('reservation.id as reservation_id,reservation.date_from,reservation.date_to,reservation.quantity,reservation.total_amount,reservation.timestamp,
 			amenity.description,
 			resident.first_name,resident.last_name
@@ -400,6 +399,20 @@ class Reservation_model extends CI_Model
 			');
 
 		$result = $query->row_array();
+		return $result;
+	}
+
+	public function load_forpayment_reservation()
+	{
+		$this->db->where('reservation.status','APPROVED');
+		$this->db->select('reservation.id as reservation_id,reservation.date_from,reservation.date_to,reservation.quantity,reservation.total_amount,reservation.timestamp,
+			amenity.description,
+			resident.first_name,resident.last_name
+			');
+		$this->db->from('reservation_tbl as reservation');
+		$this->db->join('amenities_tbl as amenity','amenity.id = reservation.amenities_id');
+		$this->db->join('resident_tbl as resident','resident.id = reservation.resident_id');
+		$result = $this->db->get()->result_array();
 		return $result;
 	}
 }

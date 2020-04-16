@@ -109,5 +109,11 @@ class Reservation extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
+	public function load_forpayment_reservation()
+	{
+		$result = $this->reservation->load_forpayment_reservation();
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
 
 }
