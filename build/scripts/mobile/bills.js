@@ -56,6 +56,8 @@ const BILLS = (()=>{
 					complete:() => {
 						BILLS.load_bills();
 						BILLS.load_transaction_history();
+						$("#total_amount").html("");
+						$("#hidden_total_amount").val(0);
 					}
 				});
 				instance.hide({
