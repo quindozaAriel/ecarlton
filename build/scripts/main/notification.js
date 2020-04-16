@@ -196,7 +196,7 @@ const NOTIFICATION = (() =>{
 					'<td>${val['date']}</td>'
 					</tr>`;
 				});
-
+				$('#all_notif_tbl').DataTable().destroy();
 				$('#all_notif_tbl tbody').html(tbody);
 				$('#all_notif_tbl').DataTable();
 				$('input[type="search"]').addClass('form-control');	
