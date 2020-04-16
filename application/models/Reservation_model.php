@@ -30,7 +30,7 @@ class Reservation_model extends CI_Model
 			b.id,b.date_from,b.date_to,b.quantity as reserved_qty
 			FROM amenities_tbl as a
 			INNER JOIN reservation_tbl as b ON b.amenities_id = a.id
-			WHERE a.id ='.$amenities_id.' AND a.status = "ACTIVE" AND b.status = "APPROVED" 
+			WHERE a.id ='.$amenities_id.' AND a.status = "ACTIVE" AND b.status = "PAID" 
 			AND ((b.date_from >= "'.$date_from.'" AND b.date_from <= "'.$date_to.'") OR (b.date_to >= "'.$date_from.'" AND b.date_to <= "'.$date_to.'"))
 			');
 
