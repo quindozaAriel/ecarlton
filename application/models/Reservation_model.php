@@ -359,12 +359,29 @@ class Reservation_model extends CI_Model
 		$this->db->update('reservation_tbl',$data);
 		$affected_row = $this->db->affected_rows();
 
+
+		$this->db->where('id',$id);
+		$this->db->select('amenities_id,quantity');
+		$this->db->from('reservation_tbl');
+		$reservation_info = $this->db->get()->row_array();
+
 		if($affected_row == 0)
 		{
 			return FALSE;
 		}
 		else
 		{
+			$this->db->where('id',$reservation_info['amenities_id']);
+			$this->db->select('available_qty');
+			$this->db->from('amenities_tbl');
+			$amenity_qty = $this->db->get()->row_array();
+
+			$update_array = [
+				'available_qty' => intval($amenity_qty['available_qty']) - intval($reservation_info['quantity'])
+			];
+
+			$this->db->where('id',$reservation_info['amenities_id']);
+			$this->db->update('amenities_tbl',$update_array);
 			return TRUE;
 		}
 	}	
@@ -414,5 +431,25 @@ class Reservation_model extends CI_Model
 		$this->db->join('resident_tbl as resident','resident.id = reservation.resident_id');
 		$result = $this->db->get()->result_array();
 		return $result;
+	}
+
+	public function return_quantity($reservation_id)
+	{
+		$this->db->where('id',$reservation_id);
+		$this->db->select('quantity,amenities_id');
+		$this->db->from('reservation_tbl');
+		$reservation = $this->db->get()->row_array();
+
+		$this->db->where('id',$reservation['amenities_id']);
+		$this->db->select('available_qty');
+		$this->db->from('amenities_tbl');
+		$amenity_qty = $this->db->get()->row_array();
+
+		$update_array = [
+			'available_qty' => intval($amenity_qty['available_qty']) + $reservation['quantity']
+		];
+
+		$this->db->where('id',$reservation['amenities_id']);
+		$this->db->update('amenities_tbl',$update_array);
 	}
 }

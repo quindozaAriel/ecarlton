@@ -69,6 +69,12 @@ class Reservation extends CI_Controller
 	{
 		$update_data = ['status' => $action];
 		$result = $this->reservation->request_action($reservation_id,$update_data);
+
+		if($action == "FINISHED")
+		{
+			$this->reservation->return_quantity($reservation_id);
+		}
+		
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
