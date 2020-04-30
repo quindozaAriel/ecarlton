@@ -1,0 +1,47 @@
+@import 'general';
+.panel-header
+{
+	.overlay-bg
+	{
+		position: absolute;
+		top:0;
+		bottom:0;
+		right:0;
+		left:0;
+		background-image:url('../../images/resident-bg.jpg');
+		opacity: 0.2;
+		background-size:40%;
+	}
+
+	h1
+	{
+		color:#F0EEEE;
+		z-index: 1000;
+	}
+}
+
+.form-group
+{
+	label
+	{
+		font-size: 15px;
+		color:#2c2c2c;
+	}
+}
+
+.avatar_image
+{
+	width:120px;
+	height:120px;
+	border:1px solid gray;
+}
+
+table
+{
+	text-align: center;
+	thead
+	{
+		background-color: #3a89ce; 
+		color: white;
+	}
+}

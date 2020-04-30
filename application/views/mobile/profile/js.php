@@ -1,0 +1,1 @@
+<script type="text/javascript" src="<?php echo base_url('build/scripts/mobile/profile.js');?>"></script>
