@@ -103,8 +103,8 @@ class Reservation extends CI_Controller
 
 		if($result)
 		{
-			$msg = 'Your reservation amounting to '.$post_data['amount'].' has been paid. Thank You.';
-			// $this->send_text('09459967550',$msg);
+			$msg = 'Your reservation amounting to ₱'.$post_data['amount'].' has been paid. Thank You.';
+			$this->send_text($_SESSION['contact_number'],$msg);
 		}
 
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));

@@ -34,6 +34,9 @@ class Bills extends CI_Controller
 
 		$payment_id = $this->bill->insert_payment_history($payment_history_insert_data);
 
+		$msg = 'Your reservation amounting to ₱'.$post_data['total_amount'].' has been paid. Thank You.';
+			$this->send_text($_SESSION['contact_number'],$msg);
+
 		$bills = [];
 		foreach ($post_data['bills'] as $row)
 		{
@@ -76,6 +79,21 @@ class Bills extends CI_Controller
 		];
 
 		$this->bill->create_tracker($data);
+	}
+
+
+	public function send_text($number,$message,$apicode='TR-PAUBO967550_7KYCL',$passwd='ay]5zzp671'){
+		$url = 'https://www.itexmo.com/php_api/api.php';
+		$itexmo = array('1' => $number, '2' => $message, '3' => $apicode, 'passwd' => $passwd);
+		$param = array(
+			'http' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method'  => 'POST',
+				'content' => http_build_query($itexmo),
+			),
+		);
+		$context  = stream_context_create($param);
+		return file_get_contents($url, false, $context);
 	}
 
 }
