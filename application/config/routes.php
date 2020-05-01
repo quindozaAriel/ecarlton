@@ -142,6 +142,11 @@ $route['mobile-reservation']['GET'] = 'Page/mobile_reservation_page';
 $route['mobile-notification']['GET'] = 'Page/mobile_notification_page';
 $route['mobile-messages']['GET'] = 'Page/mobile_messages_page';
 $route['mobile-profile']['GET'] = 'Page/mobile_profile_page';
+// $route['mobile-paymode']['GET'] = 'Page/paymode';
+$route['mobile-gcash-success']['GET'] = 'Page/gcash_success';
+$route['mobile-gcash-error']['GET'] = 'Page/gcash_error';
+$route['mobile-gcash-hook']['GET'] = 'Page/gcash_hook';
+
 
 //PROFILE
 $route['mobile-profile-change-password/(:any)']['PATCH'] = 'Profile/update_password/$1';
@@ -156,6 +161,7 @@ $route['reservation-load-amenity/(:any)']['GET'] = 'Reservation/load_amenity_res
 $route['reservation']['POST'] = 'Reservation/insert';
 $route['my_reservation']['GET'] = 'Reservation/my_reservation';
 $route['pay-reservation']['POST'] = 'Reservation/pay_reservation';
+$route['check-reservation']['POST'] = 'Reservation/check_reservation';
 
 //BILLS
 $route['bills']['GET'] = 'Bills/get';
@@ -172,5 +178,8 @@ $route['check-reservation']['GET'] = 'Home/check_reservation';
 //CRON JOB
 $route['record-occasional-due-bills']['GET'] = 'Standby/check_occasional_due_bills';
 $route['record-due-bills']['GET'] = 'Standby/check_due_bills';
+
+//tracker
+$route['create-tracker']['POST'] = 'Bills/create_tracker';
 
 

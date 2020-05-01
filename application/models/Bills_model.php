@@ -147,4 +147,11 @@ class Bills_model extends CI_Model
 			return FALSE;
 		}
 	}
+
+
+	public function create_tracker($data)
+	{
+		$this->db->insert('payment_tracker_tbl',$data);
+		return $this->db->insert_id();
+	}
 }

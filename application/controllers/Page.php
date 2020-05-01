@@ -141,4 +141,14 @@ class Page extends CI_Controller {
 		$this->_mobile_login_verification();
 		$this->load->view('mobile/template',['body' => 'mobile/profile/body','css' => 'mobile/profile/css','js' => 'mobile/profile/js','module' => 'profile']);
 	}
+
+	public function paymode()
+	{
+		$this->load->view('paymode/index');
+	}
+
+	public function gcash_success()
+	{
+		$this->load->view('paymode/gcash_success');
+	}
 }

@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Reservation_model extends CI_Model 
@@ -353,6 +353,7 @@ class Reservation_model extends CI_Model
 		}
 	}
 
+
 	public function update_payment($data,$id)
 	{
 		$this->db->where('id',$id);
@@ -385,6 +386,22 @@ class Reservation_model extends CI_Model
 			return TRUE;
 		}
 	}	
+
+	public function check_reservation($id,$src)
+	{
+		$this->db->where('id',$id);
+		$this->db->update('reservation_tbl',$src);
+		$affected_row = $this->db->affected_rows();
+
+		if($affected_row == 0)
+		{
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
 
 	public function looper2()
 	{

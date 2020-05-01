@@ -106,6 +106,22 @@ class Reservation extends CI_Controller
 		];
 
 		$result = $this->reservation->update_payment($update_reservation,$post_data['id']);
+
+		if($result)
+		{
+			$msg = 'Your reservation amounting to ₱'.$post_data['amount'].' has been paid. Thank You.';
+			$this->send_text($_SESSION['contact_number'],$msg);
+		}
+
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
+
+	public function check_reservation()
+	{
+		$id = $this->input->post('id');
+		$src = ['src_id' => $this->input->post('src_id')];
+		$result = $this->reservation->check_reservation($id,$src);
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
@@ -119,6 +135,21 @@ class Reservation extends CI_Controller
 	{
 		$result = $this->reservation->load_forpayment_reservation();
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
+
+	public function send_text($number,$message,$apicode='TR-PAUBO967550_7KYCL',$passwd='ay]5zzp671'){
+		$url = 'https://www.itexmo.com/php_api/api.php';
+		$itexmo = array('1' => $number, '2' => $message, '3' => $apicode, 'passwd' => $passwd);
+		$param = array(
+			'http' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method'  => 'POST',
+				'content' => http_build_query($itexmo),
+			),
+		);
+		$context  = stream_context_create($param);
+		return file_get_contents($url, false, $context);
 	}
 
 
