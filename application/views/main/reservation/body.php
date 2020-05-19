@@ -58,7 +58,7 @@
 		<div class="col-lg-3 col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<center><h3>Amenities List</h3></center>
+					<center><h3>Amenities Information</h3></center>
 				</div>
 				<div class="card-body">
 					<form method="post" id="registration_form">

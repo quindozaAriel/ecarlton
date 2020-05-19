@@ -419,7 +419,7 @@ const RESERVATION = (()=>{
 					tbody += `<tr>
 					<td>${val['date_from']}<br>${val['date_to']}</td>
 					<td>
-					${val['description']} x ${val['quantity']} = ₱${val['total_amount']}<br>
+					${val['description']} x ${val['quantity']} = ₱ ${val['total_amount']}<br>
 					${stat}
 					</td>
 					</tr>`;

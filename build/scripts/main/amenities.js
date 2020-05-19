@@ -387,7 +387,7 @@ const AMENITY = (() =>{
 					<td>${val.quantity}</td>
 					<td>₱ ${val.total_amount}</td>
 					<td>		
-					<button type="button" class="btn btn-success" onclick="AMENITY.request_action(\'${val.reservation_id}\','APPROVED')" title="Approve Request"><i class="fa fa-check"></i></button>
+					<button type="button" class="btn btn-success" onclick="AMENITY.request_action(\'${val.reservation_id}\','APPROVED',\'${val.total_amount}\')" title="Approve Request"><i class="fa fa-check"></i></button>
 					<button type="button" class="btn btn-danger" onclick="AMENITY.request_action(\'${val.reservation_id}\','REJECTED')" title="Decline Request"><i class="fa fa-times"></i></button>
 					</td>
 					</tr>`;
@@ -411,8 +411,13 @@ const AMENITY = (() =>{
 		});
 	}
 
-	ret.request_action = (reservation_id,action) =>
+	ret.request_action = (reservation_id,action,amount = null) =>
 	{
+		if(amount == 0)
+		{
+			action = "PAID";
+		}
+
 		$.ajax({
 			type:'POST',
 			url:base_url+'reservation-action/'+reservation_id+'/'+action,
