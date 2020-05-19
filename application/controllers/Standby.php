@@ -10,6 +10,12 @@ class Standby extends CI_Controller
 		date_default_timezone_set('Asia/manila');
 	}
 
+	public function cronJob()
+	{
+		$this->check_occasional_due_bills();
+		$this->check_due_bills();
+	}
+	
 	public function check_occasional_due_bills()
 	{
 		$residents = $this->get_all_active_resident();

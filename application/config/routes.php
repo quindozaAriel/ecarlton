@@ -178,6 +178,7 @@ $route['check-reservation']['GET'] = 'Home/check_reservation';
 //CRON JOB
 $route['record-occasional-due-bills']['GET'] = 'Standby/check_occasional_due_bills';
 $route['record-due-bills']['GET'] = 'Standby/check_due_bills';
+$route['cron-job']['GET'] = 'Standby/cronJob';
 
 //tracker
 $route['create-tracker']['POST'] = 'Bills/create_tracker';
