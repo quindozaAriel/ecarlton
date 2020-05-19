@@ -195,7 +195,7 @@ const AMENITY = (() =>{
 					<td>${val['description']}</td>
 					<td>${val['quantity']}</td>
 					<td>${val['available_qty']}</td>
-					<td>${val['amount']}</td>
+					<td>₱ ${val['amount']}</td>
 					<td>
 					<button type="button" class="btn btn-success" title="Edit Amenities" onclick="AMENITY.load_info(\'${val['id']}\')"><i class="fa fa-edit"></i></button>
 					<button type="button" class="btn btn-danger" title="Delete Amenities" onclick="AMENITY.delete(\'${val['id']}\')"><i class="fa fa-trash"></i></button>
