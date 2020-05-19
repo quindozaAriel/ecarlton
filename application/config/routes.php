@@ -184,3 +184,6 @@ $route['cron-job']['GET'] = 'Standby/cronJob';
 $route['create-tracker']['POST'] = 'Bills/create_tracker';
 
 
+$route['manual_payment']['POST'] = 'Monthly/manual_payment';
+
+

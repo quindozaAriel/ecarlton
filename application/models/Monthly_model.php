@@ -117,7 +117,7 @@ class Monthly_model extends CI_Model
 			{
 				$array[$i] = $result['total_amount'];
 			}
-				
+
 		}
 		return $array;
 	}
@@ -133,6 +133,26 @@ class Monthly_model extends CI_Model
 
 		$result = $query->row_array();
 		return $result;
+	}
+
+	public function insert_payment_history($data)
+	{
+		$this->db->insert('payment_history_tbl',$data);
+		return $this->db->insert_id();
+	}
+
+	public function insert_payment_details($data)
+	{
+		$result = $this->db->insert_batch('payment_details_tbl',$data);
+
+		if($result > 0)
+		{
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
 	}
 
 }

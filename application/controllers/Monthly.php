@@ -89,4 +89,33 @@ class Monthly extends CI_Controller
 		$result = $this->monthly->looper();
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
+
+	public function manual_payment()
+	{
+		$post_data = $this->input->post();
+
+		$payment_history_insert_data = [
+			'resident_id'      => $post_data['resident_id'],
+			'payment_amount'   => $post_data['payment_amount'],
+			'payment_datetime' => $post_data['payment_date']
+		];
+
+		$payment_id = $this->monthly->insert_payment_history($payment_history_insert_data);
+
+		$payment_details_insert_data = [];
+		foreach ($post_data['details'] as $val)
+		{
+			$payment_details_insert_data[] = [
+				'payment_id' => $payment_id,
+				'bills_id'   => $val['bill_id'],
+				'bill_type'  => 'NORMAL',
+				'amount'     => $val['amount'],
+				'timestamp'  => date('Y-m-d H:i:s')
+			];
+		}
+
+		$result = $this->monthly->insert_payment_details($payment_details_insert_data);
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+
+	}
 }

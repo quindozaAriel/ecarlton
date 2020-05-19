@@ -14,10 +14,10 @@ gulp.task('login', function(){
 });
 
 gulp.task('css', function(){
-	return gulp.src('src/styles/mobile/*.scss')
+	return gulp.src('src/styles/main/*.scss')
 	.pipe(sass())
 	.pipe(cssnano())
-	.pipe(gulp.dest('build/styles/mobile/'));
+	.pipe(gulp.dest('build/styles/main/'));
 });
 
 gulp.task('image',()=>

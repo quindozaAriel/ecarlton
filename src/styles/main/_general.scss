@@ -31,3 +31,15 @@ table
 {
 	text-align: center;
 }
+
+.table
+{
+
+	text-align: center !important;
+	thead th
+	{
+
+		border:1px solid #e2e7ea !important;
+		padding:2px !important;
+	}
+}

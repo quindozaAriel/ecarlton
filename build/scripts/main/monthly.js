@@ -2,6 +2,8 @@ $(document).ready(()=>{
 	MONTHLY.load_bills_list();
 	MONTHLY.load_dashboard();
 	MONTHLY.load_due_bills();
+	MONTHLY.load_residents_id();
+	MONTHLY.load_bills_id();
 });
 
 var dateToday = new Date();
@@ -733,7 +735,202 @@ const MONTHLY = (()=>{
     });
 }
 
+ret.getResidentInfo = ()=>
+{
+	var resident_id = $('#resident_id').val();
 
+	$.ajax({
+		type:"GET",
+		url:`resident/${resident_id}`,
+		dataType:'json',
+		cache: false,
+		success:(result)=>
+		{
+			$('#first_name').val(result.first_name);
+			$('#middle_name').val(result.middle_name);
+			$('#last_name').val(result.last_name);
+		},
+		error:()=>
+		{
+
+		},
+		complete:()=>
+		{
+
+		}
+	})
+}
+
+ret.load_residents_id = ()=>
+{
+	$.ajax({
+		type:"GET",
+		url:`resident-list`,
+		dataType:'json',
+		cache: false,
+		success:(result)=>
+		{
+			if(result != null)
+			{
+				var option = "";
+				$.each(result,(key,val)=>{
+					option += `<option value="${val.id}">${val.first_name} ${val.middle_name} ${val.last_name}</option>`;
+				});
+
+				$('#residents').html(option);
+			}
+		},
+		error:()=>
+		{
+
+		},
+		complete:()=>
+		{
+
+		}
+	});
+}
+var bills_array = [];
+
+ret.load_bills_id = ()=>
+{
+	var resident_id = $('#resident_id').val();
+
+	$.ajax({
+		type:"GET",
+		url:`monthly`,
+		dataType:'json',
+		cache: false,
+		success:(result)=>
+		{
+			if(result != null)
+			{
+				var option = "";
+				$.each(result,(key,val)=>{
+					option += `<option value="${val.id}">${val.description} - ₱ ${val.amount}</option>`;
+				});
+
+				$('#bill_id').html(option);
+
+				bills_array = result;
+			}
+		},
+		error:()=>
+		{
+
+		},
+		complete:()=>
+		{
+			console.log(bills_array);
+		}
+	});
+}
+
+var current_bills = [];
+
+ret.add_bills = (bill_id)=>
+{
+	var description = "";
+	var amount = 0;
+
+	var exist_check = MONTHLY.check_arr(current_bills,bill_id);
+
+	if(exist_check == false)
+	{
+		$.each(bills_array,(key,val)=>{
+			if(val.id == bill_id)
+			{
+				description = val.description;
+				amount = val.amount;
+			}
+		});	
+
+		var arr = {
+			'bill_id':bill_id,
+			'description':description,
+			'amount':amount
+		};
+
+		current_bills.push(arr);
+
+		var tbody="";
+		var total_amount = 0;
+		$.each(current_bills,(key,val)=>{
+			tbody += `<tr>
+			<td>${key+1}</td>
+			<td>${val.description}</td>
+			<td>₱ ${val.amount}</td>
+			</tr>`;
+			total_amount = parseFloat(total_amount) + parseFloat(val.amount);
+		});
+		$('#bills_details tbody').html(tbody);
+		$('#span_total').html('₱ ' + total_amount);
+	}
+}
+
+ret.check_arr = (arr, bills_id)=>
+{
+	const { length } = arr;
+	const id = length + 1;
+	const found = arr.some(el => el.bill_id == bills_id);
+	return found;
+}
+
+ret.manual_pay = () =>
+{
+	var resident_id = $('#resident_id').val();
+	var payment_date = $('#payment_date').val();
+	var total_amount = $('#span_total').html();
+
+	var payment_amount = total_amount.replace( /^\D+/g, ''); 
+
+	if((resident_id != null || resident_id != "") && (payment_date != null || payment_date != "") && (payment_amount != null || payment_amount != "") && current_bills.length > 0 )
+	{
+		$.ajax({
+			type:"POST",
+			url:`manual_payment`,
+			dataType:'json',
+			data:{
+				resident_id:resident_id,
+				payment_date:payment_date,
+				payment_amount:payment_amount,
+				details:current_bills
+			},
+			cache: false,
+			success:(result)=>
+			{
+				if(result == true)
+				{
+					iziToast.success({
+						title: 'Success',
+						message: 'Manual Payment Saved',
+						position:'bottomCenter'
+					});
+					$('#manual_payment_form')[0].reset();$('#bills_details tbody').html('');$('#span_total').html('₱ 0');
+
+					$('#manual_payment_modal').modal('hide');
+				}
+			},
+			error:()=>
+			{
+
+			},
+			complete:()=>
+			{
+				console.log(bills_array);
+			}
+		});
+	}
+	else
+	{
+		iziToast.error({
+			title: 'Invalid',
+			message: 'Please complete the details ',
+			position:'bottomCenter'
+		});
+	}
+
+}
 return ret;
 
 })()||{};
