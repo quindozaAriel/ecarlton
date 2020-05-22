@@ -466,7 +466,8 @@ const BILLS = (()=>{
 						$('#spn_1').hide();
 						$('#spn_2').show();
 
-						window.open(boom_url.data.attributes.redirect.checkout_url);
+						// window.open(boom_url.data.attributes.redirect.checkout_url);
+						$('#div_iframe').html(`<center><iframe id="frame" src="${boom_url.data.attributes.redirect.checkout_url}" ></iframe></center>`);
 					}
 				});
 				

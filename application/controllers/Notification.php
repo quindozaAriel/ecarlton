@@ -28,7 +28,10 @@ class Notification extends CI_Controller
 
 		$post_data['timestamp'] = date('Y-m-d H:i:s');
 		$result = $this->notification->insert($post_data);
-		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+
+		$show = $this->load_numbers($post_data);
+
+		$this->output->set_content_type('application/json')->set_output(json_encode($show));
 	}
 
 	public function update($id)
@@ -61,6 +64,35 @@ class Notification extends CI_Controller
 	{
 		$result = $this->notification->looper();
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
+	public function load_numbers($data)
+	{
+
+		$result = $this->notification->load_numbers();
+
+		$msg = $data['title'].': '.$data['content'];
+
+		foreach ($result as $row)
+		{
+			$this->send_text($row['contact_number'],$msg);
+		}
+
+	}
+
+
+	public function send_text($number,$message,$apicode='TR-JHONB232924_9L278',$passwd='@[e47i[![)'){
+		$url = 'https://www.itexmo.com/php_api/api.php';
+		$itexmo = array('1' => $number, '2' => $message, '3' => $apicode, 'passwd' => $passwd);
+		$param = array(
+			'http' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method'  => 'POST',
+				'content' => http_build_query($itexmo),
+			),
+		);
+		$context  = stream_context_create($param);
+		file_get_contents($url, false, $context);
 	}
 
 }

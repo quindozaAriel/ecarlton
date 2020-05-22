@@ -9,6 +9,7 @@
 </div>
 <div class="content">
 	<div class="row">
+
 		<div class="col-12">
 			<div class="card">
 				<form method="post" id="payment_form">
@@ -63,6 +64,7 @@
 						<center><button  type="submit" id="payment_btn" class="btn btn-info" disabled="true">PROCEED TO PAYMENT</button></center>
 					</div>
 				</form>
+
 			</div>
 		</div>
 	</div>
@@ -92,8 +94,8 @@
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
-=======
+	<<<<<<< HEAD
+	=======
 </div>
 
 
@@ -149,6 +151,10 @@
 							<div style="padding: 3px;"><img src="<?php echo base_url('uploads/icons/gcash.jpeg') ?>" height=70 width=70>
 								<span style="margin-left: 5px;">Pay via GCASH</span>
 							</div>
+						</div>
+
+						<div id="div_iframe">
+							
 						</div>
 					</span>
 
@@ -234,5 +240,5 @@
 			</form>
 		</div>
 	</div>
->>>>>>> b24211b35191ba4fa553a590906ba5c8784fef54
+	>>>>>>> b24211b35191ba4fa553a590906ba5c8784fef54
 </div>
