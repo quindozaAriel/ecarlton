@@ -115,4 +115,21 @@ class Notification_model extends CI_Model
 		$result = $query->row_array();
 		return $result;
 	}
+
+	public function load_numbers()
+	{
+		$this->db->select('contact_number');
+		$this->db->from('resident_tbl');
+		$result = $this->db->get();
+
+		if($result->num_rows() > 0)
+		{
+			return $result->result_array();
+		}
+		else
+		{
+			return FALSE;
+		}
+
+	}
 }

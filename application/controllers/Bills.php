@@ -34,8 +34,8 @@ class Bills extends CI_Controller
 
 		$payment_id = $this->bill->insert_payment_history($payment_history_insert_data);
 
-		$msg = 'Your bills amounting to ₱'.$post_data['total_amount'].' has been paid. Thank You.';
-			$this->send_text($_SESSION['contact_number'],$msg);
+		$msg = 'Your reservation amounting to ₱'.$post_data['total_amount'].' has been paid. Thank You.';
+			// $this->send_text($_SESSION['contact_number'],$msg);
 
 		$bills = [];
 		foreach ($post_data['bills'] as $row)

@@ -9,6 +9,7 @@
 </div>
 <div class="content">
 	<div class="row">
+
 		<div class="col-12">
 			<div class="card">
 				<form method="post" id="payment_form">
@@ -63,6 +64,7 @@
 						<center><button  type="submit" id="payment_btn" class="btn btn-info" disabled="true">PROCEED TO PAYMENT</button></center>
 					</div>
 				</form>
+
 			</div>
 		</div>
 	</div>
@@ -148,6 +150,10 @@
 								<span style="margin-left: 5px;">Pay via GCASH</span>
 							</div>
 						</div>
+
+						<div id="div_iframe">
+							
+						</div>
 					</span>
 
 
@@ -232,4 +238,5 @@
 			</form>
 		</div>
 	</div>
+
 </div>

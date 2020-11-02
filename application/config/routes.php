@@ -138,6 +138,7 @@ $route['mobile-login']['POST'] = 'Login/verify_mobile_login';
 //PAGES
 $route['mobile-home']['GET'] = 'Page/mobile_home_page';
 $route['mobile-bills']['GET'] = 'Page/mobile_bills_page';
+$route['mobile-bills/(:any)']['GET'] = 'Page/mobile_bills_page';
 $route['mobile-reservation']['GET'] = 'Page/mobile_reservation_page';
 $route['mobile-notification']['GET'] = 'Page/mobile_notification_page';
 $route['mobile-messages']['GET'] = 'Page/mobile_messages_page';
@@ -154,6 +155,7 @@ $route['mobile-profile-change-image']['POST'] = 'Profile/update_image';
 
 //NOTIFICATION
 $route['realtime-notification']['GET'] = 'Notification/realtime_retrieving';
+$route['load-numbers']['GET'] = 'Notification/load_numbers';
 
 //RESERVATION
 $route['reservation-availability/(:any)/(:any)/(:any)/(:any)']['GET'] = 'Reservation/load_availability/$1/$2/$3/$4';
