@@ -78,7 +78,7 @@ class Monthly_model extends CI_Model
 
 	public function load_due_bills()
 	{
-		$this->db->where('a.status','ACTIVE');
+		$this->db->where('a.status !=','PAID');
 		$this->db->select('a.due_date,
 			c.description,c.amount,
 			d.first_name,d.middle_name,d.last_name');

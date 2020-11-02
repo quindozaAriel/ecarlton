@@ -931,6 +931,43 @@ ret.manual_pay = () =>
 	}
 
 }
+
+ret.reset_manual_payment = () =>
+{
+	$('#manual_payment_form')[0].reset();
+	$('#bills_details tbody').html('');
+	$('#span_total').html('₱ 0');
+	current_bills = [];
+}
+
+ret.check_due_bills = () =>
+{
+	$.ajax({
+		type:'GET',
+		url:base_url+'cron-job',
+		dataType:'json',
+		cache:false,
+		success:(result) => {
+		
+			iziToast.success({
+				title: 'Success',
+				message: 'Due Bills Checked',
+				position:'bottomCenter'
+			});
+			
+		},
+		error:() => {
+			iziToast.error({
+				title: 'Error',
+				message: 'Unexpected error occured',
+				position:'bottomCenter'
+			});
+		},
+		complete:() => {
+
+		}
+	});
+}
 return ret;
 
 })()||{};

@@ -169,6 +169,68 @@ const RESIDENT = (() =>{
 			});
 		}
 	});
+
+
+	$('#image_form').validate({
+		debug: false,
+		rules: {
+			image:"required"
+		},
+		messages: {
+			image:"Please select image to upload"
+		},	
+		submitHandler:(form, event) => { 
+			event.preventDefault();
+			var formData = new FormData($('#image_form')[0]);	
+			var user_id = $('#user_id').val();
+			formData.append('id',user_id);
+			$.ajax({
+				type:'POST',
+				url:base_url+'mobile-profile-change-image',
+				data:formData,
+				dataType:'json',
+				contentType: false,
+				cache:false,
+				processData:false,
+				success:(result) => {
+					if(result == true)
+					{
+						iziToast.success({
+							title: 'Success',
+							message: 'Image updated',
+							position:'topCenter'
+						});
+						window.location.reload();
+					}
+					else if(result == false)
+					{
+						iziToast.warning({
+							title: 'Invalid',
+							message: 'Image not updated',
+							position:'topCenter'
+						});
+					}
+				},
+				error:() => {
+					iziToast.error({
+						title: 'Error',
+						message: 'Unexpected error occured',
+						position:'topCenter'
+					});
+				},
+				complete:() => {
+				}
+			});
+		},highlight:(element) => {
+			$(element).removeClass('valid-input');
+			$(element).addClass('invalid-input');
+		},
+		unhighlight:(element) => {
+			$(element).removeClass('invalid-input');
+			$(element).addClass('valid-input');
+		}
+	});
+
 	var ret = {};
 
 	ret.load_list = ()=>
@@ -225,7 +287,7 @@ const RESIDENT = (() =>{
 				{
 					$('#registration_form').addClass('d-none');
 					$('#update_form').removeClass('d-none');
-
+					$('#changeBTN').removeClass('d-none');
 					hidden_id = id;	
 					$('#image').prop('src',base_url+`uploads/resident/${result.image}`);
 					$('#_first_name').val(result.first_name);
@@ -234,6 +296,7 @@ const RESIDENT = (() =>{
 					$('#_email').val(result.email);
 					$('#_contact_number').val(result.contact_number);
 					$('#_username').val(result.username);
+					$('#user_id').val(result.id);
 					// $('#_phase_no').val(result.phase_no);
 					// $('#_lot_no').val(result.lot_no);
 					// $('#_block_no').val(result.block_no);
@@ -338,6 +401,8 @@ const RESIDENT = (() =>{
 		$('#_block_no').html('');
 		$('#_lot_no').prop('disabled',true);
 		$('#_block_no').prop('disabled',true);
+		$('#changeBTN').addClass('d-none');
+		$('#user_id').val('');
 	}	
 
 	ret.load_residence = () =>

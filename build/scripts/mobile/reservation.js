@@ -327,7 +327,7 @@ const RESERVATION = (()=>{
 			{
 				var tbody ="";
 				$.each(result,(key,val)=>{
-					var fname = val['first_name'].substring(0,1);
+					var fname = val['first_name'];
 					tbody += `<tr>
 					<td>${val['date_from']}<br>${val['date_to']}</td>
 					<td>${fname}.${val['last_name']}</td>

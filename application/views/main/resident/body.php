@@ -39,7 +39,9 @@
 				<div class="card-header">
 					<center>
 						<h3>Profile</h3>
-						<img class="avatar_image mb-2" id="image" src="<?php echo base_url('build/images/avatar.png')?>">
+						<img class="avatar_image mb-2" id="image" src="<?php echo base_url('build/images/avatar.png')?>"><br>
+						<button class="btn btn-info d-none" id="changeBTN" data-target="#image_modal" data-toggle="modal"> Change Image</button>
+						<input type="hidden" id="user_id">
 					</center>
 
 					<form method="post" id="registration_form">
@@ -152,5 +154,30 @@
 			</div>
 		</div>
 
+	</div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="image_modal">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<form method="post" id="image_form">
+				<div class="modal-header">
+					<h5 class="modal-title">Change Image</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<label>Choose Image</label>
+					<center>
+						<input type="file" class="form-control w-75" name="image" id="image">
+					</center>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Save changes</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>

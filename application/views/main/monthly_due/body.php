@@ -183,6 +183,7 @@
 					<center><h3>Due Bills</h3></center>
 				</div>
 				<div class="card-body">
+				<button class="btn btn-info mb-2" style="font-size:15px;" type="button" onclick="MONTHLY.check_due_bills();"><i class="fa fa-check"></i> Check Due Bills</button>
 					<table class="table table-bordered" id="duebills_tbl">
 						<thead>
 							<tr>
@@ -305,7 +306,7 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group offset-md-4 col-md-5">
-							<button type="button" class="btn btn-default" onclick="$('#manual_payment_form')[0].reset();$('#bills_details tbody').html('');$('#span_total').html('₱ 0')"><i class="fa fa-eraser"></i>&emsp;Clear</button>
+							<button type="button" class="btn btn-default" onclick="MONTHLY.reset_manual_payment();"><i class="fa fa-eraser"></i>&emsp;Clear</button>
 							<button type="button" onclick="MONTHLY.manual_pay();" class="btn btn-info"><i class="fa fa-save"></i>&emsp;Save Payment</button>
 						</div>
 					</div>
