@@ -150,7 +150,7 @@ const RESBILL =
 				dataType: "json",
 				cache: false,
 				success: (result) => {
-					$("#resident_id").val(`${result.first_name} ${result.last_name}`);
+					$("#resident_id").val(`${result.resident_id}`).change();
 					$("#resident_id").prop("disabled", true);
 					$("#description").val(`${result.description}`);
 					$("#amount").val(`${result.amount}`);
@@ -283,20 +283,19 @@ const RESBILL =
 								data: { _method: "PATCH", datas: datas },
 								cache: false,
 								success: (result) => {
-									console.log(result);
-									// if (result == true) {
-									// 	iziToast.success({
-									// 		title: "Success",
-									// 		message: "Information updated.",
-									// 		position: "bottomCenter",
-									// 	});
-									// } else if (result == false) {
-									// 	iziToast.warning({
-									// 		title: "Failed",
-									// 		message: "Information not updated.",
-									// 		position: "bottomCenter",
-									// 	});
-									// }
+									if (result == true) {
+										iziToast.success({
+											title: "Success",
+											message: "Information updated.",
+											position: "bottomCenter",
+										});
+									} else if (result == false) {
+										iziToast.warning({
+											title: "Failed",
+											message: "Information not updated.",
+											position: "bottomCenter",
+										});
+									}
 								},
 								error: () => {
 									iziToast.error({
