@@ -189,3 +189,9 @@ $route['create-tracker']['POST'] = 'Bills/create_tracker';
 $route['manual_payment']['POST'] = 'Monthly/manual_payment';
 
 
+$route['resident-bills']['GET'] = 'Page/resident_bill';
+$route['resident-bill']['GET'] = 'ResidentBill/get';
+$route['resident-bill-spec/(:any)']['GET'] = 'ResidentBill/read/$1';
+$route['resident-bill']['POST'] = 'ResidentBill/insert';
+$route['resident-bill/(:any)']['PATCH'] = 'ResidentBill/update/$1';
+$route['resident-bill/(:any)']['DELETE'] = 'ResidentBill/delete/$1';

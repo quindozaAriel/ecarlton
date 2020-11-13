@@ -110,7 +110,7 @@
 		<div class="col-3">
 			<div class="card">
 				<div class="card-header text-center">
-					<h3>Informatioon</h3>
+					<h3>Information</h3>
 				</div>
 				<div class="card-body">
 					<form method="post" id="registration_form">

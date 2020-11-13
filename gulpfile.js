@@ -28,7 +28,7 @@ gulp.task('image',()=>
 });
 
 gulp.task('watch', function(){
-	gulp.watch('src/styles/mobile/*.scss', gulp.series('css'));
+	gulp.watch('src/styles/main/*.scss', gulp.series('css'));
 });
 
 gulp.task('default',gulp.series('watch'));

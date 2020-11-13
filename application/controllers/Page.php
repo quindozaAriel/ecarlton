@@ -151,4 +151,17 @@ class Page extends CI_Controller {
 	{
 		$this->load->view('paymode/gcash_success');
 	}
+
+
+
+
+
+	// REVISION
+
+	
+	public function resident_bill()
+	{
+		$this->_admin_login_verification();
+		$this->load->view('main/template',['body' => 'main/resident_bills/body','css' => 'main/resident_bills/css','js' => 'main/resident_bills/js','module' => 'resident_bills']);
+	}
 }

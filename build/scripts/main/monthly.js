@@ -13,8 +13,8 @@ const MONTHLY = (()=>{
 	
 	var hidden_id = 0;
 
-	$('#registration_form').validate({
-		debug: false,
+	$('#add_bill_form').validate({
+		debug: true,
 		rules: {
 			description:"required",
 			amount:{
