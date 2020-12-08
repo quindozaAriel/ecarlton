@@ -1,12 +1,12 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Reservation extends CI_Controller 
+class Reservation extends CI_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Reservation_model','reservation');
+		$this->load->model('Reservation_model', 'reservation');
 		date_default_timezone_set('Asia/manila');
 	}
 
@@ -16,9 +16,9 @@ class Reservation extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
-	public function load_availability($id,$date_from,$date_to,$request_qty)
+	public function load_availability($id, $date_from, $date_to, $request_qty)
 	{
-		$result = $this->reservation->load_availability($id,$date_from,$date_to,$request_qty);
+		$result = $this->reservation->load_availability($id, $date_from, $date_to, $request_qty);
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
@@ -39,6 +39,7 @@ class Reservation extends CI_Controller
 			'date_to'        =>   $post_data['date_to'],
 			'quantity'       =>   $post_data['quantity'],
 			'total_amount'   =>   $post_data['total_amount'],
+			'payment_type'   =>   $post_data['payment_type'],
 			'status'         =>   'PENDING',
 			'timestamp'      =>   date('Y-m-d H:i:s')
 		];
@@ -65,16 +66,15 @@ class Reservation extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
-	public function request_action($reservation_id,$action)
+	public function request_action($reservation_id, $action)
 	{
 		$update_data = ['status' => $action];
-		$result = $this->reservation->request_action($reservation_id,$update_data);
+		$result = $this->reservation->request_action($reservation_id, $update_data);
 
-		if($action == "FINISHED")
-		{
+		if ($action == "FINISHED") {
 			$this->reservation->return_quantity($reservation_id);
 		}
-		
+
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
@@ -105,12 +105,11 @@ class Reservation extends CI_Controller
 			'status'     => "PAID"
 		];
 
-		$result = $this->reservation->update_payment($update_reservation,$post_data['id']);
+		$result = $this->reservation->update_payment($update_reservation, $post_data['id']);
 
-		if($result)
-		{
-			$msg = 'Your reservation amounting to ₱'.$post_data['amount'].' has been paid. Thank You.';
-			$this->send_text($_SESSION['contact_number'],$msg);
+		if ($result) {
+			$msg = 'Your reservation amounting to ₱' . $post_data['amount'] . ' has been paid. Thank You.';
+			$this->send_text($_SESSION['contact_number'], $msg);
 		}
 
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
@@ -121,7 +120,7 @@ class Reservation extends CI_Controller
 	{
 		$id = $this->input->post('id');
 		$src = ['src_id' => $this->input->post('src_id')];
-		$result = $this->reservation->check_reservation($id,$src);
+		$result = $this->reservation->check_reservation($id, $src);
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
@@ -138,7 +137,8 @@ class Reservation extends CI_Controller
 	}
 
 
-	public function send_text($number,$message,$apicode='TR-PAUBO967550_7KYCL',$passwd='ay]5zzp671'){
+	public function send_text($number, $message, $apicode = 'TR-PAUBO967550_7KYCL', $passwd = 'ay]5zzp671')
+	{
 		$url = 'https://www.itexmo.com/php_api/api.php';
 		$itexmo = array('1' => $number, '2' => $message, '3' => $apicode, 'passwd' => $passwd);
 		$param = array(
@@ -152,5 +152,11 @@ class Reservation extends CI_Controller
 		return file_get_contents($url, false, $context);
 	}
 
+	public function reject_request()
+	{
+		$post_data = $this->input->post();
 
+		$result = $this->reservation->reject_request($post_data['reservation_id'],$post_data['remarks']);
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
 }

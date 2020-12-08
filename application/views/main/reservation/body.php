@@ -135,6 +135,7 @@
 										<th>Amenity</th>
 										<th>Quantity</th>
 										<th>Amount</th>
+										<th>Payment Type</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -165,6 +166,7 @@
 										<th>Amenity</th>
 										<th>Quantity</th>
 										<th>Amount</th>
+										<th>Payment Type</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -195,6 +197,7 @@
 										<th>Amenity</th>
 										<th>Quantity</th>
 										<th>Amount</th>
+										<th>Payment Type</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -224,6 +227,7 @@
 									<th>Amenity</th>
 									<th>Quantity</th>
 									<th>Amount</th>
+									<th>Payment Type</th>
 									<th>Status</th>
 								</tr>
 							</thead>

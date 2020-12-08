@@ -36,6 +36,24 @@ public function up()
 			'status' => array(
 				'type' => 'TEXT'
 			),
+			'src_id' => array(
+				'type' => 'TEXT'
+			),
+			'src_status' => array(
+				'type' => 'TEXT'
+			),
+			'approved_date' => array(
+				'type' => 'DATETIME'
+			),
+			'payment_date' => array(
+				'type' => 'DATETIME'
+			),
+			'payment_type' => array(
+				'type' => 'TEXT'
+			),
+			'reason' => array(
+				'type' => 'TEXT'
+			),
 			'timestamp' => array(
 				'type' => 'DATETIME'
 			)

@@ -125,6 +125,7 @@ $route['reservation-pending']['GET'] = 'Reservation/load_pending_reservation';
 $route['reservation-per-month']['GET'] = 'Reservation/load_reservation_per_month';
 $route['reservation-sales-per-month']['GET'] = 'Reservation/load_sales_per_month';
 $route['reservation-for-payment']['GET'] = 'Reservation/load_forpayment_reservation';
+$route['reject-reservation']['POST'] = 'Reservation/reject_request';
 
 
 
