@@ -401,7 +401,7 @@ const RESERVATION = (()=>{
 					}
 					else if(val['status'] == 'REJECTED')
 					{
-						stat = `<span class="badge badge-danger">${val['status']}</span>`;
+						stat = `<span class="badge badge-danger">${val['status']}</span><br><button class="btn btn-info btn-xs p-2" onclick="RESERVATION.view_reason(\'${val.id}\')">View Reason</button>`;
 					}
 					else if(val['status'] == 'PENDING')
 					{
@@ -441,6 +441,29 @@ const RESERVATION = (()=>{
 
 			}
 		});
+	}
+
+	_this.view_reason = (id) =>{
+			$.ajax({
+			type:'GET',
+			url:base_url+'view-reason/'+id,
+			dataType:'json',
+			cache:false,
+			success:(result) => {
+				$('#reason_modal').modal('show');
+				$('#reason_textarea').val(result.reason);
+			},
+			error:() => {
+				iziToast.error({
+					title: 'Error',
+					message: 'Unexpected error occured',
+					position:'topCenter'
+				});
+			},
+			complete:() => {
+
+			}
+			});
 	}
 
 	_this.create_payment = (id) =>

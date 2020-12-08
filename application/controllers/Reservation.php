@@ -156,7 +156,13 @@ class Reservation extends CI_Controller
 	{
 		$post_data = $this->input->post();
 
-		$result = $this->reservation->reject_request($post_data['reservation_id'],$post_data['remarks']);
+		$result = $this->reservation->reject_request($post_data['reservation_id'], $post_data['remarks']);
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
+	public function view_reason($id)
+	{
+		$result = $this->reservation->view_reason($id);
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 }

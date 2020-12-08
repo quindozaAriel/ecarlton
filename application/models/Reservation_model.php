@@ -431,4 +431,12 @@
 				return TRUE;
 			}
 		}
+
+		public function view_reason($id)
+		{
+			$this->db->where('id', $id);
+			$this->db->select('reason');
+			$this->db->from('reservation_tbl');
+			return $this->db->get()->row_array();
+		}
 	}
