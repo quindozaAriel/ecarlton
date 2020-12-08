@@ -377,7 +377,7 @@ const AMENITY =
 					<td>₱ ${val.total_amount}</td>
 					<td>${val.payment_type}</td>
 					<td>		
-					<button type="button" class="btn btn-success" onclick="AMENITY.request_action(\'${val.reservation_id}\','APPROVED',\'${val.total_amount}\')" title="Approve Request"><i class="fa fa-check"></i></button>
+					<button type="button" class="btn btn-success" onclick="AMENITY.approve(\'${val.reservation_id}\')" title="Approve Request"><i class="fa fa-check"></i></button>
 					<button type="button" class="btn btn-danger" onclick="AMENITY.reject(\'${val.reservation_id}\')" title="Decline Request"><i class="fa fa-times"></i></button>
 					</td>
 					</tr>`;
@@ -496,8 +496,8 @@ const AMENITY =
 					<td>${val.quantity}</td>
 					<td>₱ ${val.total_amount}</td>
 					<td>${val.payment_type}</td>
-					<td>		
-					<button type="button" class="btn btn-danger" onclick="AMENITY.request_action(\'${val.reservation_id}\','REJECTED')" title="REJECT REQUEST"><i class="fa fa-times"></i></button>
+					<td>
+					<button type="button" class="btn btn-success" onclick="AMENITY.request_action(\'${val.reservation_id}\','APPROVED',\'${val.total_amount}\')" title="Approve Request"><i class="fa fa-check"></i> PAID</button>		
 					</td>
 					</tr>`;
 					});
@@ -1027,11 +1027,11 @@ const AMENITY =
 
 							$.ajax({
 								type: "POST",
-								url:base_url+"reject-reservation",
+								url: base_url + "reject-reservation",
 								dataType: "json",
 								data: {
-									reservation_id:reservation_id,
-									remarks:remarks
+									reservation_id: reservation_id,
+									remarks: remarks,
 								},
 								cache: false,
 								success: (result) => {
@@ -1064,6 +1064,40 @@ const AMENITY =
 						true,
 					],
 				],
+			});
+		};
+
+		ret.approve = (reservation_id) => {
+			$.ajax({
+				type: "GET",
+				url: base_url + "approve-reservation/" + reservation_id,
+				dataType: "json",
+				cache: false,
+				success: (result) => {
+					if (result == true) {
+						iziToast.success({
+							title: "Success",
+							message: "Action Successful.",
+							position: "center",
+						});
+					} else if (result == false) {
+						iziToast.warning({
+							title: "Failed",
+							message: "Action not successful.",
+							position: "center",
+						});
+					}
+				},
+				error: () => {
+					iziToast.error({
+						title: "Error",
+						message: "Unexpected error occured",
+						position: "center",
+					});
+				},
+				complete: () => {
+					location.reload();
+				},
 			});
 		};
 

@@ -394,10 +394,14 @@ const RESERVATION = (()=>{
 					var stat  = "";
 					if(val['status'] == 'APPROVED')
 					{
+						if(val['payment_type'] == 'GCASH')
+						{
 						stat = `
-						<button class="btn btn-warning p-1" type="button" onclick="RESERVATION.authorize(\'${val.id}\',\'${val['total_amount']}\')"><i class="fas fa-money-bill"></i> CLICK TO AUTHORIZE</button>
-						${pay_btn}
-						`;
+						<button class="btn btn-warning p-1" type="button" onclick="RESERVATION.authorize(\'${val.id}\',\'${val['total_amount']}\')"><i class="fas fa-money-bill"></i> CLICK TO AUTHORIZE</button>${pay_btn}`;
+						}
+						else if(val['payment_type'] == 'MANUAL'){
+							stat = `<span class="badge badge-success">WAITING FOR MANUAL PAYMENT</span>`;
+						}
 					}
 					else if(val['status'] == 'REJECTED')
 					{

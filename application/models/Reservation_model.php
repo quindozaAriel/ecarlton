@@ -439,4 +439,17 @@
 			$this->db->from('reservation_tbl');
 			return $this->db->get()->row_array();
 		}
+
+		public function approve_request($id,$update_data)
+		{
+			$this->db->where('id', $id);
+			$this->db->update('reservation_tbl', $update_data);
+			$affected_row = $this->db->affected_rows();
+
+			if ($affected_row == 0) {
+				return FALSE;
+			} else {
+				return TRUE;
+			}
+		}
 	}

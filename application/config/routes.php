@@ -127,8 +127,7 @@ $route['reservation-sales-per-month']['GET'] = 'Reservation/load_sales_per_month
 $route['reservation-for-payment']['GET'] = 'Reservation/load_forpayment_reservation';
 $route['reject-reservation']['POST'] = 'Reservation/reject_request';
 $route['view-reason/(:any)']['GET'] = 'Reservation/view_reason/$1';
-
-
+$route['approve-reservation/(:any)']['GET'] = 'Reservation/approve_request/$1';
 
 //MOBILE
 

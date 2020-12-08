@@ -165,4 +165,14 @@ class Reservation extends CI_Controller
 		$result = $this->reservation->view_reason($id);
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
+
+	public function approve_request($id)
+	{
+		$update_data = [
+			'status' => 'APPROVED',
+			'approved_date' => date('Y-m-d H:i:s')
+		];
+		$result = $this->reservation->approve_request($id,$update_data);
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
 }
