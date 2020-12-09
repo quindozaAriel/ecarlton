@@ -13,6 +13,7 @@
 		{
 			$this->db->where('reservation.status', 'FINISHED');
 			$this->db->or_where('reservation.status', 'REJECTED');
+			$this->db->or_where('reservation.status', 'CANCELLED');
 			$this->db->select('reservation.id as reservation_id,reservation.date_from,reservation.date_to,reservation.quantity,reservation.total_amount,reservation.timestamp,reservation.status,reservation.payment_type,
 			amenity.description,
 			resident.first_name,resident.last_name
@@ -128,7 +129,7 @@
 		public function my_reservation($resident_id)
 		{
 			$this->db->where('a.resident_id', $resident_id);
-			$this->db->select('a.*,b.description');
+			$this->db->select('a.*,b.description,DATEDIFF(day, a.approved_date,"'.date("Y-m-d H:i:s").'") as datediff');
 			$this->db->from('reservation_tbl as a');
 			$this->db->join('amenities_tbl as b', 'a.amenities_id = b.id', 'left');
 			$this->db->order_by('a.date_from', 'DESC');
@@ -440,10 +441,38 @@
 			return $this->db->get()->row_array();
 		}
 
-		public function approve_request($id,$update_data)
+		public function approve_request($id, $update_data)
 		{
 			$this->db->where('id', $id);
 			$this->db->update('reservation_tbl', $update_data);
+			$affected_row = $this->db->affected_rows();
+
+			if ($affected_row == 0) {
+				return FALSE;
+			} else {
+				return TRUE;
+			}
+		}
+
+
+		public function load_reserved_reservation()
+		{
+			$this->db->where('reservation.status', 'RESERVED');
+			$this->db->select('reservation.id as reservation_id,reservation.date_from,reservation.date_to,reservation.quantity,reservation.total_amount,reservation.timestamp,reservation.payment_type,
+			amenity.description,
+			resident.first_name,resident.last_name
+			');
+			$this->db->from('reservation_tbl as reservation');
+			$this->db->join('amenities_tbl as amenity', 'amenity.id = reservation.amenities_id');
+			$this->db->join('resident_tbl as resident', 'resident.id = reservation.resident_id');
+			$result = $this->db->get()->result_array();
+			return $result;
+		}
+
+		public function request_cancellation($id,$reason)
+		{
+			$this->db->where('id', $id);
+			$this->db->update('reservation_tbl', ['reason'=>$reason]);
 			$affected_row = $this->db->affected_rows();
 
 			if ($affected_row == 0) {

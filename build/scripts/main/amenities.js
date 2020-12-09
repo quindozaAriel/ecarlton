@@ -6,6 +6,8 @@ $(document).ready(() => {
 	AMENITY.load_dashboard();
 	AMENITY.load_graph_sales();
 	AMENITY.load_forpayment_reservation();
+	AMENITY.load_reserved_reservation();
+	
 });
 
 const AMENITY =
@@ -169,6 +171,7 @@ const AMENITY =
 			AMENITY.load_pending_reservation();
 			AMENITY.load_forpayment_reservation();
 			AMENITY.load_reservation_history();
+			AMENITY.load_reserved_reservation();
 		};
 
 		ret.load_amenities = () => {
@@ -377,7 +380,7 @@ const AMENITY =
 					<td>₱ ${val.total_amount}</td>
 					<td>${val.payment_type}</td>
 					<td>		
-					<button type="button" class="btn btn-success" onclick="AMENITY.approve(\'${val.reservation_id}\')" title="Approve Request"><i class="fa fa-check"></i></button>
+					<button type="button" class="btn btn-success" onclick="AMENITY.request_action(\'${val.reservation_id}\','APPROVED',\'${val.total_amount}\')"  title="Approve Request"><i class="fa fa-check"></i></button>
 					<button type="button" class="btn btn-danger" onclick="AMENITY.reject(\'${val.reservation_id}\')" title="Decline Request"><i class="fa fa-times"></i></button>
 					</td>
 					</tr>`;
@@ -457,7 +460,8 @@ const AMENITY =
 					<td>₱ ${val.total_amount}</td>
 					<td>${val.payment_type}</td>
 					<td>		
-					<button type="button" class="btn btn-success" onclick="AMENITY.request_action(\'${val.reservation_id}\','FINISHED')" title="Finish Request"><i class="fa fa-check"></i></button>
+					<button type="button" class="btn btn-success" onclick="AMENITY.approve(\'${val.reservation_id}\')" title="Approve Request"><i class="fa fa-check"></i> Reserved</button>
+					<button type="button" class="btn btn-danger mt-2"  onclick="AMENITY.request_action(\'${val.reservation_id}\','RESERVED')" title="Approve Request"> Cancel</button>
 					</td>
 					</tr>`;
 					});
@@ -497,7 +501,7 @@ const AMENITY =
 					<td>₱ ${val.total_amount}</td>
 					<td>${val.payment_type}</td>
 					<td>
-					<button type="button" class="btn btn-success" onclick="AMENITY.request_action(\'${val.reservation_id}\','APPROVED',\'${val.total_amount}\')" title="Approve Request"><i class="fa fa-check"></i> PAID</button>		
+					<button type="button" class="btn btn-success" onclick="AMENITY.request_action(\'${val.reservation_id}\','PAID',\'${val.total_amount}\')" title="Approve Request"><i class="fa fa-check"></i> PAID</button>		
 					</td>
 					</tr>`;
 					});
@@ -505,6 +509,46 @@ const AMENITY =
 					$("#forpayment_reservation").DataTable().destroy();
 					$("#forpayment_reservation tbody").html(tbody);
 					$("#forpayment_reservation").DataTable();
+					$('input[type="search"]').addClass("form-control");
+				},
+				error: () => {
+					iziToast.error({
+						title: "Error",
+						message: "Unexpected error occured",
+						position: "bottomCenter",
+					});
+				},
+				complete: () => {},
+			});
+		};
+
+		ret.load_reserved_reservation = () => {
+			$.ajax({
+				type: "GET",
+				url: base_url + "reserved-reservation",
+				dataType: "json",
+				cache: false,
+				success: (result) => {
+					var tbody = "";
+
+					$.each(result, (key, val) => {
+						tbody += `<tr>
+					<td>${val.timestamp}</td>
+					<td>${val.date_from} to ${val.date_to}</td>
+					<td>${val.first_name} ${val.last_name}</td>
+					<td>${val.description}</td>
+					<td>${val.quantity}</td>
+					<td>₱ ${val.total_amount}</td>
+					<td>${val.payment_type}</td>
+					<td>
+					<button type="button" class="btn btn-success" onclick="AMENITY.request_action(\'${val.reservation_id}\','FINISHED')" title="Finish Reservation"><i class="fa fa-check"></i></button>		
+					</td>
+					</tr>`;
+					});
+
+					$("#reserved_reservation").DataTable().destroy();
+					$("#reserved_reservation tbody").html(tbody);
+					$("#reserved_reservation").DataTable();
 					$('input[type="search"]').addClass("form-control");
 				},
 				error: () => {

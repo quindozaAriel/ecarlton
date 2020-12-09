@@ -31,10 +31,12 @@
 		<div class="col-lg-9 col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<center><h3>Amenities List</h3></center>
+					<center>
+						<h3>Amenities List</h3>
+					</center>
 				</div>
 				<div class="card-body">
-					
+
 					<div class="table-responsive ">
 						<table class="table table-bordered" id="amenities_tbl">
 							<thead>
@@ -58,7 +60,9 @@
 		<div class="col-lg-3 col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<center><h3>Amenities Information</h3></center>
+					<center>
+						<h3>Amenities Information</h3>
+					</center>
 				</div>
 				<div class="card-body">
 					<form method="post" id="registration_form">
@@ -121,7 +125,9 @@
 		<div class="col-lg-12 col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<center><h3>Reservation Request</h3></center>
+					<center>
+						<h3>Reservation Request</h3>
+					</center>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -140,7 +146,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									
+
 								</tbody>
 							</table>
 						</center>
@@ -152,7 +158,9 @@
 		<div class="col-lg-12 col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<center><h3>For Payment Reservation</h3></center>
+					<center>
+						<h3>For Payment Reservation</h3>
+					</center>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -171,7 +179,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									
+
 								</tbody>
 							</table>
 						</center>
@@ -183,7 +191,9 @@
 		<div class="col-lg-12 col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<center><h3>Reserved Amenities</h3></center>
+					<center>
+						<h3>Paid Reservation</h3>
+					</center>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -202,7 +212,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									
+
 								</tbody>
 							</table>
 						</center>
@@ -214,7 +224,42 @@
 		<div class="col-lg-12 col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<center><h3>Reservation History</h3></center>
+					<center>
+						<h3>Reserved Reservation</h3>
+					</center>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<center>
+							<table class="table table-bordered" id="reserved_reservation">
+								<thead>
+									<tr>
+										<th>Date Requested</th>
+										<th>Reservation Date</th>
+										<th>Name</th>
+										<th>Amenity</th>
+										<th>Quantity</th>
+										<th>Amount</th>
+										<th>Payment Type</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+
+								</tbody>
+							</table>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-12 col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<center>
+						<h3>Reservation History</h3>
+					</center>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -232,8 +277,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								
-								
+
+
 							</tbody>
 						</table>
 					</div>
@@ -246,4 +291,3 @@
 
 
 </div>
-

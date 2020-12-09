@@ -169,10 +169,23 @@ class Reservation extends CI_Controller
 	public function approve_request($id)
 	{
 		$update_data = [
-			'status' => 'APPROVED',
+			'status' => 'RESERVED',
 			'approved_date' => date('Y-m-d H:i:s')
 		];
-		$result = $this->reservation->approve_request($id,$update_data);
+		$result = $this->reservation->approve_request($id, $update_data);
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
+	public function load_reserved_reservation()
+	{
+		$result = $this->reservation->load_reserved_reservation();
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
+	public function request_cancellation()
+	{
+		$post_data = $this->input->post();
+		$result = $this->reservation->request_cancellation($post_data['id'],$post_data['reason']);
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 }

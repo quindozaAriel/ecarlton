@@ -410,6 +410,12 @@ const RESERVATION = (()=>{
 					else if(val['status'] == 'PENDING')
 					{
 						stat = `<span class="badge badge-secondary">${val['status']}</span>`;
+						if((val['reason'] == null || val['reason'] == '') && val['approved_date']){
+
+						}
+						else{
+						stat += `<br><button class="btn btn-warning btn-xs p-2" onclick="RESERVATION.show_cancel(\'${val.id}\')">Cancel Request</button>`
+						}
 					}
 					else if(val['status'] == 'FINISHED')
 					{
@@ -419,7 +425,14 @@ const RESERVATION = (()=>{
 					{
 						stat = `<span class="badge badge-success">${val['status']}</span>`;
 					}
+					else if(val['status'] == 'RESERVED')
+					{
+						stat = `<span class="badge badge-success">${val['status']}</span>`;
+					}
+					
 
+					
+					
 					tbody += `<tr>
 					<td>${val['date_from']}<br>${val['date_to']}</td>
 					<td>
@@ -466,6 +479,44 @@ const RESERVATION = (()=>{
 			},
 			complete:() => {
 
+			}
+			});
+	}
+
+	_this.show_cancel = (id) =>{
+		$('#cancel_modal').modal('show');
+		$('#hidden_cancel_id').val(id);
+	}
+
+	_this.cancel_request = () =>{
+		var id = $('#hidden_cancel_id').val();
+		var reason = $('#cancellation_reason').val();
+
+			$.ajax({
+			type:'POST',
+			url:base_url+'request-cancellation',
+			dataType:'json',
+			data:{
+				id:id,
+				reason:reason
+			},
+			cache:false,
+			success:(result) => {
+				iziToast.success({
+					title: 'Success',
+					message: 'Request Sent',
+					position:'topCenter'
+				});
+			},
+			error:() => {
+				iziToast.error({
+					title: 'Error',
+					message: 'Unexpected error occured',
+					position:'topCenter'
+				});
+			},
+			complete:() => {
+				location.reload();
 			}
 			});
 	}

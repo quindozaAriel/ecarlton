@@ -128,6 +128,7 @@ $route['reservation-for-payment']['GET'] = 'Reservation/load_forpayment_reservat
 $route['reject-reservation']['POST'] = 'Reservation/reject_request';
 $route['view-reason/(:any)']['GET'] = 'Reservation/view_reason/$1';
 $route['approve-reservation/(:any)']['GET'] = 'Reservation/approve_request/$1';
+$route['reserved-reservation']['GET'] = 'Reservation/load_reserved_reservation';
 
 //MOBILE
 
@@ -165,6 +166,9 @@ $route['reservation']['POST'] = 'Reservation/insert';
 $route['my_reservation']['GET'] = 'Reservation/my_reservation';
 $route['pay-reservation']['POST'] = 'Reservation/pay_reservation';
 $route['check-reservation']['POST'] = 'Reservation/check_reservation';
+$route['request-cancellation']['POST'] = 'Reservation/request_cancellation';
+
+
 
 //BILLS
 $route['bills']['GET'] = 'Bills/get';
