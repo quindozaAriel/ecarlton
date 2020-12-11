@@ -56,8 +56,8 @@
 								<label for="">Bill Type</label>
 								<select class="form-control" id="type" name="type" onchange="RESBILL.display_duesec(this.value)">
 									<option></option>
-									<option value="monthly">Monthly</option>
-									<option value="occasional">Occasional</option>
+									<option value="MONTHLY">Monthly</option>
+									<option value="OCCASIONAL">Occasional</option>
 								</select>
 							</div>
 							<div class="form-group col-md-12 mb-3">

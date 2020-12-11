@@ -259,13 +259,46 @@ const BILLS = (()=>{
 					$('#due_duedate_container').html("");
 				}
 
+				if(result['specific_bills'] != null && result['specific_bills'] != "")
+				{
+					var description = "";
+					var amount = "";
+					var due_date = "";
+					
+					$.each(result['specific_bills'],(key,val)=>{
+
+						description += `<input type="checkbox" name="bills[]" value="spec_${val.bills_id}-${val.amount}" onclick="BILLS.check_checkbox();">&nbsp;<label>${val.description}</label><br>`;
+						amount += `<label>₱<b> ${val.amount}</b></label><br>`;
+						if(val.type == "MONTHLY")
+						{
+							due_date += `<label>On <b>${val.due_date}</b></label><br>`;
+						}
+						else if(val.type == "OCCASIONAL")
+						{
+							due_date += `<label><b>${val.due_date}</b></label><br>`;
+						}
+
+						
+					});
+
+					$('#specific_description_container').html(description);
+					$('#specific_amount_container').html(amount);
+					$('#specific_duedate_container').html(due_date);
+				}
+				else
+				{
+					$('#specific_description_container').html("No specific bills");
+					$('#specific_amount_container').html("");
+					$('#specific_duedate_container').html("");
+				}
+
 				
 			},
 			error:function()
 			{
 				iziToast.error({
 					title: 'Error',
-					message: 'There is problem while logging you in.',
+					message: 'There is problem while loading bills.',
 					position:'topCenter'
 				});
 			},
@@ -290,7 +323,13 @@ const BILLS = (()=>{
 					var description = "";
 
 					$.each(val,(kkey,vval)=>{
-						description += `<label>${vval.description} - ₱ ${vval.amount}</label><br>`;
+						if(vval.bills_id == null){
+							description += `<label>${vval.rb_description} - ₱ ${vval.amount}</label><br>`;
+						}
+						else{
+							description += `<label>${vval.bills_description} - ₱ ${vval.amount}</label><br>`;
+						}
+						
 					});
 					tbody += `<tr>
 					<td>${description}</td>

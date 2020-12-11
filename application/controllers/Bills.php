@@ -55,13 +55,31 @@ class Bills extends CI_Controller
 				$bill_type = "DUE";
 			}
 
-			$payment_details_insert_data[] = [
-				'payment_id' => $payment_id,
-				'bills_id'   => $val[1],
-				'bill_type'  => $bill_type,
-				'amount'     => $val[2],
-				'timestamp'  => date('Y-m-d H:i:s')
-			];
+			if($val[0] == "spec")
+			{
+				$payment_details_insert_data[] = [
+					'payment_id' => $payment_id,
+					'bills_id'   => "",
+					'resident_bills_id'   => $val[1],
+					'bill_type'  => $bill_type,
+					'amount'     => $val[2],
+					'timestamp'  => date('Y-m-d H:i:s')
+				];
+			}
+			else
+			{
+				$payment_details_insert_data[] = [
+					'payment_id' => $payment_id,
+					'bills_id'   => $val[1],
+					'resident_bills_id'   => "",
+					'bill_type'  => $bill_type,
+					'amount'     => $val[2],
+					'timestamp'  => date('Y-m-d H:i:s')
+				];
+
+			}
+
+			
 		}
 
 		$result = $this->bill->insert_payment_details($payment_details_insert_data);

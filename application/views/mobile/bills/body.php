@@ -37,6 +37,24 @@
 								</div>
 							</div>
 							<div class="col-12 mt-3">
+								<h6>Specific Bills</h6>
+							</div>
+							<div class="col-5">
+								<div id="specific_description_container" class="">
+
+								</div>
+							</div>
+							<div class="col-3">
+								<div id="specific_amount_container" class="text-center">
+
+								</div>
+							</div>
+							<div class="col-4">
+								<div id="specific_duedate_container" class="text-center">
+
+								</div>
+							</div>
+							<div class="col-12 mt-3">
 								<h6>Due Bills</h6>
 							</div>
 							<div class="col-5">
