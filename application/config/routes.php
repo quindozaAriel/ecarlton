@@ -129,6 +129,7 @@ $route['reject-reservation']['POST'] = 'Reservation/reject_request';
 $route['view-reason/(:any)']['GET'] = 'Reservation/view_reason/$1';
 $route['approve-reservation/(:any)']['GET'] = 'Reservation/approve_request/$1';
 $route['reserved-reservation']['GET'] = 'Reservation/load_reserved_reservation';
+$route['cancel-request']['POST'] = 'Reservation/cancel_request';
 
 //MOBILE
 

@@ -369,8 +369,11 @@ const AMENITY =
 				cache: false,
 				success: (result) => {
 					var tbody = "";
-
+					var cancelBtn = "";
 					$.each(result, (key, val) => {
+						if(val.reason != "" && val.reason != null){
+							cancelBtn =`<button type="button" class="btn btn-warning mb-2 p-3" onclick="AMENITY.cancelReq(\'${val.reservation_id}\',\'${val.reason}\')" title="Cancel Request"><i class="fa fa-times"></i> Cancel</button>`;
+						}
 						tbody += `<tr>
 					<td>${val.timestamp}</td>
 					<td>${val.date_from} to ${val.date_to}</td>
@@ -381,8 +384,8 @@ const AMENITY =
 					<td>${val.payment_type}</td>
 					<td>		
 					<button type="button" class="btn btn-success mb-2 p-3" onclick="AMENITY.request_action(\'${val.reservation_id}\','APPROVED',\'${val.total_amount}\')"  title="Approve Request"><i class="fa fa-check"></i> Approve</button>
-					<button type="button" class="btn btn-danger mb-2" onclick="AMENITY.reject(\'${val.reservation_id}\')" title="Decline Request"><i class="fa fa-times"></i> Reject</button>
-					<button type="button" class="btn btn-warning mb-2" onclick="AMENITY.reject(\'${val.reservation_id}\')" title="Decline Request"><i class="fa fa-times"></i> Reject</button>
+					<button type="button" class="btn btn-danger mb-2 p-3" onclick="AMENITY.reject(\'${val.reservation_id}\')" title="Decline Request"><i class="fa fa-times"></i> Reject</button>
+					${cancelBtn}
 					</td>
 					</tr>`;
 					});
@@ -402,6 +405,51 @@ const AMENITY =
 				complete: () => {},
 			});
 		};
+
+		ret.cancelReq = (reservation_id,reason) => {
+			$('#cancel_request_modal').modal('show');
+			$('#cancel_request_hidden_id').val(reservation_id);
+			$('#cancel_request_reason').val(reason);
+		}
+
+		ret.cancel_request = () => {
+			var reservation_id = $('#cancel_request_hidden_id').val();
+
+			$.ajax({
+				type: "POST",
+				url: base_url + "cancel-request/",
+				dataType: "json",
+				data: { reservation_id:reservation_id },
+				cache: false,
+				success: (result) => {
+					if (result == true) {
+						iziToast.success({
+							title: "Success",
+							message: "Action Successful.",
+							position: "center",
+						});
+						$('#cancel_request_modal').modal('hide');
+					} else if (result == false) {
+						iziToast.warning({
+							title: "Failed",
+							message: "Action not successful.",
+							position: "center",
+						});
+					}
+				},
+				error: () => {
+					iziToast.error({
+						title: "Error",
+						message: "Unexpected error occured",
+						position: "center",
+					});
+				},
+				complete: () => {
+					AMENITY.function_loader();
+				},
+			});
+		}
+
 
 		ret.request_action = (reservation_id, action, amount = null) => {
 			if (amount == 0) {
@@ -450,8 +498,12 @@ const AMENITY =
 				cache: false,
 				success: (result) => {
 					var tbody = "";
+					var cancelBtn = "";
 
 					$.each(result, (key, val) => {
+						if(val.reason != "" || val.reason != null){
+							cancelBtn =`<button type="button" class="btn btn-warning mb-2 p-3" onclick="AMENITY.cancelReq(\'${val.reservation_id}\',\'${val.reason}\')" title="Cancel Request"><i class="fa fa-times"></i> Cancel</button>`;
+						}
 						tbody += `<tr>
 					<td>${val.timestamp}</td>
 					<td>${val.date_from} to ${val.date_to}</td>
@@ -463,6 +515,7 @@ const AMENITY =
 					<td>		
 					<button type="button" class="btn btn-success" onclick="AMENITY.approve(\'${val.reservation_id}\')" title="Approve Request"><i class="fa fa-check"></i> Reserved</button>
 					<button type="button" class="btn btn-danger mt-2"  onclick="AMENITY.request_action(\'${val.reservation_id}\','RESERVED')" title="Approve Request"> Cancel</button>
+					${cancelBtn}
 					</td>
 					</tr>`;
 					});
@@ -491,8 +544,11 @@ const AMENITY =
 				cache: false,
 				success: (result) => {
 					var tbody = "";
-
+					var cancelBtn = "";	
 					$.each(result, (key, val) => {
+							if(val.reason != "" || val.reason != null){
+							cancelBtn =`<button type="button" class="btn btn-warning mb-2 p-3" onclick="AMENITY.cancelReq(\'${val.reservation_id}\',\'${val.reason}\')" title="Cancel Request"><i class="fa fa-times"></i> Cancel</button>`;
+						}
 						tbody += `<tr>
 					<td>${val.timestamp}</td>
 					<td>${val.date_from} to ${val.date_to}</td>
@@ -502,7 +558,8 @@ const AMENITY =
 					<td>₱ ${val.total_amount}</td>
 					<td>${val.payment_type}</td>
 					<td>
-					<button type="button" class="btn btn-success" onclick="AMENITY.request_action(\'${val.reservation_id}\','PAID',\'${val.total_amount}\')" title="Approve Request"><i class="fa fa-check"></i> PAID</button>		
+					<button type="button" class="btn btn-success" onclick="AMENITY.request_action(\'${val.reservation_id}\','PAID',\'${val.total_amount}\')" title="Approve Request"><i class="fa fa-check"></i> PAID</button>
+					${cancelBtn}		
 					</td>
 					</tr>`;
 					});

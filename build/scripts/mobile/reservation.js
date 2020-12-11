@@ -429,6 +429,10 @@ const RESERVATION = (()=>{
 					{
 						stat = `<span class="badge badge-success">${val['status']}</span>`;
 					}
+					else if(val['status'] == 'CANCELLED')
+					{
+						stat = `<span class="badge badge-warning">${val['status']}</span>`;
+					}
 					
 
 					

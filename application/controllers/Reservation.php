@@ -188,4 +188,11 @@ class Reservation extends CI_Controller
 		$result = $this->reservation->request_cancellation($post_data['id'],$post_data['reason']);
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
+
+	public function cancel_request()
+	{
+		$post_data = $this->input->post();
+		$result = $this->reservation->cancel_request($post_data['reservation_id']);
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
 }
