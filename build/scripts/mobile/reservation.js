@@ -410,11 +410,11 @@ const RESERVATION = (()=>{
 					else if(val['status'] == 'PENDING')
 					{
 						stat = `<span class="badge badge-secondary">${val['status']}</span>`;
-						if((val['reason'] == null || val['reason'] == '') && val['approved_date']){
-
+						if(val['reason'] ==""  && val['datediff'] == null){
+							stat += `<br><button class="btn btn-warning btn-xs p-2" onclick="RESERVATION.show_cancel(\'${val.id}\')">Cancel Request</button>`
 						}
-						else{
-						stat += `<br><button class="btn btn-warning btn-xs p-2" onclick="RESERVATION.show_cancel(\'${val.id}\')">Cancel Request</button>`
+						else if(val['reason'] =="" && val['datediff'] > 1){
+
 						}
 					}
 					else if(val['status'] == 'FINISHED')

@@ -380,8 +380,9 @@ const AMENITY =
 					<td>₱ ${val.total_amount}</td>
 					<td>${val.payment_type}</td>
 					<td>		
-					<button type="button" class="btn btn-success" onclick="AMENITY.request_action(\'${val.reservation_id}\','APPROVED',\'${val.total_amount}\')"  title="Approve Request"><i class="fa fa-check"></i></button>
-					<button type="button" class="btn btn-danger" onclick="AMENITY.reject(\'${val.reservation_id}\')" title="Decline Request"><i class="fa fa-times"></i></button>
+					<button type="button" class="btn btn-success mb-2 p-3" onclick="AMENITY.request_action(\'${val.reservation_id}\','APPROVED',\'${val.total_amount}\')"  title="Approve Request"><i class="fa fa-check"></i> Approve</button>
+					<button type="button" class="btn btn-danger mb-2" onclick="AMENITY.reject(\'${val.reservation_id}\')" title="Decline Request"><i class="fa fa-times"></i> Reject</button>
+					<button type="button" class="btn btn-warning mb-2" onclick="AMENITY.reject(\'${val.reservation_id}\')" title="Decline Request"><i class="fa fa-times"></i> Reject</button>
 					</td>
 					</tr>`;
 					});

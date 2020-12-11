@@ -129,7 +129,7 @@
 		public function my_reservation($resident_id)
 		{
 			$this->db->where('a.resident_id', $resident_id);
-			$this->db->select('a.*,b.description,DATEDIFF(day, a.approved_date,"'.date("Y-m-d H:i:s").'") as datediff');
+			$this->db->select('a.*,b.description,DATEDIFF("'.date("Y-m-d H:i:s").'",a.approved_date) as datediff');
 			$this->db->from('reservation_tbl as a');
 			$this->db->join('amenities_tbl as b', 'a.amenities_id = b.id', 'left');
 			$this->db->order_by('a.date_from', 'DESC');
