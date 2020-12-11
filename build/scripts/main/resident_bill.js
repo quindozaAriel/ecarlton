@@ -90,9 +90,9 @@ const RESBILL =
 					$.each(result, (key, val) => {
 						var dued = "";
 
-						if (val["type"] == "monthly") {
+						if (val["type"] == "MONTHLY") {
 							dued = `Every <b>${val["due_date"]}</b> of the Month`;
-						} else if (val["type"] == "occasional") {
+						} else if (val["type"] == "OCCASIONAL") {
 							dued = `On <b>${val["due_date"]}</b>`;
 						}
 
@@ -335,13 +335,13 @@ const RESBILL =
 		};
 
 		ret.display_duesec = (bill_type) => {
-			if (bill_type == "monthly") {
+			if (bill_type == "MONTHLY") {
 				$("#due_day").removeClass("d-none");
 				$("#due_day").prop("disabled", false);
 
 				$("#due_date").prop("disabled", true);
 				$("#due_date").addClass("d-none");
-			} else if (bill_type == "occasional") {
+			} else if (bill_type == "OCCASIONAL") {
 				$("#due_date").removeClass("d-none");
 				$("#due_date").prop("disabled", false);
 
