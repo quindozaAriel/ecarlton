@@ -78,6 +78,13 @@ class Monthly extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
+	public function load_payment_history_spec()
+	{
+		$post_data = $this->input->post();
+		$result = $this->monthly->load_payment_history_spec($post_data['date_from'],$post_data['date_to']);
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+	}
+
 	public function load_due_bills()
 	{
 		$result = $this->monthly->load_due_bills();
@@ -108,6 +115,7 @@ class Monthly extends CI_Controller
 			$payment_details_insert_data[] = [
 				'payment_id' => $payment_id,
 				'bills_id'   => $val['bill_id'],
+				'resident_bills_id' => "",
 				'bill_type'  => 'NORMAL',
 				'amount'     => $val['amount'],
 				'timestamp'  => date('Y-m-d H:i:s')

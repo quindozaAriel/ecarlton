@@ -103,13 +103,12 @@
 							</div>
 						</div>
 					</form>
-					<table class="table table-bordered" id="history_tbl">
+					<table class="table table-bordered" id="payment_tbl">
 						<thead>
 							<tr>
 								<th>Payment Date</th>
+								<th>Name</th>
 								<th>Bill Description</th>
-								<th>Type</th>
-								<th>Resident</th>
 								<th>Amount Paid</th>
 							</tr>
 						</thead>
@@ -125,7 +124,7 @@
 	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header bg-info">
-				<h5 class="modal-title text-white">Manual Payment</h5>
+				<h5 class="modal-title text-white">Manual Payment Information</h5>
 			</div>
 			<div class="modal-body">
 				<form method="post" id="manual_payment_form">
@@ -136,30 +135,33 @@
 						</div>
 						<div class="form-group col-md-3">
 							<h6 for="date_from">Resident</h6>
-						
+							<input list="residents" class="form-control" style="font-size:15px;" name="resident_id" id="resident_id" onchange="RESBILL.getResidentInfo()" required>
+							<datalist id="residents">
+							
+							</datalist>
 						</div>
 						<div class="form-group col-md-3">
 							<h6 for="date_from">First Name</h6>
-							<input type="text" readonly class="form-control" style="font-size:15px;" id="first_name">
+							<input type="text" readonly class="form-control" style="font-size:15px;" id="first_name"> 
 						</div>
 						<div class="form-group col-md-3">
 							<h6 for="date_from">Middle Name</h6>
-							<input type="text" readonly class="form-control" style="font-size:15px;" id="middle_name">
+							<input type="text" readonly class="form-control" style="font-size:15px;" id="middle_name"> 
 						</div>
 						<div class="form-group col-md-3">
 							<h6 for="date_from">Last Name</h6>
-							<input type="text" readonly class="form-control" style="font-size:15px;" id="last_name">
+							<input type="text" readonly class="form-control" style="font-size:15px;" id="last_name"> 
 						</div>
 					</div>
 					<div class="form-row mt-3">
 						<div class="form-group col-md-6">
 							<h6 for="date_from">Select Bill</h6>
-							<select class="form-control" style="font-size:15px;" name="bill_id" id="bill_id">
+							<select class="form-control" style="font-size:15px;"  name="bill_id" id="bill_id" >
 
 							</select>
 						</div>
 						<div class="form-group col-md-2">
-							<button type="button" onclick="MONTHLY.add_bills($('#bill_id').val());" class="btn btn-info mt-4" style="font-size:14px;"> Add Bill</button>
+							<button type="button" onclick="RESBILL.add_bills($('#bill_id').val());" class="btn btn-info mt-4" style="font-size:14px;"> Add Bill</button>
 						</div>
 						<div class="form-group col-md-6 offset-md-3">
 							<div class="table-responsive">
@@ -172,13 +174,11 @@
 										</tr>
 									</thead>
 									<tbody>
-
+										
 									</tbody>
 									<tfoot>
 										<tr>
-											<td colspan="3">
-												<h6>Total Amount: <span id="span_total"></span></h6>
-											</td>
+											<td colspan="3"><h6>Total Amount: <span id="span_total"></span></h6></td>
 										</tr>
 									</tfoot>
 								</table>
@@ -187,8 +187,8 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group offset-md-4 col-md-5">
-							<button type="button" class="btn btn-default" onclick="MONTHLY.reset_manual_payment();"><i class="fa fa-eraser"></i>&emsp;Clear</button>
-							<button type="button" onclick="MONTHLY.manual_pay();" class="btn btn-info"><i class="fa fa-save"></i>&emsp;Save Payment</button>
+							<button type="button" class="btn btn-default" onclick="RESBILL.reset_manual_payment();"><i class="fa fa-eraser"></i>&emsp;Clear</button>
+							<button type="button" onclick="RESBILL.manual_pay();" class="btn btn-info"><i class="fa fa-save"></i>&emsp;Save Payment</button>
 						</div>
 					</div>
 				</form>

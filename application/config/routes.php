@@ -96,6 +96,7 @@ $route['monthly']['POST'] = 'Monthly/insert';
 $route['monthly/(:any)']['PATCH'] = 'Monthly/update/$1';
 $route['monthly/(:any)']['DELETE'] = 'Monthly/delete/$1';
 $route['monthly-payment']['POST'] = 'Monthly/load_payment_history';
+$route['monthly-payment-spec']['POST'] = 'Monthly/load_payment_history_spec';
 $route['monthly-due-bills']['GET'] = 'Monthly/load_due_bills';
 $route['monthly-sales-per-month']['GET'] = 'Monthly/load_sales_per_month';
 
@@ -201,3 +202,5 @@ $route['resident-bill-spec/(:any)']['GET'] = 'ResidentBill/read/$1';
 $route['resident-bill']['POST'] = 'ResidentBill/insert';
 $route['resident-bill/(:any)']['PATCH'] = 'ResidentBill/update/$1';
 $route['resident-bill/(:any)']['DELETE'] = 'ResidentBill/delete/$1';
+$route['get-bill/(:any)']['GET'] = 'ResidentBill/get_bills/$1';
+$route['resident_manual_payment']['POST'] = 'ResidentBill/manual_payment';

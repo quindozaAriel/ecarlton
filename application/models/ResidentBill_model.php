@@ -63,4 +63,33 @@ class ResidentBill_model extends CI_Model
             return TRUE;
         }
     }
+
+    public function get_bills($id)
+    {
+        $this->db->where('status','ACTIVE');
+        $this->db->where('resident_id',$id);
+        $this->db->select('*');
+        $this->db->from('resident_bills_tbl');
+        return $this->db->get()->result_array();
+    }
+
+    public function insert_payment_history($data)
+    {
+        $this->db->insert('payment_history_tbl',$data);
+        return $this->db->insert_id();
+    }
+
+    public function insert_payment_details($data)
+    {
+        $result = $this->db->insert_batch('payment_details_tbl',$data);
+
+        if($result > 0)
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
 }

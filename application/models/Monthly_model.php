@@ -103,6 +103,21 @@ class Monthly_model extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
+	public function load_payment_history_spec($from_date,$to_date)
+	{
+		$this->db->where('a.payment_datetime >= ',$from_date);
+		$this->db->where('a.payment_datetime <= ',$to_date);
+		$this->db->select('a.payment_datetime,a.payment_amount as total_amount,
+			b.amount,
+			c.description,
+			d.first_name,d.middle_name,d.last_name');
+		$this->db->from('payment_history_tbl as a');
+		$this->db->join('payment_details_tbl as b','b.payment_id = a.id');
+		$this->db->join('resident_bills_tbl as c','c.id = b.resident_bills_id');
+		$this->db->join('resident_tbl as d','d.id = a.resident_id');
+		return $this->db->get()->result_array();
+	}
+
 	public function looper()
 	{
 		$array = [];
