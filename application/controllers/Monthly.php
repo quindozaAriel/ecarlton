@@ -104,7 +104,7 @@ class Monthly extends CI_Controller
 		$payment_history_insert_data = [
 			'resident_id'      => $post_data['resident_id'],
 			'payment_amount'   => $post_data['payment_amount'],
-			'payment_datetime' => $post_data['payment_date']
+			'payment_datetime' => $post_data['payment_date'] ." ". date('H:i:s')
 		];
 
 		$payment_id = $this->monthly->insert_payment_history($payment_history_insert_data);
